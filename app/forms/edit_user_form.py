@@ -1,12 +1,11 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import SubmitField, StringField
-from app.routes.aws_helpers import ALLOWED_EXTENSIONS
-from wtforms.validators import DataRequired, ValidationError
-from app.models import User
+from wtforms import StringField
+from wtforms.validators import DataRequired, Length
 from .signup_form import username_exists, user_exists
 
 class EditUserForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    
+    username = StringField('Username', validators=[DataRequired(), username_exists, Length(min=4, max=16, message="Username must be between 4 to 16 characters.")])
+    email = StringField('Email address', validators=[DataRequired(), user_exists])
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
+    bio = StringField('Bio', validators=[Length(max=1000, message="Bio must be less than 1000 characters")])

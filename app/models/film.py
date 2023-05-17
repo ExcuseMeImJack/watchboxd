@@ -18,7 +18,7 @@ class Film(db.Model):
     trailer_url = db.Column(db.String, nullable=False)
     tile_img_url = db.Column(db.String, nullable=False)
     director = db.Column(db.String(100), nullable=False)
-    genre = db.Column(db.String(50), nullable=False)
+    genre = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     created_at = db.Column(db.Date, default=datetime.today)
     updated_at = db.Column(db.Date, default=datetime.today)
