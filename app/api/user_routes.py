@@ -33,5 +33,5 @@ def update_user():
     form = editUserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        profile_pic = form.data["user"]
-        if profile_pic
+        profile_img_url = form.data["user"]
+        if profile_img_url:
