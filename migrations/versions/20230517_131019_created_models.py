@@ -1,21 +1,19 @@
 """Created Models
 
-Revision ID: c0329d566d82
+Revision ID: 34665765c443
 Revises:
-Create Date: 2023-05-17 09:14:55.622940
+Create Date: 2023-05-17 13:10:19.465050
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-
 # revision identifiers, used by Alembic.
-revision = 'c0329d566d82'
+revision = '34665765c443'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -47,7 +45,7 @@ def upgrade():
     sa.Column('trailer_url', sa.String(), nullable=False),
     sa.Column('tile_img_url', sa.String(), nullable=False),
     sa.Column('director', sa.String(length=100), nullable=False),
-    sa.Column('genre', sa.String(length=50), nullable=False),
+    sa.Column('genre', sa.String(length=100), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('updated_at', sa.Date(), nullable=True),
@@ -99,8 +97,8 @@ def upgrade():
         op.execute(f"ALTER TABLE film_lists SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE films_to_watch SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
-
     # ### end Alembic commands ###
+
 
 
 def downgrade():
