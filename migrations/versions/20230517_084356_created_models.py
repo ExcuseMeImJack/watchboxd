@@ -1,8 +1,8 @@
 """Created Models
 
-Revision ID: 3698a70a6ec3
+Revision ID: ee27680b1da6
 Revises:
-Create Date: 2023-05-16 17:48:54.788946
+Create Date: 2023-05-17 08:43:56.442922
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '3698a70a6ec3'
+revision = 'ee27680b1da6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,6 +28,7 @@ def upgrade():
     sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
+    sa.Column('profile_img_url', sa.String(), nullable=True),
     sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('updated_at', sa.Date(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
