@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    bio = db.Column(db.String(1000))
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_img_url = db.Column(db.String)
     created_at = db.Column(db.Date, default=datetime.today)
@@ -47,6 +48,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'profile_img_url': self.profile_img_url,
+            'bio': self.bio,
             'lists': [list.to_dict() for list in self.lists],
             'likes': [film.id for film in self.user_likes],
             'films_to_watch': [film.to_dict() for film in self.user_films_to_watch],
