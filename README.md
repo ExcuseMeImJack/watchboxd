@@ -2,7 +2,7 @@
 
 ### A Letterboxd clone built with Python, Flask, React, and Redux.
 
-Live site: Coming Soon
+Live site: https://watchboxd.onrender.com
 
 ## Getting started
 1. Clone this repository (only this branch)
