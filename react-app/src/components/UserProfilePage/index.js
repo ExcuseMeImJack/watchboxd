@@ -38,19 +38,10 @@ const UserProfilePage = () => {
     const likes = user.likes;
     const watched = user.films_watched;
     const activity = [...likes, ...watched]
-    // let uniqueFilms = {}
-    // const userFilms = []
 
-    // activity.forEach(film => {
-    //   console.log(film)
-    //   uniqueFilms[film.title] = film;
-    // })
+    const uniqueFilms = [...new Map(activity.map((film) => [film.id, film])).values()];
 
-    // for(let key in uniqueFilms){
-    //   userFilms.push({[key]: uniqueFilms[key]})
-    // }
-
-    activity.sort((a, b) => {
+    uniqueFilms.sort((a, b) => {
 
       const createdAtA = new Date(a.createdAt).getTime();
       const createdAtB = new Date(b.createdAt).getTime();
@@ -63,14 +54,7 @@ const UserProfilePage = () => {
       }
       return 0;
     })
-
-    // console.log(userFilms)
-
-    // userFilms.forEach(film => {
-    //   console.log(film)
-    // })
-
-    return activity
+    return uniqueFilms
   }
 
   const userFilms = orderFilms();
@@ -89,7 +73,7 @@ const UserProfilePage = () => {
                 EDIT PROFILE
               </button>
             </div>
-            {user.bio ? <p>{user.bio}</p> : null}
+            {user.bio && <p>{user.bio}</p>}
           </div>
           <div className="user-profile-info-section-2">
             <div className="user-profile-data-lists">
@@ -118,7 +102,7 @@ const UserProfilePage = () => {
             <div className="user-profile-navbar">
               <div className="user-profile-navbar-border">
                 <div className="user-profile-navbar-links">
-                  <Link className="">
+                  <Link className="" to="/profile">
                     <p
                       className="current-user-profile-section"
                       id="profile-selected"
@@ -126,10 +110,10 @@ const UserProfilePage = () => {
                       Profile
                     </p>
                   </Link>
-                  <Link>Films</Link>
-                  <Link>Watchlist</Link>
-                  <Link>Lists</Link>
-                  <Link>Likes</Link>
+                  <Link to="">Films</Link>
+                  <Link to="">Watchlist</Link>
+                  <Link to="">Lists</Link>
+                  <Link to="">Likes</Link>
                 </div>
               </div>
             </div>
@@ -138,14 +122,63 @@ const UserProfilePage = () => {
         <div className="user-profile-content-container">
           <div className="user-profile-recent-activity-container">
             <p>RECENT ACTIVITY</p>
+            <div className="user-profile-recent-activity-content">
                 {userFilms.length > 0 ? userFilms.map(film =>
-                  <div>
-                    <p>{film.title}</p>
-                  </div>
-                ) : null}
+                  <Link key={film.title} className="user-profile-recent-films-card" to="">
+                    <img id="user-profile-recent-films-card-img" src={film.tile_img_url} alt=""/>
+                  </Link>
+                ) : <p>Like or Watch some films!</p>}
+            </div>
           </div>
           <div className="user-profile-lists-container">
+            <div className="user-profile-watchlist-container">
+              <p>WATCHLIST</p>
+              <div className="user-profile-watchlist-content">
+                  <Link to="">
+                    <div className="watchlist-image-stack list-img-small">
+                      <div className="watchlist-image-1">
+                        <img id="watchlist-image-1-img" src={user.films_to_watch[0] ? user.films_to_watch[0].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      </div>
+                      <div className="watchlist-image-2">
+                        <img id="watchlist-image-2-img" src={user.films_to_watch[1] ? user.films_to_watch[1].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      </div>
+                      <div className="watchlist-image-3">
+                        <img id="watchlist-image-3-img" src={user.films_to_watch[2] ? user.films_to_watch[2].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      </div>
+                      <div className="watchlist-image-4">
+                        <img id="watchlist-image-4-img" src={user.films_to_watch[3] ? user.films_to_watch[3].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      </div>
+                    </div>
+                  </Link>
+              </div>
+            </div>
+            <div className="user-profile-watchlist-container">
+              <p>LISTS</p>
+              <div className="user-profile-watchlist-content">
+                {user.lists && user.lists.map(list =>
+                <div>
+                  <Link to="">
+                  <div className="watchlist-image-stack list-img-small">
+                    <div className="watchlist-image-1">
+                      <img id="watchlist-image-1-img list-img-small" src={list.films[0] ? list.films[0].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                    </div>
+                    <div className="watchlist-image-2">
+                      <img id="watchlist-image-2-img list-img-small" src={list.films[1] ? list.films[1].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                    </div>
+                    <div className="watchlist-image-3">
+                      <img id="watchlist-image-3-img list-img-small" src={list.films[2] ? list.films[2].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                    </div>
+                    <div className="watchlist-image-4">
+                      <img id="watchlist-image-4-img list-img-small" src={list.films[3] ? list.films[3].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                    </div>
+                  </div>
+                </Link>
+                <h4 id="user-profile-list-name">{list.list_name}</h4>
 
+                </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

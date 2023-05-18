@@ -146,18 +146,98 @@
     grid-template-columns: 3fr 1fr;
     grid-template-areas: "recent-activity list-activity";
     margin: 20px 0px;
-
+    gap: 40px;
 }
 
 .user-profile-recent-activity-container{
     grid-area: recent-activity;
-    border-bottom: 1px var(--border-color) solid;
 }
 
 .user-profile-recent-activity-container > p{
     margin-bottom: 5px;
+    border-bottom: 1px var(--border-color) solid;
 }
 
 .user-profile-lists-container{
     grid-area: list-activity;
+
+}
+
+.user-profile-recent-films-card{
+    max-width: 150px;
+    max-height: 250px;
+    min-width: 150px;
+    min-height: 150px;
+}
+
+#user-profile-recent-films-card-img{
+    max-width: 150px;
+    max-height: 250px;
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 5px;
+    border: 3px solid var(--text-color);
+}
+
+.user-profile-recent-activity-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.user-profile-recent-films-card > #user-profile-recent-films-card-img:hover {
+    border-color: var(--hover-link-color);
+}
+
+.user-profile-watchlist-container > p{
+    margin-bottom: 5px;
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.user-profile-watchlist-content{
+    margin-top: 10px;
+}
+
+.watchlist-image-stack{
+    height: 105px;
+    display: grid;
+    grid-template-columns: repeat( 12, 1fr);
+    position: relative;
+}
+
+.watchlist-image-1 > img {
+    width: 65px;
+    height: 105px;
+
+}
+
+.watchlist-image-2 > img {
+    width: 65px;
+    height: 105px;
+
+}
+
+.watchlist-image-3 > img {
+    width: 65px;
+    height: 105px;
+
+}
+
+.watchlist-image-4 > img {
+    width: 65px;
+    height: 105px;
+
+}
+
+#user-profile-list-name{
+    margin-top: 5px;
+}
+
+.list-img-small{
+    border: 2px solid var(--text-color);
+}
+
+.list-img-small:hover {
+    border-color: var(--hover-link-color);
 }
