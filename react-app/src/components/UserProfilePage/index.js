@@ -51,30 +51,30 @@ const UserProfilePage = () => {
             {user.bio ? <p>{user.bio}</p> : null}
           </div>
           <div className="user-profile-info-section-2">
-            {calculateLikesAndWatches() == 1 ? (
-              <div className="user-profile-films-watched-liked">
-                <h2>{calculateLikesAndWatches()}</h2>
-                <p>FILM</p>
+            <div className="user-profile-data-lists">
+              {calculateLikesAndWatches() == 1 ? (
+                <div className="user-profile-films-watched-liked">
+                  <h2>{calculateLikesAndWatches()}</h2>
+                  <p>FILM</p>
+                </div>
+              ) : (
+                <div className="user-profile-films-watched-liked">
+                  <h2>{calculateLikesAndWatches()}</h2>
+                  <p>FILMS</p>
+                </div>
+              )}
+              <div id="right-divider"></div>
+              <div className="user-profile-films-watched-yearly">
+                <h2>{calculateLikesAndWatchesForYear()}</h2>
+                <p>THIS YEAR</p>
               </div>
-            ) : (
-              <div className="user-profile-films-watched-liked">
-                <h2>{calculateLikesAndWatches()}</h2>
-                <p>FILMS</p>
+              <div id="right-divider"></div>
+              <div className="user-profile-lists-created">
+                <h2>{user.lists.length}</h2>
+                <p>LISTS</p>
               </div>
-            )}
-            <div id="right-divider"></div>
-            <div className="user-profile-films-watched-yearly">
-              <h2>{calculateLikesAndWatchesForYear()}</h2>
-              <p>THIS YEAR</p>
             </div>
-            <div id="right-divider"></div>
-            <div className="user-profile-lists-created">
-              <h2>{user.lists.length}</h2>
-              <p>LISTS</p>
-            </div>
-          </div>
-        </div>
-        <div className="user-profile-navbar">
+            <div className="user-profile-navbar">
             <div className="user-profile-navbar-border">
                 <div className="user-profile-navbar-links">
                     <Link className=""><p className="current-user-profile-section" id="profile-selected">Profile</p></Link>
@@ -84,6 +84,8 @@ const UserProfilePage = () => {
                     <Link>Likes</Link>
                 </div>
             </div>
+        </div>
+          </div>
         </div>
       </div>
     </div>

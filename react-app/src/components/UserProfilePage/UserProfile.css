@@ -14,7 +14,10 @@
 .user-profile-info{
     display: grid;
     grid-template-columns: 100px 1fr 1fr;
-    grid-template-areas: "user-img section1 section2";
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "user-img section1 section2"
+    "blank blank profile-nav";
     min-height: 100px;
     max-height: 100px;
     gap: 20px;
@@ -41,22 +44,29 @@
 .user-profile-info-section-2{
     grid-area: section2;
     display: flex;
-    gap: 40px;
+    flex-direction: column;
+    gap: 20px;
     text-align: center;
     justify-content: end;
 }
 
-.user-profile-info-section-2 > div > h2{
+.user-profile-data-lists{
+    grid-area: section2;
+    display: flex;
+    gap: 40px;
+    justify-content: end;
+}
+
+.user-profile-data-lists > div > h2{
     font-weight: 800;
     font-size: 24px;
     margin: 0px;
 }
 
-.user-profile-info-section-2 > div > p{
+.user-profile-data-lists > div > p{
     font-weight: 800;
     font-size: 12px;
     margin: 0px;
-    padding-bottom: 30px;
     color: var(--secondary-text-color);
 }
 
@@ -97,7 +107,9 @@
 }
 
 .user-profile-navbar{
-    padding: 50px 500px 20px 10px;
+    grid-area: profile-nav;
+    display: flex;
+    justify-content: end;
 }
 
 .user-profile-navbar-links{
@@ -109,7 +121,7 @@
 
 .user-profile-navbar-links > a{
     display: flex;
-    padding: 0px 30px;
+    padding: 0px 5px;
     text-decoration: none;
     width: fit-content;
     color: var(--link-color);
@@ -121,7 +133,7 @@
 }
 
 .user-profile-navbar-border{
-    width: 550px;
+    width: 300px;
     color: var(--secondary-text-color);
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
