@@ -4,6 +4,7 @@ from flask_login import UserMixin
 from datetime import datetime
 from .like import likes
 from .film_to_watch import films_to_watch
+from .watched import watches
 
 
 
@@ -27,6 +28,7 @@ class User(db.Model, UserMixin):
     lists = db.relationship("List", back_populates="user", cascade="all, delete-orphan")
     films = db.relationship("Film", back_populates="film_user", cascade="all, delete-orphan")
     user_likes = db.relationship("Film", secondary=likes, back_populates="film_likes")
+    user_watches = db.relationship("Film", secondary=watches, back_populates="film_watches")
     user_films_to_watch = db.relationship("Film", secondary=films_to_watch, back_populates="film_to_watch")
 
     @property
@@ -52,6 +54,7 @@ class User(db.Model, UserMixin):
             'lists': [list.to_dict() for list in self.lists],
             'likes': [film.id for film in self.user_likes],
             'films_to_watch': [film.to_dict() for film in self.user_films_to_watch],
+            'films_watched': [film.to_dict() for film in self.user_watches],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

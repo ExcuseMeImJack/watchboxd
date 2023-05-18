@@ -1,0 +1,132 @@
+.user-profile-page-container{
+    display: flex;
+    justify-content: center;
+    margin: 0px 24px;
+}
+
+.user-profile-page{
+    margin: 0 auto;
+    width: 1000px;
+    min-width: 950px;
+    max-width: 1000px;
+}
+
+.user-profile-info{
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    grid-template-areas: "user-img section1 section2";
+    min-height: 100px;
+    max-height: 100px;
+    gap: 20px;
+}
+
+.user-profile-user-img-container{
+    max-width: 100px;
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: user-img;
+}
+
+#user-profile-user-img{
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.user-profile-info-section-1{
+    grid-area: section1;
+}
+
+.user-profile-info-section-2{
+    grid-area: section2;
+    display: flex;
+    gap: 40px;
+    text-align: center;
+    justify-content: end;
+}
+
+.user-profile-info-section-2 > div > h2{
+    font-weight: 800;
+    font-size: 24px;
+    margin: 0px;
+}
+
+.user-profile-info-section-2 > div > p{
+    font-weight: 800;
+    font-size: 12px;
+    margin: 0px;
+    padding-bottom: 30px;
+    color: var(--secondary-text-color);
+}
+
+.user-profile-films-watched-liked{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.user-profile-films-watched-yearly{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.user-profile-lists-created{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.user-profile-edit-button-container{
+    display: flex;
+    gap: 28px;
+    align-items: center;
+}
+
+#user-profile-edit-button{
+    background-color: var(--button-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.user-profile-navbar{
+    padding: 50px 500px 20px 10px;
+}
+
+.user-profile-navbar-links{
+    display: flex;
+    /* justify-content: space-evenly; */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.user-profile-navbar-links > a{
+    display: flex;
+    padding: 0px 30px;
+    text-decoration: none;
+    width: fit-content;
+    color: var(--link-color);
+    font-size: 18px;
+}
+
+.user-profile-navbar-links > a:hover{
+    color: rgb(62, 201, 201);
+}
+
+.user-profile-navbar-border{
+    width: 550px;
+    color: var(--secondary-text-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+#profile-selected{
+    margin: 0;
+}

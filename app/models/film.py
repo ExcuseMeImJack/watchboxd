@@ -3,6 +3,7 @@ from datetime import datetime
 from .film_list import film_lists
 from .like import likes
 from .film_to_watch import films_to_watch
+from .watched import watches
 
 class Film(db.Model):
     __tablename__ = 'films'
@@ -26,6 +27,7 @@ class Film(db.Model):
     film_lists = db.relationship("List", secondary=film_lists, back_populates="film_list")
     film_user = db.relationship("User", back_populates="films")
     film_likes = db.relationship("User", secondary=likes, back_populates="user_likes")
+    film_watches = db.relationship("User", secondary=watches, back_populates="user_watches")
     film_to_watch = db.relationship("User", secondary=films_to_watch, back_populates="user_films_to_watch")
 
     def to_dict(self):
