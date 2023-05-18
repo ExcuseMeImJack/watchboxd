@@ -1,20 +1,16 @@
 """Created Models
 
-Revision ID: de6d7b04c045
-Revises:
-Create Date: 2023-05-17 16:30:34.547184
+Revision ID: 29c83b083028
+Revises: 
+Create Date: 2023-05-17 22:04:24.542300
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = 'de6d7b04c045'
+revision = '29c83b083028'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -99,14 +95,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['users'], ['users.id'], ),
     sa.PrimaryKeyConstraint('users', 'films')
     )
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE films SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE lists SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE film_lists SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE films_to_watch SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE likes SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
