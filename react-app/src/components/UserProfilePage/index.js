@@ -21,18 +21,59 @@ const UserProfilePage = () => {
   const calculateLikesAndWatchesForYear = () => {
     const totalThisYear = [];
     user.likes.forEach((like) => {
-      if (like.createdAt.split(" ")[3] === new Date().getFullYear()) {
+      if (like.createdAt?.split(" ")[3] === new Date().getFullYear()) {
         totalThisYear.push({ [like.id]: like });
       }
     });
     user.films_watched.forEach((film_watched) => {
-      if (film_watched.createdAt.split(" ")[3] === new Date().getFullYear()) {
+      if (film_watched.createdAt?.split(" ")[3] === new Date().getFullYear()) {
         totalThisYear.push({ [film_watched.id]: film_watched });
       }
     });
 
     return totalThisYear.length;
   };
+
+  const orderFilms = () => {
+    const likes = user.likes;
+    const watched = user.films_watched;
+    const activity = [...likes, ...watched]
+    // let uniqueFilms = {}
+    // const userFilms = []
+
+    // activity.forEach(film => {
+    //   console.log(film)
+    //   uniqueFilms[film.title] = film;
+    // })
+
+    // for(let key in uniqueFilms){
+    //   userFilms.push({[key]: uniqueFilms[key]})
+    // }
+
+    activity.sort((a, b) => {
+
+      const createdAtA = new Date(a.createdAt).getTime();
+      const createdAtB = new Date(b.createdAt).getTime();
+
+      if (createdAtA > createdAtB) {
+        return -1;
+      }
+      if (createdAtA < createdAtB) {
+        return 1;
+      }
+      return 0;
+    })
+
+    // console.log(userFilms)
+
+    // userFilms.forEach(film => {
+    //   console.log(film)
+    // })
+
+    return activity
+  }
+
+  const userFilms = orderFilms();
 
   return (
     <div className="user-profile-page-container">
@@ -75,16 +116,36 @@ const UserProfilePage = () => {
               </div>
             </div>
             <div className="user-profile-navbar">
-            <div className="user-profile-navbar-border">
+              <div className="user-profile-navbar-border">
                 <div className="user-profile-navbar-links">
-                    <Link className=""><p className="current-user-profile-section" id="profile-selected">Profile</p></Link>
-                    <Link>Films</Link>
-                    <Link>Watchlist</Link>
-                    <Link>Lists</Link>
-                    <Link>Likes</Link>
+                  <Link className="">
+                    <p
+                      className="current-user-profile-section"
+                      id="profile-selected"
+                    >
+                      Profile
+                    </p>
+                  </Link>
+                  <Link>Films</Link>
+                  <Link>Watchlist</Link>
+                  <Link>Lists</Link>
+                  <Link>Likes</Link>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+        <div className="user-profile-content-container">
+          <div className="user-profile-recent-activity-container">
+            <p>RECENT ACTIVITY</p>
+                {userFilms.length > 0 ? userFilms.map(film =>
+                  <div>
+                    <p>{film.title}</p>
+                  </div>
+                ) : null}
+          </div>
+          <div className="user-profile-lists-container">
+
           </div>
         </div>
       </div>

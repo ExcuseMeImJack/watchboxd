@@ -6,6 +6,7 @@
     --button-color: #44525F;
     --divider-color: #333538;
     --border-color: #333538;
+    font-family: 'Hanken Grotesk', sans-serif;
 }
 
 body{
@@ -22,5 +23,5 @@ body{
 .current-user-profile-section{
     border-bottom: 1px solid rgb(35, 206, 49);
     display: flex;
-    align-items: end;
+    align-items: flex-end;
 }

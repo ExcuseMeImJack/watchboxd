@@ -14,12 +14,9 @@
 .user-profile-info{
     display: grid;
     grid-template-columns: 100px 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     grid-template-areas:
-    "user-img section1 section2"
-    "blank blank profile-nav";
+    "user-img section1 section2";
     min-height: 100px;
-    max-height: 100px;
     gap: 20px;
 }
 
@@ -39,6 +36,7 @@
 
 .user-profile-info-section-1{
     grid-area: section1;
+    padding-top: 20px;
 }
 
 .user-profile-info-section-2{
@@ -47,14 +45,14 @@
     flex-direction: column;
     gap: 20px;
     text-align: center;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-profile-data-lists{
     grid-area: section2;
     display: flex;
     gap: 40px;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-profile-data-lists > div > h2{
@@ -74,21 +72,21 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-profile-films-watched-yearly{
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-profile-lists-created{
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-profile-edit-button-container{
@@ -109,13 +107,13 @@
 .user-profile-navbar{
     grid-area: profile-nav;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-profile-navbar-links{
     display: flex;
-    /* justify-content: space-evenly; */
-    padding: 10px;
+    justify-content: space-evenly;
+    padding: 15px;
     border-radius: 5px;
 }
 
@@ -125,7 +123,7 @@
     text-decoration: none;
     width: fit-content;
     color: var(--link-color);
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .user-profile-navbar-links > a:hover{
@@ -133,12 +131,33 @@
 }
 
 .user-profile-navbar-border{
-    width: 300px;
+    width: 290px;
     color: var(--secondary-text-color);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
 }
 
 #profile-selected{
     margin: 0;
+}
+
+.user-profile-content-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "recent-activity list-activity";
+    margin: 20px 0px;
+
+}
+
+.user-profile-recent-activity-container{
+    grid-area: recent-activity;
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.user-profile-recent-activity-container > p{
+    margin-bottom: 5px;
+}
+
+.user-profile-lists-container{
+    grid-area: list-activity;
 }

@@ -22,8 +22,6 @@ def seed():
         undo_films()
         undo_lists()
     seed_users()
-    films = seed_films()
-    seed_lists(films)
     # Add other seed functions here
 
 
