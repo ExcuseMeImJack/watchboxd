@@ -14,15 +14,15 @@
 .user-profile-info{
     display: grid;
     grid-template-columns: 100px 1fr 1fr;
-    grid-template-areas: "user-img section1 section2";
+    grid-template-areas:
+    "user-img section1 section2";
     min-height: 100px;
-    max-height: 100px;
     gap: 20px;
 }
 
 .user-profile-user-img-container{
-    max-width: 100px;
-    min-width: 100px;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,33 +30,43 @@
 }
 
 #user-profile-user-img{
-    max-width: 100px;
-    min-width: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 70px;
 }
 
 .user-profile-info-section-1{
     grid-area: section1;
+    padding-top: 20px;
 }
 
 .user-profile-info-section-2{
     grid-area: section2;
     display: flex;
-    gap: 40px;
+    flex-direction: column;
+    gap: 20px;
     text-align: center;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
-.user-profile-info-section-2 > div > h2{
+.user-profile-data-lists{
+    grid-area: section2;
+    display: flex;
+    gap: 40px;
+    justify-content: flex-end;
+}
+
+.user-profile-data-lists > div > h2{
     font-weight: 800;
     font-size: 24px;
     margin: 0px;
 }
 
-.user-profile-info-section-2 > div > p{
+.user-profile-data-lists > div > p{
     font-weight: 800;
     font-size: 12px;
     margin: 0px;
-    padding-bottom: 30px;
     color: var(--secondary-text-color);
 }
 
@@ -64,21 +74,21 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-profile-films-watched-yearly{
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-profile-lists-created{
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .user-profile-edit-button-container{
@@ -91,29 +101,32 @@
     background-color: var(--button-color);
     color: var(--text-color);
     border: none;
-    padding: 10px;
-    border-radius: 10px;
-    font-weight: 700;
+    padding: 6px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 12px;
 }
 
 .user-profile-navbar{
-    padding: 50px 500px 20px 10px;
+    grid-area: profile-nav;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .user-profile-navbar-links{
     display: flex;
-    /* justify-content: space-evenly; */
-    padding: 10px;
+    justify-content: space-evenly;
+    padding: 15px;
     border-radius: 5px;
 }
 
 .user-profile-navbar-links > a{
     display: flex;
-    padding: 0px 30px;
+    padding: 0px 5px;
     text-decoration: none;
     width: fit-content;
     color: var(--link-color);
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .user-profile-navbar-links > a:hover{
@@ -121,12 +134,113 @@
 }
 
 .user-profile-navbar-border{
-    width: 550px;
+    width: 290px;
     color: var(--secondary-text-color);
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
 }
 
 #profile-selected{
     margin: 0;
+}
+
+.user-profile-content-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: "recent-activity list-activity";
+    margin: 20px 0px;
+    gap: 40px;
+}
+
+.user-profile-recent-activity-container{
+    grid-area: recent-activity;
+}
+
+.user-profile-recent-activity-container > p{
+    margin-bottom: 5px;
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.user-profile-lists-container{
+    grid-area: list-activity;
+
+}
+
+.user-profile-recent-films-card{
+    max-width: 150px;
+    max-height: 250px;
+    min-width: 150px;
+    min-height: 150px;
+}
+
+#user-profile-recent-films-card-img{
+    max-width: 150px;
+    max-height: 250px;
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 5px;
+    border: 3px solid var(--text-color);
+}
+
+.user-profile-recent-activity-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.user-profile-recent-films-card > #user-profile-recent-films-card-img:hover {
+    border-color: var(--hover-link-color);
+}
+
+.user-profile-watchlist-container > p{
+    margin-bottom: 5px;
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.user-profile-watchlist-content{
+    margin-top: 10px;
+}
+
+.watchlist-image-stack{
+    height: 105px;
+    display: grid;
+    grid-template-columns: repeat( 12, 1fr);
+    position: relative;
+}
+
+.watchlist-image-1 > img {
+    width: 65px;
+    height: 105px;
+
+}
+
+.watchlist-image-2 > img {
+    width: 65px;
+    height: 105px;
+
+}
+
+.watchlist-image-3 > img {
+    width: 65px;
+    height: 105px;
+
+}
+
+.watchlist-image-4 > img {
+    width: 65px;
+    height: 105px;
+
+}
+
+#user-profile-list-name{
+    margin-top: 5px;
+}
+
+.list-img-small{
+    border: 2px solid var(--text-color);
+}
+
+.list-img-small:hover {
+    border-color: var(--hover-link-color);
 }

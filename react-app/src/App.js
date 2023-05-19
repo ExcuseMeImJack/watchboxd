@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate, thunkGetUserById } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfilePage from "./components/UserProfilePage";
+import EditProfilePage from "./components/EditProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,9 +28,13 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/profile/settings">
+            <EditProfilePage/>
+          </Route>
           <Route path="/profile">
             <UserProfilePage/>
           </Route>
+
         </Switch>
       )}
     </>

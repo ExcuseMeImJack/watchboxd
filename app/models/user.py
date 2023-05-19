@@ -52,7 +52,7 @@ class User(db.Model, UserMixin):
             'profile_img_url': self.profile_img_url,
             'bio': self.bio,
             'lists': [list.to_dict() for list in self.lists],
-            'likes': [film.id for film in self.user_likes],
+            'likes': [film.to_dict() for film in self.user_likes],
             'films_to_watch': [film.to_dict() for film in self.user_films_to_watch],
             'films_watched': [film.to_dict() for film in self.user_watches],
             'created_at': self.created_at,

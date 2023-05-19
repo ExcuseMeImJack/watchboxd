@@ -6,11 +6,18 @@
     --button-color: #44525F;
     --divider-color: #333538;
     --border-color: #333538;
+    --hover-link-color: rgb(35, 206, 49);
+    --nav-color: #15141B;
+    font-family: 'Hanken Grotesk', sans-serif;
 }
 
 body{
+    background-attachment: fixed;
+    background-color: #21272E; /* For browsers that do not support gradients */
+    background-image: linear-gradient(#21272E, #14171a);
     background-color: #21272E;
     color: rgb(201, 197, 197);
+    overflow-x: hidden;
 }
 
 #right-divider{
@@ -20,7 +27,11 @@ body{
 }
 
 .current-user-profile-section{
-    border-bottom: 1px solid rgb(35, 206, 49);
+    border-bottom: 1px solid var(--hover-link-color);
     display: flex;
-    align-items: end;
+    align-items: flex-end;
+}
+
+.change-cursor{
+    cursor: pointer;
 }
