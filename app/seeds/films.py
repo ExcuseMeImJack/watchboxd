@@ -1,7 +1,8 @@
 from app.models import db, Film, environment, SCHEMA
 from sqlalchemy.sql import text
+from random import sample, randint
 
-def seed_films():
+def seed_films(users):
     film1 = Film(
         title = "Interstellar",
         year = 2014,
@@ -10,7 +11,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=2LqzF5WauAw",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/1/1/7/6/2/1/117621-interstellar-0-500-0-750-crop.jpg",
         director = "Christopher Nolan",
-        genre = "Science-Fiction, Drama, Adventure"
+        genre = "Science-Fiction, Drama, Adventure",
+        film_user = users[3],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film2 = Film(
         title = "Jurassic World: Fallen Kingdom",
@@ -20,7 +24,11 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=vn9mMeWcgoM",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/2/8/1/5/2/9/281529-jurassic-world-fallen-kingdom-0-460-0-690-crop.jpg",
         director = "J. A. Bayona",
-        genre = "Thriller, Science-Fiction, Action, Adventure"
+        genre = "Thriller, Science-Fiction, Action, Adventure",
+        film_user = users[3],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
+
     )
     film3 = Film(
         title = "In the Heights",
@@ -30,7 +38,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=U0CL-ZSuCrQ",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/3/9/9/5/0/0/399500-in-the-heights-0-460-0-690-crop.jpg",
         director = "Jon M. Chu",
-        genre = "Music, Romance, Drama"
+        genre = "Music, Romance, Drama",
+        film_user = users[3],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film4 = Film(
         title = "Aladdin",
@@ -40,7 +51,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=U0CL-ZSuCrQ",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/3/5/4/5/3/8/354538-aladdin-0-460-0-690-crop.jpg",
         director = "Guy Ritchie",
-        genre = "Fantasy, Adventure, Romance, Family"
+        genre = "Fantasy, Adventure, Romance, Family",
+        film_user = users[0],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film5 = Film(
         title = "Pixels",
@@ -50,7 +64,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=XAHprLW48no",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/1/8/1/1/1/8/181118-pixels-0-460-0-690-crop.jpg",
         director = "Chris Columbus",
-        genre = "Comedy, Action, Science-Fiction"
+        genre = "Comedy, Action, Science-Fiction",
+        film_user = users[3],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film6 = Film(
         title = "Kingsman: The Secret Service",
@@ -61,7 +78,9 @@ def seed_films():
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/1/4/8/2/0/0/148200-kingsman-the-secret-service-0-460-0-690-crop.jpg",
         director = "Matthew Vaughn",
         genre = "Action, Comedy, Crime, Adventure",
-        user_id = 4
+        film_user = users[3],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film7 = Film(
         title = "Big Hero 6",
@@ -71,7 +90,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=z3biFxZIJOQ",
         tile_img_url = "https://a.ltrbxd.com/resized/sm/upload/hu/db/3b/mm/q6WZxPlic8hpKzCxnzWOFCCLQfo-0-460-0-690-crop.jpg",
         director = "Chris Williams, Don Hall",
-        genre = "Family, Animation, Adventure, Action"
+        genre = "Family, Animation, Adventure, Action",
+        film_user = users[0],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film8 = Film(
         title = "If I Stay",
@@ -81,7 +103,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=wH6PNeTy6Nc",
         tile_img_url = "https://a.ltrbxd.com/resized/sm/upload/81/57/w1/3y/mLnBvLD3qJC82rhjJFZJijfYkFD-0-460-0-690-crop.jpg",
         director = "R.J. Cutler",
-        genre = "Drama"
+        genre = "Drama",
+        film_user = users[3],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film9 = Film(
         title = "Skyfall",
@@ -91,7 +116,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=6kw1UVovByw",
         tile_img_url = "https://a.ltrbxd.com/resized/sm/upload/5j/ag/wy/k3/bwCC7klDpDcVtEXDK74vDzXLyeF-0-460-0-690-crop.jpg",
         director = "Sam Mendes",
-        genre = "Action, Thriller, Adventure"
+        genre = "Action, Thriller, Adventure",
+        film_user = users[3],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film10 = Film(
         title = "(500) Days of Summer",
@@ -101,7 +129,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=PsD0NpFSADM",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/3/9/3/5/0/39350--500-days-of-summer-0-460-0-690-crop.jpg",
         director = "Marc Webb",
-        genre = "Drama, Romance, Comedy"
+        genre = "Drama, Romance, Comedy",
+        film_user = users[0],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film11 = Film(
         title = "Jaws",
@@ -111,7 +142,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=U1fu_sA7XhE",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/5/1/5/4/2/51542-jaws-0-460-0-690-crop.jpg",
         director = "Steven Spielberg",
-        genre = "Thriller, Horror, Adventure"
+        genre = "Thriller, Horror, Adventure",
+        film_user = users[3],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
     film12 = Film(
         title = "October Sky",
@@ -121,7 +155,10 @@ def seed_films():
         trailer_url = "https://www.youtube.com/watch?v=zxJQgYPXjN4",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/4/3/8/6/8/43868-october-sky-0-460-0-690-crop.jpg",
         director = "Joe Johnston",
-        genre = "Family, Drama"
+        genre = "Family, Drama",
+        film_user = users[3],
+        film_watches = sample(users, randint(0, len(users))),
+        film_likes = sample(users, randint(0, len(users)))
     )
 
     films = [film1, film2, film3, film4, film5, film6, film7, film8, film9, film10, film11, film12]
