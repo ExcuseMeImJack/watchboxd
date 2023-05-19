@@ -5,16 +5,14 @@ from .films import seed_films
 from .lists import seed_lists
 
 # Adds a demo user, you can add other users here if you want
-def seed_users(films):
+def seed_users():
     demo = User(
         first_name='Demo',
         last_name='User',
         username='Demo',
         email='demo@aa.io',
         profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
-        password='password',
-        user_likes=sample(films, randint(0, len(films))),
-        user_watches=sample(films, randint(0, len(films)))
+        password='password'
     )
     marnie = User(
         first_name='Marnie',
@@ -22,9 +20,7 @@ def seed_users(films):
         username='marnie',
         email='marnie@aa.io',
         profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
-        password='password',
-        user_likes=sample(films, randint(0, len(films))),
-        user_watches=sample(films, randint(0, len(films)))
+        password='password'
     )
     bobbie = User(
         first_name='Bobbie',
@@ -32,9 +28,7 @@ def seed_users(films):
         username='bobbie',
         email='bobbie@aa.io',
         profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
-        password='password',
-        user_likes=sample(films, randint(0, len(films))),
-        user_watches=sample(films, randint(0, len(films)))
+        password='password'
     )
     tester1 = User(
         first_name='Jack',
@@ -42,9 +36,7 @@ def seed_users(films):
         username='tester1',
         email='tester1@aa.io',
         profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
-        password='password',
-        user_likes=sample(films, randint(0, len(films))),
-        user_watches=sample(films, randint(0, len(films)))
+        password='password'
     )
     tester2 = User(
         first_name='Andre',
@@ -52,9 +44,7 @@ def seed_users(films):
         username='tester2',
         email='tester2@aa.io',
         profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
-        password='password',
-        user_likes=sample(films, randint(0, len(films))),
-        user_watches=sample(films, randint(0, len(films)))
+        password='password'
     )
     tester3 = User(
         first_name='David',
@@ -62,9 +52,7 @@ def seed_users(films):
         username='tester3',
         email='tester3@aa.io',
         profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
-        password='password',
-        user_likes=sample(films, randint(0, len(films))),
-        user_watches=sample(films, randint(0, len(films)))
+        password='password'
     )
 
     db.session.add(demo)
