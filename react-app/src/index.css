@@ -35,3 +35,11 @@ body{
 .change-cursor{
     cursor: pointer;
 }
+
+.fa-heart{
+    color: rgb(221, 121, 27);
+}
+
+.fa-eye{
+    color: var(--hover-link-color);
+}

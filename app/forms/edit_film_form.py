@@ -5,20 +5,13 @@ from ..api.aws_helpers import ALLOWED_EXTENSIONS
 from wtforms.validators import DataRequired, ValidationError, Email, Length
 from app.models import Film
 
-def title_exists(form, field):
-    title = field.data
-    film = Film.query.filter(Film.title.lower() == title.lower()).first()
-    if film:
-        raise ValidationError('Film already exists.')
-
 def is_youtube_link(form, field):
     link = field.data
     if('www.youtube.com' not in link):
         return ValidationError('Trailer Link is not a YouTube Link.')
-    # https://www.youtube.com/watch?v=2LqzF5WauAw
 
-class CreateFilmForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(), title_exists])
+class EditFilmForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
     year = IntegerField('Year', validators=[DataRequired()])
     genre = StringField('Genre', validators=[DataRequired()])
     director = StringField('Director', validators=[DataRequired()])
