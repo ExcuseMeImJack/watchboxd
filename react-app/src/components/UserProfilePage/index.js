@@ -13,28 +13,6 @@ const UserProfilePage = () => {
     history.push("/profile/settings");
   };
 
-  const calculateLikesAndWatches = () => {
-    // We add together likes an watches bc if a person likes a film, they most likely watched it.
-    const likes = user.likes.length;
-    const watched = user.films_watched.length;
-    return likes + watched;
-  };
-
-  const calculateLikesAndWatchesForYear = () => {
-    const totalThisYear = [];
-    user.likes.forEach((like) => {
-      if (like.created_at?.split(" ")[3] == new Date().getFullYear()) {
-        totalThisYear.push({ [like.id]: like });
-      }
-    });
-    user.films_watched.forEach((film_watched) => {
-      if (film_watched.created_at?.split(" ")[3] == new Date().getFullYear()) {
-        totalThisYear.push({ [film_watched.id]: film_watched });
-      }
-    });
-    return totalThisYear.length;
-  };
-
   const orderFilms = () => {
     const likes = user.likes;
     const watched = user.films_watched;
@@ -60,6 +38,16 @@ const UserProfilePage = () => {
 
   const userFilms = orderFilms();
 
+  const calculateLikesAndWatchesForYear = () => {
+    const totalThisYear = [];
+    userFilms.forEach((like) => {
+      if (like.created_at?.split(" ")[3] == new Date().getFullYear()) {
+        totalThisYear.push({ [like.id]: like });
+      }
+    });
+    return totalThisYear.length;
+  };
+
   return (
     <div className="user-profile-page-container">
       <div className="user-profile-page">
@@ -78,14 +66,14 @@ const UserProfilePage = () => {
           </div>
           <div className="user-profile-info-section-2">
             <div className="user-profile-data-lists">
-              {calculateLikesAndWatches() == 1 ? (
+              {userFilms.length == 1 ? (
                 <div className="user-profile-films-watched-liked">
-                  <h2>{calculateLikesAndWatches()}</h2>
+                  <h2>{userFilms.length}</h2>
                   <p>FILM</p>
                 </div>
               ) : (
                 <div className="user-profile-films-watched-liked">
-                  <h2>{calculateLikesAndWatches()}</h2>
+                  <h2>{userFilms.length}</h2>
                   <p>FILMS</p>
                 </div>
               )}

@@ -5,10 +5,7 @@ from .films import seed_films
 from .lists import seed_lists
 
 # Adds a demo user, you can add other users here if you want
-def seed_users():
-    films = seed_films()
-    seed_lists(films)
-    
+def seed_users(films):
     demo = User(
         first_name='Demo',
         last_name='User',
