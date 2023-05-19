@@ -1,14 +1,14 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Film
-from ..forms.edit_user_img_form import EditUserImgForm
-from .aws_helpers import get_unique_filename, upload_file_to_s3
+from ..forms import EditUserForm
+from app.api.aws_helpers import get_unique_filename, upload_file_to_s3
 from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
 
 # GET ALL USERS
-@user_routes.route('/')
+@user_routes.route('')
 @login_required
 def users():
     """
@@ -28,33 +28,43 @@ def user_by_id(id):
     return user.to_dict()
 
 # UPDATE THE CURRENT USER
-@user_routes.route('/', methods=['PUT'])
+@user_routes.route('', methods=['PUT'])
 @login_required
 def update_user():
     """
     Update the current user and returns that user in a dictionary
     """
     curr_user = User.query.get(current_user.id)
-    form = EditUserImgForm()
+
+    form = EditUserForm()
+
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        profile_img = form.data["user_img"]
-        if profile_img:
-            profile_img.filename = get_unique_filename(profile_img.filename)
-            upload = upload_file_to_s3(profile_img)
+        profile_img_url = form.data["profile_img_url"]
 
+        if profile_img_url:
+            print('YOUR MOMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM', profile_img_url) #<FileStorage: '29db611c159a48e08dbec829aa7bd0c4.png' ('image/png')>
+            profile_img_url.filename = get_unique_filename(profile_img_url.filename)
+            upload = upload_file_to_s3(profile_img_url)
+            print(upload)
             if "url" not in upload:
                 return {'errors': [upload]}
 
             user_img_url = upload["url"]
             curr_user.profile_img_url = user_img_url
 
+        curr_user.first_name=form.data["first_name"]
+        curr_user.last_name=form.data["last_name"]
+        if curr_user.username != form.data["username"]:
+            curr_user.username=form.data["username"]
+        curr_user.bio=form.data["bio"]
+
         db.session.commit()
         return curr_user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # DELETE THE CURRENT USER
-@user_routes.route('/', methods=["DELETE"])
+@user_routes.route('', methods=["DELETE"])
 @login_required
 def delete_user():
     """

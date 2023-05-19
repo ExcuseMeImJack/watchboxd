@@ -24,7 +24,6 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        print('FILMMMMMMMMSSSSS', [('FILMMMMMMMMSSSSS', film.title) for film in Film.query.all()])
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
 
@@ -64,6 +63,7 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
+            profile_img_url="https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg",
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password']

@@ -1,0 +1,122 @@
+.general-profile-settings-page{
+    display: flex;
+    justify-content: center;
+    margin: 0px 24px;
+}
+
+.general-profile-settings-container{
+    margin: 0 auto;
+    width: 1000px;
+    min-width: 950px;
+    max-width: 1000px;
+}
+
+#account-setting-title{
+    font-weight: 200;
+    font-size: 32px;
+}
+
+.gen-settings-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'settings avatar';
+}
+
+.edit-settings-container{
+    grid-area: settings;
+}
+
+.edit-avatar-container{
+    grid-area: avatar;
+}
+
+.edit-settings-container > label{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px;
+    width: 87%;
+}
+
+.first-last-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'first last';
+}
+
+.aboutme-container > label{
+    display: flex;
+    flex-direction: column;
+    width: 87%;
+    padding: 5px 0px;
+}
+
+.aboutme-container > label > textarea{
+    resize: none;
+    height: 70px;
+}
+
+.edit-avatar-container > label{
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-avatar-img-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* padding: 0px 0px; */
+}
+
+.upload-profile-pic-input{
+    display: none;
+}
+
+#edit-avatar-pic{
+    height: 190px;
+    width: 190px;
+    border-radius: 50%;
+}
+
+.edit-profile-changes{
+    margin-top: 20px;
+    background-color: green;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.delete-profile{
+    margin-top: 20px;
+    background-color: rgb(196, 20, 20);
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.cancel-profile-changes{
+    margin-top: 20px;
+    background-color: var(--button-color);
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-family: 'Hanken Grotesk', sans-serif;
+    height: 30px;
+    display: flex;
+    align-self: center;
+    margin-bottom: 15px;
+    margin-left: 138px;
+}
+
+.account-title-button{
+    display: flex;
+
+}
