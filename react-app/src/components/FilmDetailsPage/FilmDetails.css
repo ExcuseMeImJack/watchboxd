@@ -1,0 +1,18 @@
+.film-details-page-container {
+
+}
+
+.film-details-page{
+
+}
+
+#film-background-image{
+    height: 675px;
+    width: 1200px;
+}
+
+.film-background-image-container{
+    display: flex;
+    justify-content: center;
+    
+}

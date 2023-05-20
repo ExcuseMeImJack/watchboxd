@@ -32,10 +32,19 @@
     margin: 20px 0px;
 }
 
+#films-page-search-bar{
+    border-radius: 3px;
+    background-color: var(--button-color);
+    outline: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 16px;
+}
+
 .films-page-tiles-container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 27px;
 }
 
 .films-page-tile{

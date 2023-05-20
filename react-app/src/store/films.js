@@ -112,15 +112,15 @@ export default function reducer(state = initialState, action) {
             return newState
         }
         case GET_ONE_FILM: {
-            const newState = {...state, films: action.film}
+            const newState = {...state, films: action.payload.film}
             return newState
         }
         case CREATE_FILM: {
-            const newState = {...state, films: action.newFilm}
+            const newState = {...state, films: action.payload.newFilm}
             return newState
         }
         case UPDATE_FILM: {
-            const newState = {...state, films: action.updatedFilm}
+            const newState = {...state, films: action.payload.updatedFilm}
             return newState
         }
         case DELETE_FILM: {

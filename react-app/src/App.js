@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import UserProfilePage from "./components/UserProfilePage";
 import EditProfilePage from "./components/EditProfilePage";
 import FilmsPage from "./components/FilmsPage";
+import FilmDetailsPage from "./components/FilmDetailsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,25 +21,33 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <Navigation isLoaded={isLoaded} />
+          </Route>
           <Route path="/login" >
+            <Navigation isLoaded={isLoaded} />
             <LoginFormPage />
           </Route>
           <Route path="/signup">
+            <Navigation isLoaded={isLoaded} />
             <SignupFormPage />
           </Route>
           <Route path="/profile/settings">
+            <Navigation isLoaded={isLoaded} />
             <EditProfilePage/>
           </Route>
           <Route path="/profile">
+            <Navigation isLoaded={isLoaded} />
             <UserProfilePage/>
           </Route>
           <Route path="/films/:filmId">
-
+            <Navigation isLoaded={isLoaded}/>
+            <FilmDetailsPage/>
           </Route>
           <Route path="/films">
+            <Navigation isLoaded={isLoaded} />
             <FilmsPage/>
           </Route>
         </Switch>

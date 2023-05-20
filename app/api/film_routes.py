@@ -8,7 +8,6 @@ from .auth_routes import validation_errors_to_error_messages
 film_routes = Blueprint('films', __name__)
 
 @film_routes.route('')
-@login_required
 def films():
     """
     Query for all the films and returns them in a list of film dictionaries
@@ -17,7 +16,6 @@ def films():
     return {'films': [film.to_dict() for film in films]}
 
 @film_routes.route('/<int:id>')
-@login_required
 def film_by_id(id):
     """
     Query for a film by the film id and returns a film in a dictionary
