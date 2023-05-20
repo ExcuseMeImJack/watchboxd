@@ -48,7 +48,7 @@ def seed_films(users):
         year = 2019,
         description = "Choose Wisely. A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.",
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/t5/xc/w8/fo/aladdin-2019-1200-1200-675-675-crop-000000.jpg",
-        trailer_url = "https://www.youtube.com/watch?v=U0CL-ZSuCrQ",
+        trailer_url = "https://youtu.be/foyufD52aog",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/3/5/4/5/3/8/354538-aladdin-0-460-0-690-crop.jpg",
         director = "Guy Ritchie",
         genre = "Fantasy, Adventure, Romance, Family",

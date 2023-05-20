@@ -1,0 +1,39 @@
+.user-films-page-container{
+    display: flex;
+    justify-content: center;
+    margin: 0px 24px;
+}
+
+.user-films-page{
+    margin: 0 auto;
+    width: 1000px;
+    min-width: 950px;
+    max-width: 1000px;
+}
+
+.user-films-all{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.user-films-card{
+    max-width: 100px;
+    max-height: 200px;
+    min-width: 100px;
+    min-height: 150px;
+}
+
+#user-films-card-img{
+    max-width: 100px;
+    max-height: 200px;
+    min-width: 100px;
+    min-height: 150px;
+    border-radius: 5px;
+    border: 3px solid var(--text-color);
+}
+
+.user-films-card > #user-films-card-img:hover {
+    border-color: var(--hover-link-color);
+}

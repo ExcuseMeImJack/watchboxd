@@ -9,6 +9,8 @@ import UserProfilePage from "./components/UserProfilePage";
 import EditProfilePage from "./components/EditProfilePage";
 import FilmsPage from "./components/FilmsPage";
 import FilmDetailsPage from "./components/FilmDetailsPage";
+import ProfileFilms from "./components/ProfileFilms";
+import ProfileLikes from "./components/ProfileLikes";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,14 @@ function App() {
           <Route path="/profile/settings">
             <Navigation isLoaded={isLoaded} />
             <EditProfilePage/>
+          </Route>
+          <Route path="/profile/films">
+            <Navigation isLoaded={isLoaded} />
+            <ProfileFilms/>
+          </Route>
+          <Route path="/profile/likes">
+            <Navigation isLoaded={isLoaded} />
+            <ProfileLikes/>
           </Route>
           <Route path="/profile">
             <Navigation isLoaded={isLoaded} />

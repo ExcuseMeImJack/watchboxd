@@ -13,7 +13,7 @@ def title_exists(form, field):
 
 def is_youtube_link(form, field):
     link = field.data
-    if('www.youtube.com' not in link):
+    if('youtube' not in link or 'youtu.be' not in link):
         return ValidationError('Trailer Link is not a YouTube Link.')
     # https://www.youtube.com/watch?v=2LqzF5WauAw
 

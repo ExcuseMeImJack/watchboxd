@@ -57,9 +57,9 @@ function ProfileButton({ user }) {
             </div>
             <div className="hoverable" onClick={() => history.push('/')}><p>Home</p></div>
             <div className="hoverable" onClick={() => history.push('/profile')}><p>Profile</p></div>
-            <div className="hoverable" onClick={() => history.push('/films')}><p>Films</p></div>
-            <div className="hoverable" onClick={() => history.push('/watchlist')}><p>Watchlist</p></div>
-            <div className="hoverable" onClick={() => history.push('/list')}><p>Lists</p></div>
+            <div className="hoverable" onClick={() => history.push('/profile/films')}><p>Films</p></div>
+            <div className="hoverable" onClick={() => history.push('/profile/watchlist')}><p>Watchlist</p></div>
+            <div className="hoverable" onClick={() => history.push('profile/lists')}><p>Lists</p></div>
             <div className="hoverable dropdown-likes"><p>Likes</p></div>
             <div>
               <div className="hoverable" onClick={handleLogout}><p>Sign Out</p></div>
