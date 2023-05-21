@@ -34,17 +34,11 @@ def create_film():
     Create a film that will assign the current user as it's creator and returns the created film in a dictionary
     """
     form = CreateFilmForm()
-    print("MADE IT LINE 39 --------- FILM ROUTES")
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print("MADE IT LINE 40 --------- FILM ROUTES")
         background_img = form.data["background_img_url"]
         tile_img = form.data["tile_img_url"]
-
-        print(background_img)
-        print(tile_img)
-        print("MADE IT LINE 45 --------- FILM ROUTES")
 
         if background_img:
             background_img.filename = get_unique_filename(background_img.filename)
@@ -63,7 +57,6 @@ def create_film():
                 return {'errors': [upload]}
 
             tile_img_url = upload["url"]
-            print('MADE IT TO LINE 63 ----------------------------------------------------------')
 
         film = Film(
             title = form.data["title"],
@@ -73,10 +66,10 @@ def create_film():
             description = form.data["description"],
             trailer_url = form.data["trailer_url"],
             tile_img_url = tile_img_url,
-            background_img_url = background_img_url
+            background_img_url = background_img_url,
+            user_id = current_user.id
         )
-        print("MADE IT LINE 72 --------- FILM ROUTES")
-        print(film.to_dict())
+
         db.session.add(film)
         db.session.commit()
         return film.to_dict()
@@ -131,7 +124,7 @@ def update_film():
 
 @film_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def delete_film():
+def delete_film(id):
     """
     Delete a film by id if the film belongs to the current user and returns a message when it successfullt deletes
     """

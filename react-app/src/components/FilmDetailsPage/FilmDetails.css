@@ -138,6 +138,10 @@
     font-size: 15px;
 }
 
+.add-to-list-button-film-details > button{
+    background-color: var(--button-color);
+}
+
 .film-trailer-player-container{
     grid-area: trailer;
 }
@@ -156,3 +160,29 @@
     margin-top: 40px;
 }
 
+.update-film-button{
+    margin-top: 20px;
+    background-color: rgb(31, 136, 155);
+    padding: 5px 8px;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-family: 'Hanken Grotesk', sans-serif;
+}
+
+.control-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.control-buttons > button{
+    width: 145px;
+    height: 40px;
+    border: 2px solid transparent;
+}
+
+.control-buttons > button:hover{
+    border-color: var(--text-color);
+}

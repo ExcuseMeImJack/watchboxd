@@ -12,6 +12,7 @@ import FilmDetailsPage from "./components/FilmDetailsPage";
 import ProfileFilms from "./components/ProfileFilms";
 import ProfileLikes from "./components/ProfileLikes";
 import CreateFilmPage from "./components/CreateFilmPage";
+import UpdateFilmPage from "./components/UpdateFilmPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,9 @@ function App() {
           </Route>
           <Route path="/films/create">
             <CreateFilmPage />
+          </Route>
+          <Route path="/films/update/:filmId">
+            <UpdateFilmPage />
           </Route>
           <Route path="/films/:filmId">
             <FilmDetailsPage />

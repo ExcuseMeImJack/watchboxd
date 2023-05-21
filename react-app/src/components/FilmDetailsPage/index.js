@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllFilms, thunkGetFilmById } from "../../store/films";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import "./FilmDetails.css";
+import DeleteFilmModal from "../DeleteFilmModal";
 
 const FilmDetailsPage = () => {
   const { filmId } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
   const films = useSelector((state) => state.films.films);
   const user = useSelector((state) => state.session.user);
   const film = films?.find((film) => {
@@ -18,7 +20,6 @@ const FilmDetailsPage = () => {
 
   useEffect(() => {
     dispatch(thunkGetAllFilms());
-    // dispatch(thunkGetFilmById(filmId))
   }, [dispatch]);
 
   if (!film) return null;
@@ -34,7 +35,6 @@ const FilmDetailsPage = () => {
     return id;
   };
 
-  // console.log(film[1])
   return (
     <div className="film-details-page-container">
       <div className="film-details-page">
@@ -118,6 +118,7 @@ const FilmDetailsPage = () => {
                   <p>Watchlist</p>
                 </div>
               </div>
+
               <div className="film-add-to-lists">
                 <OpenModalButton
                   buttonText={"Add to lists..."}
@@ -126,6 +127,18 @@ const FilmDetailsPage = () => {
                   }
                 />
               </div>
+
+              {user.id === film.user_id &&
+              <div className="control-buttons">
+                <button className="update-film-button change-cursor" onClick={() => history.push(`/films/update/${film.id}`)}>UPDATE FILM</button>
+                <OpenModalButton
+                buttonStyleClass={"delete-profile change-cursor"}
+                buttonText={"DELETE FILM"}
+                modalComponent={<DeleteFilmModal film={film}/>}
+                modalStyleClass={"delete-profile-modal-content"}
+            />
+              </div>}
+
             </div>
           )}
         </div>

@@ -1,69 +1,72 @@
-import { useHistory } from 'react-router-dom'
-import './CreateFilm.css'
+import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { thunkCreateFilm, thunkGetAllFilms } from '../../store/films';
 
-const CreateFilmPage = () => {
+const UpdateFilmPage = () => {
+    const { filmId } = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
 
     const films = useSelector(state => state.films.films)
+    const film = films?.find((film) => {
+        if (film.id === parseInt(filmId)) {
+          return film;
+        }
+      });
 
-    const [title, setTitle] = useState("");
-    const [year, setYear] = useState("");
-    const [genre, setGenre] = useState("");
-    const [director, setDirector] = useState("");
-    const [description, setDescription] = useState("");
-    const [backgroundImage, setBackgroundImage] = useState(null);
-    const [trailerUrl, setTrailerUrl] = useState("");
-    const [tileImage, setTileImage] = useState(null);
+    const [title, setTitle] = useState(film?.title);
+    const [year, setYear] = useState(film?.year);
+    const [genre, setGenre] = useState(film?.genre);
+    const [director, setDirector] = useState(film?.director);
+    const [description, setDescription] = useState(film?.description);
+    const [backgroundImage, setBackgroundImage] = useState(film?.backgroundImage);
+    const [trailerUrl, setTrailerUrl] = useState(film?.trailerUrl);
+    const [tileImage, setTileImage] = useState(film?.tileImage);
     const [errors, setErrors] = useState({})
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [confirmedBackgroundImage, setConfirmedBackgroundImage] = useState("")
     const [confirmedTileImage, setConfirmedTileImage] = useState("")
     const [imageLoading, setImageLoading] = useState(false)
-    const [backgroundImagePreview, setBackgroundImagePreview] = useState("https://i.imgur.com/3KeglMk.png")
-    const [tileImagePreview, setTileImagePreview] = useState("https://i.imgur.com/3KeglMk.png")
 
     useEffect(() => {
         dispatch(thunkGetAllFilms())
     }, [dispatch])
 
-    useEffect(() => {
-        const valErrors = {}
-        films?.forEach(film => (film.title.toLowerCase().replace(/[^a-z0-9]/gi, '') === title.toLowerCase().replace(/[^a-z0-9]/gi, '')) ? valErrors.title = "Film already exists" : null)
+    // useEffect(() => {
+    //     const valErrors = {}
+    //     films?.forEach(film => (film.title.toLowerCase().replace(/[^a-z0-9]/gi, '') === title.toLowerCase().replace(/[^a-z0-9]/gi, '') && !title === film.title) ? valErrors.title = "Film already exists" : null)
 
-        if(parseInt(year) < 1800 || parseInt(year) > new Date().getFullYear() +2) valErrors.year = `Year must be between 1800 and ${new Date().getFullYear() + 2}`
+    //     if(parseInt(year) < 1800 || parseInt(year) > new Date().getFullYear() +2) valErrors.year = `Year must be between 1800 and ${new Date().getFullYear() + 2}`
 
-        if(year.length > 1 && year.length < 4) valErrors.year = "Year must have 4 characters"
+    //     if(year?.length > 1 && year.length < 4) valErrors.year = "Year must have 4 characters"
 
-        if(description.length > 1000) valErrors.description = "Description must be lower than 1000 characters"
+    //     if(description?.length > 1000) valErrors.description = "Description must be lower than 1000 characters"
 
-        if(description.length < 10) valErrors.description = "Description must be more than 10 characters"
+    //     if(description?.length < 10) valErrors.description = "Description must be more than 10 characters"
 
-        if(!(trailerUrl.includes('youtube') || trailerUrl.includes('youtu.be'))) valErrors.trailerUrl = "Trailer URL must be a YouTube link"
+    //     if(trailerUrl && !(trailerUrl.includes('youtube') || trailerUrl.includes('youtu.be'))) valErrors.trailerUrl = "Trailer URL must be a YouTube link"
 
-        const validUrlFileTypes = ['png', 'jpg', 'jpeg'];
+    //     const validUrlFileTypes = ['png', 'jpg', 'jpeg'];
 
-        if(backgroundImage) {
-            const urlArray = backgroundImage.name.split('.');
-            const urlSuffix = urlArray[urlArray.length - 1];
-            !validUrlFileTypes.includes(urlSuffix) ? valErrors.backgroundImage = 'Image URL must end in .png, .jpg, or .jpeg' : setConfirmedBackgroundImage(backgroundImage)
-        } else {
-            valErrors.backgroundImage = "Background Image is required"
-        }
+    //     if(backgroundImage) {
+    //         const urlArray = backgroundImage.name.split('.');
+    //         const urlSuffix = urlArray[urlArray.length - 1];
+    //         !validUrlFileTypes.includes(urlSuffix) ? valErrors.backgroundImage = 'Image URL must end in .png, .jpg, or .jpeg' : setConfirmedBackgroundImage(backgroundImage)
+    //     } else {
+    //         valErrors.backgroundImage = "Background Image is required"
+    //     }
 
-        if(tileImage) {
-            const urlArray = tileImage.name.split('.');
-            const urlSuffix = urlArray[urlArray.length - 1];
-            !validUrlFileTypes.includes(urlSuffix) ? valErrors.tileImage = 'Image URL must end in .png, .jpg, or .jpeg' : setConfirmedTileImage(tileImage)
-        } else {
-            valErrors.backgroundImage = "Tile Image is required"
-        }
+    //     if(tileImage) {
+    //         const urlArray = tileImage.name.split('.');
+    //         const urlSuffix = urlArray[urlArray.length - 1];
+    //         !validUrlFileTypes.includes(urlSuffix) ? valErrors.tileImage = 'Image URL must end in .png, .jpg, or .jpeg' : setConfirmedTileImage(tileImage)
+    //     } else {
+    //         valErrors.backgroundImage = "Tile Image is required"
+    //     }
 
-        setErrors(valErrors)
-    }, [title, year, description, backgroundImage, trailerUrl, tileImage])
+    //     setErrors(valErrors)
+    // }, [title, year, description, backgroundImage, trailerUrl, tileImage])
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -80,22 +83,24 @@ const CreateFilmPage = () => {
         formData.append("tile_img_url", confirmedTileImage)
 
         const res = await fetch('/api/films', {
-            method: "POST",
+            method: "PUT",
             body: formData
         })
 
         if(res.ok) {
-            const newFilm = await res.json();
+            const updatedFilm = await res.json();
             setImageLoading(false)
-            history.push(`/films/${newFilm.id}`)
+            history.push(`/films/${updatedFilm.id}`)
             dispatch(thunkGetAllFilms())
         }
     }
 
+    if(!film) return null
+
     return (
         <div className="create-film-page-container">
             <div className="create-film-page">
-                <h1>Create a New Film</h1>
+                <h1>Update {film.title}</h1>
                 <div>
                     {errors.title && <p className='errors'>{errors.title}</p>}
                     {isSubmitted && errors.year && <p className='errors'>{errors.year}</p>}
@@ -192,4 +197,4 @@ const CreateFilmPage = () => {
     )
 }
 
-export default CreateFilmPage
+export default UpdateFilmPage

@@ -99,6 +99,7 @@ export const thunkDeleteFilm = (film) => async(dispatch) => {
             "Content-Type": "application/json"
         }
     })
+    console.log(res)
     if(res.ok) {
         const data = await res.json();
         if(data.errors) {
