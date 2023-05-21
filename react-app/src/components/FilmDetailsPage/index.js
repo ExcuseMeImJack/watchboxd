@@ -28,10 +28,8 @@ const FilmDetailsPage = () => {
     let id;
     if (url.includes("youtube.com")) {
       id = url.split("=")[1];
-      console.log(url);
     } else if (url.includes("youtu.be")) {
       id = url.split("/")[3];
-      console.log(id);
     }
     return id;
   };

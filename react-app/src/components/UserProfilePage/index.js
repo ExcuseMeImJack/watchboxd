@@ -128,16 +128,16 @@ const UserProfilePage = () => {
                   <Link to="/profile/watchlist">
                     <div className="watchlist-image-stack list-img-small">
                       <div className="watchlist-image-1">
-                        <img id="watchlist-image-1-img" src={user.films_to_watch[0] ? user.films_to_watch[0].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                        <img id="watchlist-image-1-img" src={user.films_to_watch[0] ? user.films_to_watch[0].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                       </div>
                       <div className="watchlist-image-2">
-                        <img id="watchlist-image-2-img" src={user.films_to_watch[1] ? user.films_to_watch[1].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                        <img id="watchlist-image-2-img" src={user.films_to_watch[1] ? user.films_to_watch[1].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                       </div>
                       <div className="watchlist-image-3">
-                        <img id="watchlist-image-3-img" src={user.films_to_watch[2] ? user.films_to_watch[2].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                        <img id="watchlist-image-3-img" src={user.films_to_watch[2] ? user.films_to_watch[2].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                       </div>
                       <div className="watchlist-image-4">
-                        <img id="watchlist-image-4-img" src={user.films_to_watch[3] ? user.films_to_watch[3].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                        <img id="watchlist-image-4-img" src={user.films_to_watch[3] ? user.films_to_watch[3].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                       </div>
                     </div>
                   </Link>
@@ -154,16 +154,16 @@ const UserProfilePage = () => {
                   <Link to={`/lists/${list.id}`}>
                   <div className="watchlist-image-stack list-img-small">
                     <div className="watchlist-image-1">
-                      <img id="watchlist-image-1-img list-img-small" src={list.films[0] ? list.films[0].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      <img id="watchlist-image-1-img list-img-small" src={list.films[0] ? list.films[0].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                     </div>
                     <div className="watchlist-image-2">
-                      <img id="watchlist-image-2-img list-img-small" src={list.films[1] ? list.films[1].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      <img id="watchlist-image-2-img list-img-small" src={list.films[1] ? list.films[1].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                     </div>
                     <div className="watchlist-image-3">
-                      <img id="watchlist-image-3-img list-img-small" src={list.films[2] ? list.films[2].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      <img id="watchlist-image-3-img list-img-small" src={list.films[2] ? list.films[2].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                     </div>
                     <div className="watchlist-image-4">
-                      <img id="watchlist-image-4-img list-img-small" src={list.films[3] ? list.films[3].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      <img id="watchlist-image-4-img list-img-small" src={list.films[3] ? list.films[3].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                     </div>
                   </div>
                 </Link>

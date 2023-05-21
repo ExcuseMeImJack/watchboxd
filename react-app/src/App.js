@@ -11,11 +11,12 @@ import FilmsPage from "./components/FilmsPage";
 import FilmDetailsPage from "./components/FilmDetailsPage";
 import ProfileFilms from "./components/ProfileFilms";
 import ProfileLikes from "./components/ProfileLikes";
+import CreateFilmPage from "./components/CreateFilmPage";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const user = useSelector(state => state.session.user)
+  const user = useSelector((state) => state.session.user);
   // console.log(user)
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
@@ -23,42 +24,37 @@ function App() {
 
   return (
     <>
+      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Navigation isLoaded={isLoaded} />
           </Route>
-          <Route path="/login" >
-            <Navigation isLoaded={isLoaded} />
+          <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
-            <Navigation isLoaded={isLoaded} />
             <SignupFormPage />
           </Route>
           <Route path="/profile/settings">
-            <Navigation isLoaded={isLoaded} />
-            <EditProfilePage/>
+            <EditProfilePage />
           </Route>
           <Route path="/profile/films">
-            <Navigation isLoaded={isLoaded} />
-            <ProfileFilms/>
+            <ProfileFilms />
           </Route>
           <Route path="/profile/likes">
-            <Navigation isLoaded={isLoaded} />
-            <ProfileLikes/>
+            <ProfileLikes />
           </Route>
           <Route path="/profile">
-            <Navigation isLoaded={isLoaded} />
-            <UserProfilePage/>
+            <UserProfilePage />
+          </Route>
+          <Route path="/films/create">
+            <CreateFilmPage />
           </Route>
           <Route path="/films/:filmId">
-            <Navigation isLoaded={isLoaded}/>
-            <FilmDetailsPage/>
+            <FilmDetailsPage />
           </Route>
           <Route path="/films">
-            <Navigation isLoaded={isLoaded} />
-            <FilmsPage/>
+            <FilmsPage />
           </Route>
         </Switch>
       )}

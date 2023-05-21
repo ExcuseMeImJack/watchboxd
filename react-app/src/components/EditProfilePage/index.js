@@ -20,6 +20,13 @@ const EditProfilePage = () => {
   const [imageLoading, setImageLoading] = useState(false)
   const [errors, setErrors] = useState({})
 
+  useEffect(() => {
+    const valErrors = {}
+    if(username.length < 4 || username.length > 16) valErrors.username = "Username must be between 4 and 16 characters"
+    if(bio && (bio.length > 100)) valErrors.bio = "Bio must be less than 100 characters"
+    setErrors(valErrors)
+  }, [username, bio])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -44,7 +51,7 @@ const EditProfilePage = () => {
         dispatch(thunkGetUserById(user.id))
     } else {
         setImageLoading(false)
-        console.log(res)
+        setErrors({"profilePic": "Profile Pic must be a png, jpg or jpeg"})
     }
   };
 
@@ -54,8 +61,14 @@ const EditProfilePage = () => {
         <div className="account-title-button">
           <h2 id="account-setting-title">Account Settings</h2>
           <button className="cancel-profile-changes change-cursor" onClick={() => history.push('/profile')}>CANCEL</button>
+
         </div>
         <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <div>
+            {errors.username && <p className="errors">{errors.username}</p>}
+            {errors.profilePic && <p className="errors">{errors.profilePic}</p>}
+            {errors.bio && <p className="errors">{errors.bio}</p>}
+          </div>
           <div className="gen-settings-container">
             <div className="edit-settings-container">
               <label className="username-input">
@@ -115,7 +128,7 @@ const EditProfilePage = () => {
           </div>
           {(imageLoading) && null}
           <div className="save-changes">
-                <button className="edit-profile-changes change-cursor" type="submit">SAVE CHANGES</button>
+                <button disabled={Object.keys(errors).length > 0 ? true : false} className={Object.keys(errors).length > 0 ? "button-disabled" : "button-enabled change-cursor"} type="submit">SAVE CHANGES</button>
             </div>
         </form>
         <div className="delete-user">

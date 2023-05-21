@@ -1,0 +1,26 @@
+.create-film-page-container{
+    display: flex;
+    justify-content: center;
+    margin: 0px 24px;
+}
+
+.create-film-page{
+    margin: 0 auto;
+    width: 1000px;
+    min-width: 950px;
+    max-width: 1000px;
+}
+
+.create-film-form{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 'left-film-form right-film-form';
+}
+
+.left-create-film-form{
+    grid-area: left-film-form;
+}
+
+.right-create-film-form{
+    grid-area: right-film-form;
+}

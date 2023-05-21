@@ -103,6 +103,7 @@
   background-color: #17b130;
   color: white;
   font-weight: 800;
+  padding-right: 10px;
 }
 
 #nav-bar-log-button > p{
@@ -160,4 +161,17 @@
 .nav-profile-account-buttons{
   display: flex;
   gap: 25px;
+}
+
+.profile-dropdown-create{
+  position: relative;
+  /* border: 2px red solid; */
+  top: 30px;
+  right: 20px;
+  width: 90px;
+  background-color: var(--profile-button-background);
+  border-radius: 5px;
+  padding: 0px 5px 10px 5px;
+  color: var(--dropdown-text-color);
+  z-index: 0;
 }

@@ -42,7 +42,7 @@ def update_user():
     if form.validate_on_submit():
         profile_img_url = form.data["profile_img_url"]
 
-        if profile_img_url:#<FileStorage: '29db611c159a48e08dbec829aa7bd0c4.png' ('image/png')>
+        if profile_img_url:
             profile_img_url.filename = get_unique_filename(profile_img_url.filename)
             upload = upload_file_to_s3(profile_img_url)
             if "url" not in upload:
@@ -56,7 +56,7 @@ def update_user():
         if curr_user.username != form.data["username"]:
             curr_user.username=form.data["username"]
         curr_user.bio=form.data["bio"]
-
+        print(curr_user.to_dict())
         db.session.commit()
         return curr_user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

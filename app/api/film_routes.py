@@ -34,9 +34,36 @@ def create_film():
     Create a film that will assign the current user as it's creator and returns the created film in a dictionary
     """
     form = CreateFilmForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    print("MADE IT LINE 39 --------- FILM ROUTES")
 
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        print("MADE IT LINE 40 --------- FILM ROUTES")
+        background_img = form.data["background_img_url"]
+        tile_img = form.data["tile_img_url"]
+
+        print(background_img)
+        print(tile_img)
+        print("MADE IT LINE 45 --------- FILM ROUTES")
+
+        if background_img:
+            background_img.filename = get_unique_filename(background_img.filename)
+            upload = upload_file_to_s3(background_img)
+
+            if "url" not in upload:
+                return {'errors': [upload]}
+
+            background_img_url = upload["url"]
+
+        if tile_img:
+            tile_img.filename = get_unique_filename(tile_img.filename)
+            upload = upload_file_to_s3(tile_img)
+
+            if "url" not in upload:
+                return {'errors': [upload]}
+
+            tile_img_url = upload["url"]
+            print('MADE IT TO LINE 63 ----------------------------------------------------------')
 
         film = Film(
             title = form.data["title"],
@@ -44,31 +71,15 @@ def create_film():
             genre = form.data["genre"],
             director = form.data["director"],
             description = form.data["description"],
-            trailer_url = form.data["trailer_url"]
+            trailer_url = form.data["trailer_url"],
+            tile_img_url = tile_img_url,
+            background_img_url = background_img_url
         )
-
-        background_img_url = form.data["background_img_url"]
-        tile_img_url = form.data["tile_img_url"]
-
-        if background_img_url:
-                background_img_url.filename = get_unique_filename(background_img_url.filename)
-                upload = upload_file_to_s3(background_img_url)
-                if "url" not in upload:
-                    return {'errors': [upload]}
-                background_img_url = upload["url"]
-                film.background_img_url = background_img_url
-
-        if tile_img_url:
-                tile_img_url.filename = get_unique_filename(tile_img_url.filename)
-                upload = upload_file_to_s3(tile_img_url)
-                if "url" not in upload:
-                    return {'errors': [upload]}
-                tile_img_url = upload["url"]
-                film.tile_img_url = tile_img_url
-
+        print("MADE IT LINE 72 --------- FILM ROUTES")
+        print(film.to_dict())
         db.session.add(film)
         db.session.commit()
-        return {"film": film.to_dict()}
+        return film.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @film_routes.route('/<int:id>', methods=['PUT'])

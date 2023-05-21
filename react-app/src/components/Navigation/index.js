@@ -8,6 +8,7 @@ import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
 import { useModal } from '../../context/Modal';
+import CreateButton from './CreateButton';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -58,11 +59,7 @@ function Navigation({ isLoaded }){
 				<div className='nav-members-link'>
 					<NavLink to="/members">MEMBERS</NavLink>
 				</div>
-				<button id="nav-bar-log-button">
-					<i class="fa-solid fa-plus navbar-log-plus"></i>
-					<p>CREATE</p>
-					<i className="fa-solid fa-caret-down navbar-log-caret"></i>
-				</button>
+				{sessionUser && <CreateButton user={sessionUser}/>}
 			</div>
 		</div>
 	);

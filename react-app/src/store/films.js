@@ -65,9 +65,14 @@ export const thunkCreateFilm = (film) => async(dispatch) => {
     })
     if(res.ok) {
         const newFilm = await res.json();
+        console.log(newFilm)
         if(newFilm.errors) return newFilm.errors
         dispatch(actionCreateFilm(newFilm))
         return newFilm;
+    } else {
+        const errors = await res.json()
+        console.log(errors)
+        return errors
     }
 }
 
