@@ -91,7 +91,7 @@ const UserProfilePage = () => {
             <div className="user-profile-navbar">
               <div className="user-profile-navbar-border">
                 <div className="user-profile-navbar-links">
-                  <Link className="" to="/profile">
+                  <Link to="/profile">
                     <p
                       className="current-user-profile-section"
                       id="profile-selected"
@@ -99,10 +99,10 @@ const UserProfilePage = () => {
                       Profile
                     </p>
                   </Link>
-                  <Link to="">Films</Link>
-                  <Link to="">Watchlist</Link>
-                  <Link to="">Lists</Link>
-                  <Link to="">Likes</Link>
+                  <Link to="/profile/films">Films</Link>
+                  <Link to="/profile/watchlist">Watchlist</Link>
+                  <Link to="/profile/lists">Lists</Link>
+                  <Link to="/profile/likes">Likes</Link>
                 </div>
               </div>
             </div>
@@ -112,10 +112,11 @@ const UserProfilePage = () => {
           <div className="user-profile-recent-activity-container">
             <p>RECENT ACTIVITY</p>
             <div className="user-profile-recent-activity-content">
-                {userFilms.length > 0 ? userFilms.map(film =>
-                  <Link key={film.title} className="user-profile-recent-films-card" to="">
-                    <img id="user-profile-recent-films-card-img" src={film.tile_img_url} alt=""/>
-                  </Link>
+                {userFilms.length > 0 ? userFilms.map((film, i) =>
+                 i <= 12 && <Link key={film.title} className="user-profile-recent-films-card" to={`/films/${film.id}`}>
+                 <img id="user-profile-recent-films-card-img" src={film.tile_img_url} alt="" />
+               </Link>
+
                 ) : null}
             </div>
           </div>
@@ -124,19 +125,19 @@ const UserProfilePage = () => {
               <p>WATCHLIST</p>
               <div className="user-profile-watchlist-content">
                 {user.films_to_watch.length > 4 ?
-                  <Link to="">
+                  <Link to="/profile/watchlist">
                     <div className="watchlist-image-stack list-img-small">
                       <div className="watchlist-image-1">
-                        <img id="watchlist-image-1-img" src={user.films_to_watch[0] ? user.films_to_watch[0].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                        <img id="watchlist-image-1-img" src={user.films_to_watch[0] ? user.films_to_watch[0].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                       </div>
                       <div className="watchlist-image-2">
-                        <img id="watchlist-image-2-img" src={user.films_to_watch[1] ? user.films_to_watch[1].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                        <img id="watchlist-image-2-img" src={user.films_to_watch[1] ? user.films_to_watch[1].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                       </div>
                       <div className="watchlist-image-3">
-                        <img id="watchlist-image-3-img" src={user.films_to_watch[2] ? user.films_to_watch[2].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                        <img id="watchlist-image-3-img" src={user.films_to_watch[2] ? user.films_to_watch[2].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                       </div>
                       <div className="watchlist-image-4">
-                        <img id="watchlist-image-4-img" src={user.films_to_watch[3] ? user.films_to_watch[3].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                        <img id="watchlist-image-4-img" src={user.films_to_watch[3] ? user.films_to_watch[3].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                       </div>
                     </div>
                   </Link>
@@ -150,19 +151,19 @@ const UserProfilePage = () => {
               <div className="user-profile-watchlist-content">
                 {user.lists.length > 0 ? user.lists.map(list =>
                 <div>
-                  <Link to="">
+                  <Link to={`/lists/${list.id}`}>
                   <div className="watchlist-image-stack list-img-small">
                     <div className="watchlist-image-1">
-                      <img id="watchlist-image-1-img list-img-small" src={list.films[0] ? list.films[0].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      <img id="watchlist-image-1-img list-img-small" src={list.films[0] ? list.films[0].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                     </div>
                     <div className="watchlist-image-2">
-                      <img id="watchlist-image-2-img list-img-small" src={list.films[1] ? list.films[1].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      <img id="watchlist-image-2-img list-img-small" src={list.films[1] ? list.films[1].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                     </div>
                     <div className="watchlist-image-3">
-                      <img id="watchlist-image-3-img list-img-small" src={list.films[2] ? list.films[2].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      <img id="watchlist-image-3-img list-img-small" src={list.films[2] ? list.films[2].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                     </div>
                     <div className="watchlist-image-4">
-                      <img id="watchlist-image-4-img list-img-small" src={list.films[3] ? list.films[3].tile_img_url : "https://i.imgur.com/Ip9t5Pw.png"} alt=""/>
+                      <img id="watchlist-image-4-img list-img-small" src={list.films[3] ? list.films[3].tile_img_url : "https://i.imgur.com/LXLqNVa.png"} alt=""/>
                     </div>
                   </div>
                 </Link>

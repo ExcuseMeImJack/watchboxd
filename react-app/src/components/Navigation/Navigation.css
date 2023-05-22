@@ -1,5 +1,24 @@
 .profile-dropdown {
-  position: absolute;
+  position: relative;
+  /* border: 2px red solid; */
+  top: 125px;
+  left: -3px;
+  background-color: var(--profile-button-background);
+  border-radius: 5px;
+  padding: 0px 5px 10px 5px;
+  color: var(--dropdown-text-color);
+  z-index: 0;
+}
+
+.hoverable > p{
+  cursor: pointer;
+}
+
+.hoverable > p:hover{
+  background-color: #637483;
+  color: var(--text-color);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .hidden {
@@ -8,9 +27,151 @@
 
 .navbar-container{
   height: 75px;
-  width: 110%;
-  margin-left: -10px;
+  width: 100%;
+  /* margin-left: -10px; */
   margin-top: -6px;
   margin-bottom: 30px;
   background-color: var(--nav-color);
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-container-itself{
+  display: flex;
+  align-items: center;
+  width: 1000px;
+  justify-content: space-between;
+}
+
+.navbar-container-itself > div{
+  padding: 0px 10px;
+}
+
+.dropdown-likes{
+  border-bottom: 1px var(--border-color) solid;
+}
+
+#site-icon{
+  width: 75px;
+  height: 75px;
+}
+
+#site-logo{
+  color: rgb(241, 241, 241);
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-weight: 900;
+}
+
+.logo-navbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#navbar-profile-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.navbar-profile-button{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.navbar-profile-button-fake{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  border-bottom: 1px var(--border-color) solid;
+  border-left: 100px;
+  cursor: pointer;
+}
+
+#nav-bar-log-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border-radius: 3px;
+  border: none;
+  background-color: #17b130;
+  color: white;
+  font-weight: 800;
+  padding-right: 10px;
+}
+
+#nav-bar-log-button > p{
+  margin: 0;
+}
+
+.navbar-log-plus{
+  padding: 0px 5px;
+}
+
+.navbar-log-caret{
+  padding: 0px 2px 0px 10px;
+}
+
+.nav-films-link > a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 700;
+}
+
+.nav-lists-link > a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 700;
+}
+
+.nav-members-link > a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 700;
+}
+
+.login-button{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-color);
+  font-weight: 800;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 16px;
+  padding: 0;
+}
+
+.signup-button{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-color);
+  font-weight: 800;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 16px;
+  padding: 0;
+}
+
+.nav-profile-account-buttons{
+  display: flex;
+  gap: 25px;
+}
+
+.profile-dropdown-create{
+  position: relative;
+  /* border: 2px red solid; */
+  top: 30px;
+  right: 20px;
+  width: 90px;
+  background-color: var(--profile-button-background);
+  border-radius: 5px;
+  padding: 0px 5px 10px 5px;
+  color: var(--dropdown-text-color);
+  z-index: 0;
 }

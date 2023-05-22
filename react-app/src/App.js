@@ -7,11 +7,17 @@ import { authenticate, thunkGetUserById } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfilePage from "./components/UserProfilePage";
 import EditProfilePage from "./components/EditProfilePage";
+import FilmsPage from "./components/FilmsPage";
+import FilmDetailsPage from "./components/FilmDetailsPage";
+import ProfileFilms from "./components/ProfileFilms";
+import ProfileLikes from "./components/ProfileLikes";
+import FilmCreate from "./components/FilmCreate";
+import FilmUpdate from "./components/FilmUpdate"
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const user = useSelector(state => state.session.user)
+  const user = useSelector((state) => state.session.user);
   // console.log(user)
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
@@ -22,19 +28,32 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
+          <Route exact path="/">
           </Route>
           <Route path="/profile/settings">
-            <EditProfilePage/>
+            <EditProfilePage />
+          </Route>
+          <Route path="/profile/films">
+            <ProfileFilms />
+          </Route>
+          <Route path="/profile/likes">
+            <ProfileLikes />
           </Route>
           <Route path="/profile">
-            <UserProfilePage/>
+            <UserProfilePage />
           </Route>
-
+          <Route path="/films/create">
+            <FilmCreate />
+          </Route>
+          <Route path="/films/:filmId/edit">
+            <FilmUpdate />
+          </Route>
+          <Route path="/films/:filmId">
+            <FilmDetailsPage />
+          </Route>
+          <Route path="/films">
+            <FilmsPage />
+          </Route>
         </Switch>
       )}
     </>
