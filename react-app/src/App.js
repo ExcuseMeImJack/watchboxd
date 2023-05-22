@@ -17,6 +17,7 @@ import ListsPage from "./components/ListsPage";
 import ProfileLists from "./components/ProfileLists";
 import Watchlist from "./components/Watchlist";
 import ListDetailsPage from "./components/ListDetailsPage";
+import ProtectedRoute from "./components/auth/ProtectedRoute"
 
 function App() {
   const dispatch = useDispatch();
@@ -35,28 +36,44 @@ function App() {
           <Route exact path="/">
           </Route>
           <Route path="/profile/watchlist">
-            <Watchlist />
+            <ProtectedRoute>
+              <Watchlist />
+            </ProtectedRoute>
           </Route>
           <Route path="/profile/lists">
-            <ProfileLists />
+            <ProtectedRoute>
+              <ProfileLists />
+            </ProtectedRoute>
           </Route>
           <Route path="/profile/settings">
-            <EditProfilePage />
+            <ProtectedRoute>
+              <EditProfilePage />
+            </ProtectedRoute>
           </Route>
           <Route path="/profile/films">
-            <ProfileFilms />
+            <ProtectedRoute>
+              <ProfileFilms />
+            </ProtectedRoute>
           </Route>
           <Route path="/profile/likes">
-            <ProfileLikes />
+            <ProtectedRoute>
+              <ProfileLikes />
+            </ProtectedRoute>
           </Route>
           <Route path="/profile">
-            <UserProfilePage />
+            <ProtectedRoute>
+              <UserProfilePage />
+            </ProtectedRoute>
           </Route>
           <Route path="/films/create">
-            <FilmCreate />
+            <ProtectedRoute>
+              <FilmCreate />
+            </ProtectedRoute>
           </Route>
           <Route path="/films/:filmId/edit">
-            <FilmUpdate />
+            <ProtectedRoute>
+              <FilmUpdate />
+            </ProtectedRoute>
           </Route>
           <Route path="/films/:filmId">
             <FilmDetailsPage />

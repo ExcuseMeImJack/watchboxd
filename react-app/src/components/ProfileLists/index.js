@@ -58,11 +58,17 @@ const ProfileLists = () => {
                 </span>
               </div>
               <div className="list-tile-info">
-                <h2 className="change-cursor" id="list-name-text">
-                  {list.list_name}
-                </h2>
+                <div className="list-tile-info-name">
+                  <h2 className="change-cursor" id="list-name-text">
+                    {list.list_name}
+                  </h2>
+                  {list.is_private === true && (
+                    <i className="fa-solid fa-lock"></i>
+                  )}
+                </div>
+
                 <div className="list-info-content">
-                  <div className="list-info-line">
+                  <div className="list-info-line-profile">
                     <p>{list.films.length} films</p>
                   </div>
                 </div>
