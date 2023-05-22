@@ -7,6 +7,14 @@ from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
 
+@user_routes.route('/current')
+@login_required
+def get_current():
+    """
+    QUERY FOR THE CURRENT USER
+    """
+    return current_user.to_dict()
+
 # GET ALL USERS
 @user_routes.route('')
 @login_required

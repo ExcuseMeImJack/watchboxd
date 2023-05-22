@@ -32,7 +32,7 @@ const CreateButton = ({user}) => {
 
     return (
       <>
-        <button id="nav-bar-log-button" onClick={openMenu}>
+        <button id="nav-bar-log-button" onClick={openMenu} className="change-cursor">
 			<i class="fa-solid fa-plus navbar-log-plus"></i>
 			<p>CREATE</p>
 		</button>

@@ -13,6 +13,10 @@ import ProfileFilms from "./components/ProfileFilms";
 import ProfileLikes from "./components/ProfileLikes";
 import FilmCreate from "./components/FilmCreate";
 import FilmUpdate from "./components/FilmUpdate"
+import ListsPage from "./components/ListsPage";
+import ProfileLists from "./components/ProfileLists";
+import Watchlist from "./components/Watchlist";
+import ListDetailsPage from "./components/ListDetailsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +33,12 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
+          </Route>
+          <Route path="/profile/watchlist">
+            <Watchlist />
+          </Route>
+          <Route path="/profile/lists">
+            <ProfileLists />
           </Route>
           <Route path="/profile/settings">
             <EditProfilePage />
@@ -53,6 +63,12 @@ function App() {
           </Route>
           <Route path="/films">
             <FilmsPage />
+          </Route>
+          <Route path="/lists/:listId">
+            <ListDetailsPage />
+          </Route>
+          <Route path="/lists">
+            <ListsPage />
           </Route>
         </Switch>
       )}

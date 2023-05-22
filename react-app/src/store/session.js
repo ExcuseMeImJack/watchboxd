@@ -3,6 +3,7 @@ const REMOVE_USER = "session/REMOVE_USER";
 const GET_ONE_USER = "users/GET_USER"
 const GET_ALL_USERS = "users/GET_USERS"
 const DELETE_USER = "users/DELETE_USER"
+const CURRENT_USER = "users/CURRENT_USER"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -28,7 +29,10 @@ export const actionDeleteUser = (user) => ({
     user
 })
 
-
+export const actionGetCurrentUser = (user) => ({
+	type: CURRENT_USER,
+	user
+})
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -153,6 +157,15 @@ export const thunkDeleteUser = (user) => async(dispatch) => {
         const errors = await res.json();
         return errors;
     }
+}
+
+export const thunkGetCurrentUser = (user) => async(dispatch) => {
+	const res = await fetch('/api/user/current')
+	if(res.ok) {
+		const user = await res.json();
+		dispatch(actionGetCurrentUser())
+		return user;
+	}
 }
 
 const initialState = { user: null };

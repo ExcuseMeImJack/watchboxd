@@ -1,0 +1,118 @@
+.lists-page-container{
+    display: flex;
+    justify-content: center;
+    margin: 0px 24px;
+}
+
+.lists-page {
+    margin: 0 auto;
+    width: 1000px;
+    min-width: 950px;
+    max-width: 1000px;
+}
+
+.lists-page-intro{
+    margin: 20px 0px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.lists-page-intro > h1{
+    color: var(--secondary-text-color);
+    font-weight: 300;
+}
+
+.lists-page-intro > button{
+    width: 150px;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: 'Hanken Grotesk', sans-serif;
+    background-color: var(--button-color);
+    border: none;
+    outline: none;
+    color: #b4b6b8;
+    text-align: center;
+    margin: 0px 0px 30px 0px;
+}
+
+.lists-page-intro > button:hover{
+    background-color: var(--secondary-text-color);
+    color: var(--border-color);
+}
+
+/* .lists-page-profile{
+    display: flex;
+    justify-content: flex-end;
+} */
+
+.lists-page-profile > button{
+    width: 150px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    font-family: 'Hanken Grotesk', sans-serif;
+    background-color: var(--button-color);
+    border: none;
+    outline: none;
+    color: #b4b6b8;
+    text-align: center;
+}
+
+.lists-page-profile > button:hover{
+    background-color: var(--secondary-text-color);
+    color: var(--border-color);
+}
+
+.list-tile-overlap{
+    height: 170px;
+    display: flex;
+}
+
+.list-tile-overlap > img{
+    width: 120px;
+}
+
+.list-tile-container{
+    margin: 40px 0px;
+    padding: 20px 0px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    gap: 30px;
+}
+
+.list-info-content{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list-info-line{
+    display: flex;
+    gap: 10px;
+}
+
+.list-info-content > img{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+#list-name-text{
+    margin-bottom: 0;
+}
+
+.list-tile > span{
+    border: 2px solid transparent;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.301);
+}
+
+.list-tile > span:hover{
+    border-color: var(--hover-link-color);
+}
+
+.list-tile-info > h2:hover{
+    text-decoration: underline;
+}

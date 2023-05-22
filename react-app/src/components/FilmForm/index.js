@@ -70,7 +70,7 @@ const FilmForm = ({film, formType}) => {
             const urlSuffix = urlArray[urlArray.length - 1];
             !validUrlFileTypes.includes(urlSuffix) ? valErrors.tileImage = 'Image URL must end in .png, .jpg, or .jpeg' : console.log("PASS")
         } else {
-            valErrors.backgroundImage = "Tile Image is required"
+            valErrors.tileImage = "Tile Image is required"
         }
 
         setErrors(valErrors)

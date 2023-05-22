@@ -1,5 +1,3 @@
-import { actionDeleteUser } from "./session"
-
 const GET_ALL_FILMS = "films/GET_FILMS"
 const GET_ONE_FILM = "films/GET_FILM"
 const CREATE_FILM = "films/CREATE_FILM"
@@ -63,13 +61,11 @@ export const thunkCreateFilm = (film) => async(dispatch) => {
 
     if(res.ok) {
         const newFilm = await res.json();
-        console.log(newFilm)
         if(newFilm.errors) return newFilm.errors
         dispatch(actionCreateFilm(newFilm))
         return newFilm;
     } else {
         const errors = await res.json()
-        console.log(errors)
         return errors
     }
 }
@@ -93,7 +89,6 @@ export const thunkDeleteFilm = (film) => async(dispatch) => {
             "Content-Type": "application/json"
         }
     })
-    console.log(res)
     if(res.ok) {
         const data = await res.json();
         if(data.errors) {
