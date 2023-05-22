@@ -26,6 +26,8 @@ class List(db.Model):
             'description': self.description,
             'is_private': self.is_private,
             'user_id': self.user_id,
+            'creator_username': self.user.username,
+            'creator_profile_img_url': self.user.profile_img_url,
             'films': [film.to_dict() for film in self.film_list],
             'created_at': self.created_at,
             'updated_at': self.updated_at

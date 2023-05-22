@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import watchboxdIcon from '../../watchboxd-icon.png'
@@ -9,9 +9,12 @@ import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
 import { useModal } from '../../context/Modal';
 import CreateButton from './CreateButton';
+import { useEffect } from 'react';
+import { thunkGetCurrentUser } from '../../store/session';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const dispatch = useDispatch();
 	const history = useHistory();
 	const {closeMenu} = useModal();
 

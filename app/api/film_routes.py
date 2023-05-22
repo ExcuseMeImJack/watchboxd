@@ -126,7 +126,7 @@ def update_film(id):
 @login_required
 def delete_film(id):
     """
-    Delete a film by id if the film belongs to the current user and returns a message when it successfullt deletes
+    Delete a film by id if the film belongs to the current user and returns a message when it successfully deletes
     """
     film = Film.query.get(id)
 
