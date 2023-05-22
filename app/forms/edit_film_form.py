@@ -15,7 +15,7 @@ class EditFilmForm(FlaskForm):
     year = IntegerField('Year', validators=[DataRequired()])
     genre = StringField('Genre', validators=[DataRequired()])
     director = StringField('Director', validators=[DataRequired()])
-    description = StringField('Description', Length(max=1000, message="Description must be less than 1000 characters."), validators=[DataRequired()]),
-    trailer_url = StringField('Trailer Upload', validators=[DataRequired(), is_youtube_link] ),
-    tile_img_url = FileField("Film Cover Image Upload", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
-    background_img_url = FileField("Film Background Image Upload", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    description = StringField('Description', validators=[DataRequired(), Length(max=1000, message="Description must be less than 1000 characters.") ])
+    trailer_url = StringField('Trailer Upload', validators=[DataRequired(), is_youtube_link] )
+    tile_img_url = FileField("Film Cover Image Upload", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
+    background_img_url = FileField("Film Background Image Upload", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])

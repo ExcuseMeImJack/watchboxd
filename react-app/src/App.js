@@ -11,8 +11,8 @@ import FilmsPage from "./components/FilmsPage";
 import FilmDetailsPage from "./components/FilmDetailsPage";
 import ProfileFilms from "./components/ProfileFilms";
 import ProfileLikes from "./components/ProfileLikes";
-import CreateFilmPage from "./components/CreateFilmPage";
-import UpdateFilmPage from "./components/UpdateFilmPage";
+import FilmCreate from "./components/FilmCreate";
+import FilmUpdate from "./components/FilmUpdate"
 
 function App() {
   const dispatch = useDispatch();
@@ -30,12 +30,6 @@ function App() {
         <Switch>
           <Route exact path="/">
           </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
           <Route path="/profile/settings">
             <EditProfilePage />
           </Route>
@@ -49,10 +43,10 @@ function App() {
             <UserProfilePage />
           </Route>
           <Route path="/films/create">
-            <CreateFilmPage />
+            <FilmCreate />
           </Route>
-          <Route path="/films/update/:filmId">
-            <UpdateFilmPage />
+          <Route path="/films/:filmId/edit">
+            <FilmUpdate />
           </Route>
           <Route path="/films/:filmId">
             <FilmDetailsPage />

@@ -58,11 +58,9 @@ export const thunkGetFilmById = (filmId) => async(dispatch) => {
 export const thunkCreateFilm = (film) => async(dispatch) => {
     const res = await fetch('/api/films', {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(film)
+        body: film
     })
+
     if(res.ok) {
         const newFilm = await res.json();
         console.log(newFilm)
@@ -76,18 +74,14 @@ export const thunkCreateFilm = (film) => async(dispatch) => {
     }
 }
 
-export const thunkUpdateFilm = (film) => async(dispatch) => {
-    const res = await fetch(`/api/films/${film.id}`, {
+export const thunkUpdateFilm = (film, filmId) => async(dispatch) => {
+    const res = await fetch(`/api/films/${filmId}`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(film)
+        body: film
     })
     if(res.ok) {
         const updatedFilm = await res.json();
-        if(updatedFilm.errors) return updatedFilm.errors;
-        dispatch(actionUpdateFilm(updatedFilm))
+        // dispatch(actionUpdateFilm(updatedFilm))
         return updatedFilm;
     }
 }

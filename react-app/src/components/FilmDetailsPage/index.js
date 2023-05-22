@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import "./FilmDetails.css";
 import DeleteFilmModal from "../DeleteFilmModal";
+import { useState } from "react";
 
 const FilmDetailsPage = () => {
   const { filmId } = useParams();
@@ -130,7 +131,7 @@ const FilmDetailsPage = () => {
 
               {user.id === film.user_id &&
               <div className="control-buttons">
-                <button className="update-film-button change-cursor" onClick={() => history.push(`/films/update/${film.id}`)}>UPDATE FILM</button>
+                <button className="update-film-button change-cursor" onClick={() => history.push(`/films/${film.id}/edit`)}>UPDATE FILM</button>
                 <OpenModalButton
                 buttonStyleClass={"delete-profile change-cursor"}
                 buttonText={"DELETE FILM"}

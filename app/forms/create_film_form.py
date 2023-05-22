@@ -2,14 +2,8 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, IntegerField
 from ..api.aws_helpers import ALLOWED_EXTENSIONS
-from wtforms.validators import DataRequired, ValidationError, Email, Length
+from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import Film
-
-# def title_exists(form, field):
-#     title = field.data
-#     film = Film.query.filter(Film.title.lower() == title.lower()).first()
-#     if film:
-#         raise ValidationError('Film already exists.')
 
 def is_youtube_link(form, field):
     link = field.data

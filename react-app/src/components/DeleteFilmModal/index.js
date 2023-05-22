@@ -19,7 +19,7 @@ function DeleteFilmModal({film}) {
 
     return (
         <div className="delete-profile-modal-container">
-            <h1>Delete Profile</h1>
+            <h1>Delete {film.title}</h1>
             <h3 id="delete-profile-text">Are you sure you want to continue with this action?</h3>
             <div className="delete-cancel-profile-buttons">
             <button className="delete-profile change-cursor" onClick={handleDeleteFilm}>DELETE FILM</button>
