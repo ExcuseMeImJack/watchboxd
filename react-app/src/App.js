@@ -81,6 +81,11 @@ function App() {
           <Route path="/films">
             <FilmsPage />
           </Route>
+          <Route path="/lists/:listId/edit">
+            <ProtectedRoute>
+
+            </ProtectedRoute>
+          </Route>
           <Route path="/lists/:listId">
             <ListDetailsPage />
           </Route>
