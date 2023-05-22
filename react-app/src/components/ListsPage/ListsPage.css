@@ -42,10 +42,10 @@
     color: var(--border-color);
 }
 
-/* .lists-page-profile{
+.lists-page-profile{
     display: flex;
     justify-content: flex-end;
-} */
+}
 
 .lists-page-profile > button{
     width: 150px;
@@ -58,6 +58,7 @@
     outline: none;
     color: #b4b6b8;
     text-align: center;
+    margin: 0px 0px 10px 0px;
 }
 
 .lists-page-profile > button:hover{
@@ -115,4 +116,18 @@
 
 .list-tile-info > h2:hover{
     text-decoration: underline;
+}
+
+.list-tile-info-name > h2:hover{
+    text-decoration: underline;
+}
+
+.list-tile-info-name{
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+
+.list-tile-info-name > i {
+    padding-top: 20px;
 }

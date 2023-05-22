@@ -27,7 +27,6 @@ const FilmForm = ({film, formType}) => {
     useEffect(() => {
         const valErrors = {}
 
-        const numbers =[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
         if(formType === "create") {
             films?.forEach(film => (film.title.toLowerCase().replace(/[^a-z0-9]/gi, '') === title.toLowerCase().replace(/[^a-z0-9]/gi, '')) ? valErrors.title = "Film already exists" : null)
         }
