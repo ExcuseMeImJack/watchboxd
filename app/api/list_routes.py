@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Film, List
-from ..forms import CreateFilmForm, EditListForm
+from ..forms import CreateFilmForm, EditListForm, CreateListForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3
 from .auth_routes import validation_errors_to_error_messages
 
@@ -34,15 +34,19 @@ def create_list():
     Create a list that will assign the current user as it's creator and returns the created list in a dictionary
     """
 
-    form = CreateFilmForm()
+    form = CreateListForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    form.add_film.choices = [(film.id, film.name) for film in Film.query.order_by('name') ]
+
     if form.validate_on_submit():
+
+        film_ids = form.data["add_film"].split(',')
+        films = Film.query.filter(Film.id.in_(film_ids)).all()
+
         list = List(
             list_name = form.data["list_name"],
             description = form.data["description"],
             is_private = form.data["is_private"],
-            add_film = form.data["add_films"]
+            film_list = films
         )
 
         db.session.add(list)

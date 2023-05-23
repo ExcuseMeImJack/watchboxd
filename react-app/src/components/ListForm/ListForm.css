@@ -1,0 +1,142 @@
+.list-form-page-container{
+    display: flex;
+    justify-content: center;
+    margin: 0px 24px;
+}
+
+.list-form-page{
+    margin: 0 auto;
+    width: 1000px;
+    min-width: 950px;
+    max-width: 1000px;
+}
+
+.list-form-header{
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.list-form-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin: 20px 0px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--divider-color);
+}
+
+.list-name-form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.list-private-option-form{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.list-form-right{
+    display: flex;
+    flex-direction: column;
+}
+
+#list-input-box{
+    padding: 5px 2px;
+    background-color: var(--button-color);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+#list-select-field{
+    padding: 5px 2px;
+    background-color: var(--button-color);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+#list-textarea-box{
+    resize: none;
+    height: 250px;
+    background-color: var(--button-color);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.list-film-search-bar > input{
+    display: flex;
+    flex-direction: column;
+    padding: 6px 6px;
+    width: 470px;
+    background-color: var(--button-color);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.list-film-search-bar > input::placeholder{
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.list-film-create-list-button{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.list-film-create-list-button > button{
+    border: 1px solid transparent;
+}
+
+.list-film-create-list-button > button:hover{
+    border-color: var(--text-color);
+}
+
+.film-list-dropdown{
+    position: absolute;
+    background-color: var(--button-color);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 482px;
+    height: 200px;
+    overflow: scroll;
+}
+
+.film-list-search-tile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.film-list-search-tile > p{
+    font-size: 14px;
+}
+
+.film-list-dropdown > div{
+    border: 1px solid transparent;
+}
+
+.film-list-dropdown > div:hover{
+    border-color: 1px var(--hover-link);
+}
+
+.list-films-added{
+    margin-top: 50px;
+}
+
+.film-confirmation-tile{
+    margin-top: 20px;
+}

@@ -1,0 +1,44 @@
+#file-confirm-img{
+    height: 70px;
+    border-radius: 5px;
+}
+
+.film-list-confirmation-tile{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 20fr 1fr;
+    gap: 20px;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.film-list-confirmation-details{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.film-list-confirmation-tile > .film-list-confirmation-remove{
+    display: flex;
+    padding-left: 610px;
+}
+
+#remove-film-from-list-button{
+    font-size: 24px;
+
+}
+
+.film-list-confirmation-remove > i{
+    color: #99AABB;
+
+}
+
+.film-list-confirmation-remove >i:hover{
+    color: #d14141;
+}
+
+.left-list-confirm{
+    display: flex;
+    gap: 20px;
+}
