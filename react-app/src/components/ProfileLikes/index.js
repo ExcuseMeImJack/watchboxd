@@ -48,7 +48,7 @@ const ProfileLikes = () => {
                         <div className="user-profile-navbar-links">
                         <Link to="/profile">Profile</Link>
                         <Link to="/profile/films">Films</Link>
-                        <Link to="/profile/watchlist">Watchlist</Link>
+                        <a to="/profile/watchlist" id="watchlist-selector">Watchlist</a>
                         <Link to="/profile/lists">Lists</Link>
                         <Link to="/profile/likes"><p
                             className="current-user-profile-section"
@@ -59,7 +59,7 @@ const ProfileLikes = () => {
                         </div>
                     </div>
                     <div className="films-navbar-grid">
-                    <h1 id="films-page-title">FILMS I LIKED</h1>
+                    <h1 id="films-page-title">LIKED FILMS</h1>
                     <div className="films-page-search-bar-container">
                         <label className="films-search-label">FIND A FILM</label>
                         <input

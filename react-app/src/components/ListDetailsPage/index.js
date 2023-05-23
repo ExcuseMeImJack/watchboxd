@@ -52,9 +52,9 @@ const ListDetailsPage = () => {
                     </div>
                     <div className="list-details-right">
                         <div className="list-interactions-panel">
-                            {user.id === list.user_id &&
+                            {user && user.id === list.user_id &&
                             <div className="list-interactions">
-                                <button className="update-film-button change-cursor">UPDATE LIST</button>
+                                <button className="update-film-button change-cursor" onClick={() => history.push(`/lists/${list.id}/edit`)}>UPDATE LIST</button>
                                 <OpenModalButton
                                     buttonStyleClass={"delete-profile change-cursor"}
                                     buttonText={"DELETE LIST"}
@@ -62,7 +62,7 @@ const ListDetailsPage = () => {
                                     modalStyleClass={"delete-profile-modal-content"}
                                 />
                             </div>}
-                            <div className="list-watch-percentage">
+                            {user && <div className="list-watch-percentage">
                                 <div className="list-watch-percentage-text">
                                     <p>You've watched</p>
                                     <p>{checkAmountWatched()} of {list.films.length}</p>
@@ -71,7 +71,7 @@ const ListDetailsPage = () => {
                                     <h2>{percentageWatched}</h2>
                                     <h3>%</h3>
                                 </div>
-                            </div>
+                            </div>}
                         </div>
                     </div>
                 </div>

@@ -53,13 +53,13 @@ const ProfileFilms = () => {
                             >
                             Films
                             </p></Link>
-                        <Link to="/profile/watchlist">Watchlist</Link>
+                        <a to="/profile/watchlist" id="watchlist-selector">Watchlist</a>
                         <Link to="/profile/lists">Lists</Link>
                         <Link to="/profile/likes">Likes</Link>
                         </div>
                     </div>
                     <div className="films-navbar-grid">
-                    <h1 id="films-page-title">FILMS I WATCHED</h1>
+                    <h1 id="films-page-title">WATCHED FILMS</h1>
                     <div className="films-page-search-bar-container">
                         <label className="films-search-label">FIND A FILM</label>
                         <input

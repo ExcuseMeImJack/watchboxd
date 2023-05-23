@@ -95,7 +95,6 @@ const FilmForm = ({film, formType}) => {
                 setImageLoading(false)
                 history.push(`/films/${newFilm.id}`)
             } else if(formType === 'update') {
-                console.log('hit')
                 const editedFilm = await dispatch(thunkUpdateFilm(formData, film.id))
                 setImageLoading(false)
                 history.push(`/films/${editedFilm.id}`)

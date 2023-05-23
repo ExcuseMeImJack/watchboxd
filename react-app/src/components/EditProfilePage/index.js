@@ -132,12 +132,16 @@ const EditProfilePage = () => {
             </div>
         </form>
         <div className="delete-user">
-            <OpenModalButton
+            {user.email !== "tester1@aa.io" ? <OpenModalButton
                 buttonStyleClass={"delete-profile change-cursor"}
                 buttonText={"DELETE ACCOUNT"}
                 modalComponent={<DeleteUserModal />}
                 modalStyleClass={"delete-profile-modal-content"}
-            />
+            /> : <OpenModalButton
+            buttonStyleClass={"button-disabled"}
+            buttonText={"DELETE ACCOUNT DISABLED FOR DEMO USER"}
+            modalStyleClass={"delete-profile-modal-content"}
+        />}
         </div>
       </div>
     </div>

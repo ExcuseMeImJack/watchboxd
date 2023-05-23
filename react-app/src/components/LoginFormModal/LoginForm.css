@@ -1,0 +1,51 @@
+.login-modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+}
+
+.login-modal-component{
+    width: 450px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-modal-component > h1{
+    margin-bottom: 40px;
+}
+
+.login-modal-fields{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'left right';
+    gap: 20px;
+}
+
+.email-login-div{
+    grid-area: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.password-login-div{
+    grid-area: right;
+    display: flex;
+    flex-direction: column;
+}
+
+#login-button-submit{
+    width: 100px;
+    height: 30px;
+}
+
+.login-button-submit-div{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}

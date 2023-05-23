@@ -33,7 +33,6 @@ def create_list():
     """
     Create a list that will assign the current user as it's creator and returns the created list in a dictionary
     """
-
     form = CreateListForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -42,11 +41,17 @@ def create_list():
         film_ids = form.data["add_film"].split(',')
         films = Film.query.filter(Film.id.in_(film_ids)).all()
 
+        if form.data["is_private"] == 'true':
+            is_private = True
+        elif form.data["is_private"] == 'false':
+            is_private = False
+
         list = List(
             list_name = form.data["list_name"],
             description = form.data["description"],
-            is_private = form.data["is_private"],
-            film_list = films
+            is_private = is_private,
+            film_list = films,
+            user_id=current_user.id
         )
 
         db.session.add(list)
@@ -68,12 +73,20 @@ def update_list(id):
     if list.user_id == current_user.id:
         form = EditListForm()
         form['csrf_token'].data = request.cookies['csrf_token']
-        form.add_film.choices = [(film.id, film.name) for film in Film.query.order_by('name') ]
         if form.validate_on_submit():
+
+            film_ids = form.data["add_film"].split(',')
+            films = Film.query.filter(Film.id.in_(film_ids)).all()
+
+            if form.data["is_private"] == 'true':
+                is_private = True
+            elif form.data["is_private"] == 'false':
+                is_private = False
+
             list.list_name = form.data["list_name"]
             list.description = form.data["description"]
-            list.is_private = form.data["is_private"]
-            list.add_film = form.data["add_films"]
+            list.is_private = is_private
+            list.film_list = films
 
             db.session.commit()
             return list.to_dict()

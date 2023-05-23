@@ -83,7 +83,7 @@
 .film-interactions-panel{
     grid-area: interactions;
     background-color: #495c6e;
-    height: 150px;
+    height: 95px;
     border-radius: 10px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.301);
 }
@@ -113,7 +113,7 @@
     justify-content: space-evenly;
     margin-top: 15px;
     text-align: center;
-    border-bottom: 1px solid var(--background);
+    /* border-bottom: 1px solid var(--background); */
 
 }
 

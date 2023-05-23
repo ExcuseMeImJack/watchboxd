@@ -120,14 +120,14 @@ const FilmDetailsPage = () => {
                 </div>
               </div>
 
-              <div className="film-add-to-lists">
+              {/* <div className="film-add-to-lists">
                 <OpenModalButton
                   buttonText={"Add to lists..."}
                   buttonStyleClass={
                     "add-to-list-button-film-details change-cursor"
                   }
                 />
-              </div>
+              </div> */}
 
               {user.id === film.user_id &&
               <div className="control-buttons">

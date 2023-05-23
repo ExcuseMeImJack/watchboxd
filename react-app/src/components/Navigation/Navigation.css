@@ -175,3 +175,16 @@
   color: var(--dropdown-text-color);
   z-index: 0;
 }
+
+.nav-members-link > a:hover{
+  cursor: not-allowed;
+}
+
+
+.watchlist-profile-link > p:hover{
+  cursor: not-allowed;
+}
+
+#watchlist-selector:hover {
+  cursor: not-allowed;
+}

@@ -8,6 +8,6 @@ from ..models import Film
 class CreateListForm(FlaskForm):
 
     list_name = StringField('Name', validators=[DataRequired()])
-    description = StringField('Description', Length(max=1000, message="Description must be less than 1000 characters."))
-    is_private = SelectField('Who can view', choices = [("Anyone - Public list", False), ("Only you - Private list", True)], validators=[DataRequired()], default=True)
+    description = StringField('Description', validators=[Length(max=1000, message="Description must be less than 1000 characters.")])
+    is_private = SelectField(u'Who can view', choices=[("false", "false"), ("true", "true")], validators=[DataRequired()])
     add_film = StringField('Add a Film') # [(film.id, film.name) for film in Film.query.all()]
