@@ -109,8 +109,10 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     width: 482px;
-    height: 200px;
+    max-height: 150px;
     overflow: scroll;
+    min-height: fit-content;
+    scrollbar-color: var(--background-color) var(--text-color);
 }
 
 .film-list-search-tile{

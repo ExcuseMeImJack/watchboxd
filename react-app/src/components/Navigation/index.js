@@ -60,7 +60,7 @@ function Navigation({ isLoaded }){
 					<NavLink to="/lists">LISTS</NavLink>
 				</div>
 				<div className='nav-members-link'>
-					<NavLink to="/members">MEMBERS</NavLink>
+					<a to="/members">MEMBERS</a>
 				</div>
 				{sessionUser && <CreateButton user={sessionUser}/>}
 			</div>

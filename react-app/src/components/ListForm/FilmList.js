@@ -34,7 +34,7 @@ const FilmList = ({films, addFilmsToList}) => {
         <>
             <div className={ulClassName} ref={ulRef}>
                 {films.map(film =>
-                    <div className="film-list-search-tile change-cursor" onClick={() => addFilmsToList(film)}>
+                    <div className="film-list-search-tile change-cursor" onClick={() => addFilmsToList(film, closeMenu)}>
                         <h4>{film.title} ({film.year})</h4>
                         <p>{film.director}</p>
                     </div>

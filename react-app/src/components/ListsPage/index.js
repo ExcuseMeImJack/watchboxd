@@ -10,7 +10,7 @@ const ListsPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const lists = useSelector(state => state.lists.lists?.filter(list => list.is_private === false && list.films.length >= 4))
-
+    const user = useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(thunkGetAllLists())
@@ -24,7 +24,7 @@ const ListsPage = () => {
             <div className="lists-page">
                 <div className="lists-page-intro">
                     <h1>Collect and curate. Lists are the perfect way to group films.</h1>
-                    <button className="change-cursor">Start your own list</button>
+                    {user && <button className="change-cursor" onClick={() => history.push('/lists/create')}>Start your own list</button>}
                 </div>
                 <div className="lists-container">
                     {lists.map(list =>
