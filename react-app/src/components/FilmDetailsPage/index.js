@@ -28,9 +28,9 @@ const FilmDetailsPage = () => {
   const getTrailerId = () => {
     const url = film.trailer_url;
     let id;
-    if (url.includes("youtube.com")) {
+    if (url.includes("youtube.com")) { // https://www.youtube.com/watch?v=WRrCVyT09ow
       id = url.split("=")[1];
-    } else if (url.includes("youtu.be")) {
+    } else if (url.includes("youtu.be")) { // https://www.youtu.be/WRrCVyT09ow
       id = url.split("/")[3];
     }
     return id;

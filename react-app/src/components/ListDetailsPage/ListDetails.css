@@ -1,0 +1,107 @@
+.list-details-page-container{
+    display: flex;
+    justify-content: center;
+    margin: 0px 24px;
+}
+
+.list-details-page{
+    margin: 0 auto;
+    width: 1000px;
+    min-width: 950px;
+    max-width: 1000px;
+}
+
+#list-background-image{
+    height: 400px;
+    object-fit: cover;
+    width: 1000px;
+    z-index: -1;
+}
+
+.list-background-image-container{
+    display: inline-flex;
+    justify-content: center;
+    z-index: -1;
+}
+
+#list-details-profile-img-icon{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.list-details-main{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-areas: 'list-left list-right';
+    gap: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+.list-details-left{
+    grid-area: list-left;
+}
+
+.list-details-right{
+    grid-area: list-right;
+}
+.list-details-list-info-1{
+    display: flex;
+    gap: 20px;
+    margin: 10px 0px;
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.list-details-list-info-1 > p{
+    margin-bottom: 30px;
+}
+
+.list-watch-percentage{
+    border: 1px var(--border-color) solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+    padding: 10px;
+    gap: 50px;
+    border-radius: 5px;
+}
+
+.list-watch-percentage-number{
+    display: flex;
+    gap: 5px;
+}
+
+.list-watch-percentage-number > h2, h3 {
+    margin: 0;
+}
+
+.list-watch-percentage-text > p{
+    margin: 0;
+    font-size: 16px;
+}
+
+.list-interactions{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.list-interactions > button{
+    width: 120px;
+    height: 30px;
+    border: 2px solid transparent;
+}
+
+.list-interactions > button:hover{
+    border-color: var(--text-color);
+}
+
+.list-films{
+    margin-top: 30px;
+}
+
+.list-card{
+    margin: 5.34px;
+}

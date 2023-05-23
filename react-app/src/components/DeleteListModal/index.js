@@ -4,28 +4,29 @@ import { useModal } from "../../context/Modal";
 import { useHistory } from 'react-router-dom';
 import { logout, thunkDeleteUser, thunkGetUserById } from "../../store/session";
 import { thunkDeleteFilm } from "../../store/films";
+import { thunkDeleteList } from "../../store/lists";
 
-function DeleteFilmModal({film}) {
+function DeleteListModal({list}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const { closeModal } = useModal();
 
-    const handleDeleteFilm = async () => {
-        await dispatch(thunkDeleteFilm(film))
-        history.push('/films')
+    const handleDeleteList = async () => {
+        await dispatch(thunkDeleteList(list))
+        history.push('/profile/lists')
         closeModal();
     }
 
     return (
         <div className="delete-profile-modal-container">
-            <h1>Delete {film.title}</h1>
+            <h1>Delete {list.list_name}</h1>
             <h3 id="delete-profile-text">Are you sure you want to continue with this action?</h3>
             <div className="delete-cancel-profile-buttons">
-            <button className="delete-profile change-cursor" onClick={handleDeleteFilm}>DELETE FILM</button>
+            <button className="delete-profile change-cursor" onClick={handleDeleteList}>DELETE LIST</button>
                 <button className="cancel-delete-profile-button change-cursor" onClick={() => closeModal()}>CANCEL</button>
             </div>
         </div>
     )
 }
 
-export default DeleteFilmModal
+export default DeleteListModal

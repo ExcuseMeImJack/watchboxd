@@ -18,6 +18,8 @@ import ProfileLists from "./components/ProfileLists";
 import Watchlist from "./components/Watchlist";
 import ListDetailsPage from "./components/ListDetailsPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute"
+import ListUpdate from "./components/ListUpdate";
+import ListCreate from "./components/ListCreate";
 
 function App() {
   const dispatch = useDispatch();
@@ -80,6 +82,16 @@ function App() {
           </Route>
           <Route path="/films">
             <FilmsPage />
+          </Route>
+          <Route path="/lists/create">
+            <ProtectedRoute>
+              <ListCreate/>
+            </ProtectedRoute>
+          </Route>
+          <Route path="/lists/:listId/edit">
+            <ProtectedRoute>
+              <ListUpdate />
+            </ProtectedRoute>
           </Route>
           <Route path="/lists/:listId">
             <ListDetailsPage />
