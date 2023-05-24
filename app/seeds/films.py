@@ -137,7 +137,7 @@ def seed_films(users):
     film11 = Film(
         title = "Jaws",
         year = 1975,
-        description = "Don’t go in the water. When an insatiable great white shark terrorizes the townspeople of Amity Island, the police chief, an oceanographer and a grizzled shark hunter seek to destroy the blood-thirsty beast.",
+        description = "Don't go in the water. When an insatiable great white shark terrorizes the townspeople of Amity Island, the police chief, an oceanographer and a grizzled shark hunter seek to destroy the blood-thirsty beast.",
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/r0/oj/7p/ys/jaws-1200-1200-675-675-crop-000000.jpg",
         trailer_url = "https://www.youtube.com/watch?v=U1fu_sA7XhE",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/5/1/5/4/2/51542-jaws-0-460-0-690-crop.jpg",
