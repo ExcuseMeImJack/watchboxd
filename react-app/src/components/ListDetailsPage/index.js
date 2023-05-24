@@ -46,7 +46,7 @@ const ListDetailsPage = () => {
                             <p>List by {list.creator_username}</p>
                         </div>
                         <div className="list-details">
-                            <h1>{list.list_name} <i className="fa-solid fa-lock"></i></h1>
+                            <h1>{list.list_name} {list.is_private && <i className="fa-solid fa-lock"></i>}</h1>
                             <p>{list.description}</p>
                         </div>
                     </div>
