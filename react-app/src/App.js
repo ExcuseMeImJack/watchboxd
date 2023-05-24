@@ -18,6 +18,7 @@ import ListDetailsPage from "./components/ListDetailsPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute"
 import ListUpdate from "./components/ListUpdate";
 import ListCreate from "./components/ListCreate";
+import HomePage from "./components/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
+            <HomePage />
           </Route>
           <Route path="/profile/watchlist">
             <ProtectedRoute>

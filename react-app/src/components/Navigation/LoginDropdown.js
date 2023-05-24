@@ -93,11 +93,11 @@ const LoginDropdown = () => {
               />
             </div>
             <div className="login-button-submit-div">
-              <button id="login-button-demo" onClick={handleDemoLogin}>
-                Demo User
-              </button>
               <button id="login-button-submit" type="submit">
                 Log In
+              </button>
+              <button id="login-button-demo" onClick={handleDemoLogin} type="button">
+                Demo User
               </button>
             </div>
           </div>
