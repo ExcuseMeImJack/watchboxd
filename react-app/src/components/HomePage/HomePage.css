@@ -11,9 +11,7 @@
     width: 1250px;
 } */
 
-.home-img-container{
-    width: 100%;
-}
+
 
 .footer-border{
     background-color: var(--nav-color);
@@ -51,7 +49,7 @@
 
 .home-text > button{
     margin-top: 30px;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
 
 }
 

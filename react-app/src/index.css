@@ -71,10 +71,12 @@ h3, h4, h5 {
         right: 7px
     }
 
-    #home-img{
-        width: 1021px;
-        height: 570px;
-        object-fit: cover;
+    .home-img-container{
+        width: 1020px;
+        height: 606px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
     }
 
     .home-text{
@@ -101,10 +103,13 @@ h3, h4, h5 {
         right: 210px
     }
 
-    #home-img{
+    .home-img-container{
         width: 1435px;
-        height: 620px;
-        object-fit: cover;
+        height: 606px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+
     }
 
     .home-text{
@@ -131,10 +136,13 @@ h3, h4, h5 {
         right: 452px
     }
 
-    #home-img{
-        width: 1915px;
-        height: 847px;
-        object-fit:cover;
+        .home-img-container{
+        width: 1916px;
+        height: 785px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top;
+        /* background-position: bottom 20px; */
     }
 
     .home-text{
