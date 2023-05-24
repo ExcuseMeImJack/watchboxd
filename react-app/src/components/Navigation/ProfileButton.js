@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
@@ -48,7 +46,7 @@ function ProfileButton({ user }) {
         <i className="fa-solid fa-caret-down"></i>
       </div>
       <div className={ulClassName} ref={ulRef}>
-        {user ? (
+        {user && (
           <>
             <div className="navbar-profile-button-fake" onClick={closeMenu}>
               <img className="change-cursor" id="navbar-profile-img" src={user.profile_img_url}/>
@@ -64,24 +62,6 @@ function ProfileButton({ user }) {
             <div>
               <div className="hoverable" onClick={handleLogout}><p>Sign Out</p></div>
             </div>
-          </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonStyleClass="login-button"
-              modalStyleClass="login-modal"
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonStyleClass="signup-button"
-              modalStyleClass="signup-modal"
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
           </>
         )}
       </div>

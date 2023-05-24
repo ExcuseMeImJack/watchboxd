@@ -7,12 +7,14 @@ import { useState } from "react";
 import FilmList from "./FilmList";
 import ListFilmTile from "../ListFilmTile";
 import { thunkCreateList, thunkUpdateList } from "../../store/lists";
+import { thunkGetUserById } from "../../store/session";
 
 const ListForm = ({ list, formType }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const films = useSelector((state) => state.films.films);
+  const user = useSelector(state => state.session.user)
 
   const [list_name, setListName] = useState(list.list_name);
   const [description, setDescription] = useState(list.description);
@@ -70,10 +72,11 @@ const ListForm = ({ list, formType }) => {
       formData.append("add_film", filmIds);
       if (formType === "create") {
         const newList = await dispatch(thunkCreateList(formData));
+        await dispatch(thunkGetUserById(user.id))
         history.push(`/lists/${newList.id}`);
       } else if (formType === "update") {
         const editedList = await dispatch(thunkUpdateList(formData, list.id));
-
+        await dispatch(thunkGetUserById(user.id))
         history.push(`/lists/${editedList.id}`);
       }
     }

@@ -8,7 +8,6 @@
     text-align: center;
 }
 
-
 .cancel-delete-profile-button{
     margin-top: 20px;
     background-color: var(--button-color);
@@ -35,8 +34,8 @@
     padding: 20px;
     border-radius: 5px;
     width: 450px;
-    height: 240px;
-    top: 100px;
+    height: 200px;
+    margin-top: 300px;
     background-color: var(--background);
 }
 
