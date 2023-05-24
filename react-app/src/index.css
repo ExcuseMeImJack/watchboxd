@@ -61,6 +61,16 @@ h3, h4, h5 {
     .signup-dropdown{
         left: 44.5%;
     }
+
+    .profile-dropdown-create{
+        top: 60px;
+        right: 7px
+    }
+
+    /* .profile-dropdown{
+        top: 13px;
+        right: 575px;
+    } */
 }
 
 @media screen and (max-width: 1440px) and (min-width: 1025px) {
@@ -75,6 +85,16 @@ h3, h4, h5 {
     .films-page-tile > img {
         width: 223px;
     }
+
+    .profile-dropdown-create{
+        top: 60px;
+        right: 210px
+    }
+
+    /* .profile-dropdown{
+        top: 13px;
+        right: 785px;
+    } */
 }
 
 @media screen and (min-width: 1441px) {
@@ -89,4 +109,14 @@ h3, h4, h5 {
     .films-page-tile > img {
         width: 223px;
     }
+
+    .profile-dropdown-create{
+        top: 60px;
+        right: 452px
+    }
+
+    /* .profile-dropdown{
+        top: 13px;
+        right: 1025px;
+    } */
 }

@@ -40,7 +40,9 @@ const SignupDropdown = () => {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+
   const handleSubmit = async (e) => {
+    const valErrors = {}
     e.preventDefault();
     if (password === confirmPassword) {
       const data = await dispatch(signUp(username, email, password));
@@ -118,7 +120,7 @@ const SignupDropdown = () => {
 
         </div>
             <div className="submit-button-submit-div">
-              <button id="login-button-submit" onClick={handleDemoLogin}>
+              <button id="login-button-demo" onClick={handleDemoLogin}>
                 Demo User
               </button>
               <button id="login-button-submit" type="submit">

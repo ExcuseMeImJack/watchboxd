@@ -4,17 +4,20 @@ import { useModal } from "../../context/Modal";
 import { useHistory } from 'react-router-dom';
 import { logout, thunkDeleteUser, thunkGetUserById } from "../../store/session";
 import { thunkDeleteFilm } from "../../store/films";
-import { thunkDeleteList } from "../../store/lists";
+import { thunkDeleteList, thunkGetAllLists } from "../../store/lists";
 
 function DeleteListModal({list}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const { closeModal } = useModal();
 
+    const user = useSelector(state => state.session.user)
+
     const handleDeleteList = async () => {
         await dispatch(thunkDeleteList(list))
         history.push('/profile/lists')
         closeModal();
+        await dispatch(thunkGetUserById(user.id))
     }
 
     return (

@@ -164,10 +164,10 @@
 }
 
 .profile-dropdown-create{
-  position: relative;
+  position: absolute;
   /* border: 2px red solid; */
-  top: 30px;
-  right: 20px;
+  top: 60px;
+  right: 209px;
   width: 90px;
   background-color: var(--profile-button-background);
   border-radius: 5px;

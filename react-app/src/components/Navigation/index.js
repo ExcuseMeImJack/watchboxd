@@ -5,8 +5,6 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import watchboxdIcon from '../../watchboxd-icon.png'
 import OpenModalButton from '../OpenModalButton';
-import SignupFormModal from '../SignupFormModal';
-import LoginFormModal from '../LoginFormModal';
 import { useModal } from '../../context/Modal';
 import CreateButton from './CreateButton';
 import { useEffect } from 'react';

@@ -64,6 +64,18 @@
     font-weight: 700;
 }
 
+#login-button-demo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: none;
+    background-color: rgb(31, 136, 155);
+    color: white;
+    padding: 4px;
+    font-weight: 700;
+}
+
 .errors-login{
     margin: 10px 0 0 0;
     background-color: var(--nav-color);
