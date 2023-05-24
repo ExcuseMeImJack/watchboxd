@@ -5,10 +5,11 @@
 }
 
 .lists-page {
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: 1000px;
     min-width: 950px;
     max-width: 1000px;
+    margin-top: 20px;
 }
 
 .lists-page-intro{
@@ -42,10 +43,10 @@
     color: var(--border-color);
 }
 
-.lists-page-profile{
+/* .lists-page-profile{
     display: flex;
     justify-content: flex-end;
-}
+} */
 
 .lists-page-profile > button{
     width: 150px;

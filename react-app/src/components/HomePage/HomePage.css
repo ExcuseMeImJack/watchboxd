@@ -1,0 +1,60 @@
+.home-page-container{
+    display: flex;
+    justify-content: center;
+}
+
+.home-page{
+
+}
+
+#home-img{
+    width: 1250px;
+}
+
+.home-img-container{
+    width: 100%;
+}
+
+.footer-border{
+    background-color: var(--nav-color);
+}
+
+.home-button-signup{
+    padding: 13px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border: none;
+    background-color: #17b130;
+    color: white;
+    font-weight: 700;
+}
+
+.home-text{
+    position: absolute;
+    top: 400px;
+    left: 35%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.home-text > h1{
+    margin: 3px;
+    color: rgb(229, 229, 230);
+    text-shadow: -1.3px -1.3px 0 var(--nav-color), 1.3px -1.3px 0 var(--nav-color), -1.3px 1.3px 0 var(--nav-color), 1.3px 1.3px 0 var(--nav-color);
+}
+
+.home-text > button{
+    margin-top: 30px;
+    border: 1px solid transparent;
+
+}
+
+.home-text > button:hover{
+    border-color: var(--text-color);
+}

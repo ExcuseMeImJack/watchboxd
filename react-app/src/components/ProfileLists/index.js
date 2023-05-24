@@ -41,7 +41,7 @@ const ProfileLists = () => {
           </div>
         </div>
         <div className="lists-page-profile">
-          <button className="change-cursor">Start your own list</button>
+          <button className="change-cursor" onClick={() => history.push('/lists/create')}>Start your own list</button>
         </div>
         <div className="lists-container">
           {lists?.map((list) => (
