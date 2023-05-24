@@ -52,3 +52,41 @@ h3, h4, h5 {
 .errors{
     color: #F765A3;
 }
+
+@media screen and (max-width: 1024px){
+    .login-dropdown{
+        left: 31%;
+    }
+
+    .signup-dropdown{
+        left: 44.5%;
+    }
+}
+
+@media screen and (max-width: 1440px) and (min-width: 1025px) {
+    .login-dropdown{
+        left: 36.5%;
+    }
+
+    .films-page-tile{
+        width: 223px;
+    }
+
+    .films-page-tile > img {
+        width: 223px;
+    }
+}
+
+@media screen and (min-width: 1441px) {
+    .signup-dropdown{
+        left: 47%;
+    }
+
+    .films-page-tile{
+        width: 223px;
+    }
+
+    .films-page-tile > img {
+        width: 223px;
+    }
+}

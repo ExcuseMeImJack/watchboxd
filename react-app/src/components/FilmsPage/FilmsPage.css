@@ -1,6 +1,7 @@
 .films-page-container {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin: 0px 24px;
 }
 
@@ -48,8 +49,9 @@
 }
 
 .films-page-tile{
-    width: 224px;
+    width: 217px;
     height: 400px;
+    max-width: 224px;
 }
 
 .films-page-tile > img:hover{
@@ -57,7 +59,7 @@
 }
 
 .films-page-tile > img {
-    width: 224px;
+    width: 215px;
     border: 3px var(--text-color) solid;
     border-radius: 5px;
 }

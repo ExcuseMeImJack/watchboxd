@@ -1,19 +1,44 @@
-import React, { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import "./SignupDropdown.css";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { login, signUp } from "../../store/session";
-import "./SignupForm.css";
-import { useHistory } from "react-router-dom";
-
-function SignupFormModal() {
+const SignupDropdown = () => {
+  const [showMenu, setShowMenu] = useState(false);
+  const ulRef = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
+  const [username, setUsername] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+        setEmail("");
+        setPassword("");
+        setErrors([]);
+        setUsername('')
+        setConfirmPassword('')
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,16 +67,17 @@ function SignupFormModal() {
     }
   };
 
+  const ulClassName = "signup-dropdown" + (showMenu ? "" : " hidden");
+
   return (
-    <div className="signup-modal-content">
-        <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit} className="signup-content">
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
-        <div className="email-input-signup">
+    <>
+      <button className="signup-button change-cursor" onClick={openMenu}>
+        CREATE ACCOUNT
+      </button>
+      <div className={ulClassName} ref={ulRef}>
+        <form onSubmit={handleSubmit}>
+          <div className="signup-form-details">
+          <div className="email-input-signup">
           <label>Email</label>
             <input
               type="text"
@@ -91,15 +117,30 @@ function SignupFormModal() {
             />
 
         </div>
-        <span className="submit-buttons-signup">
-          <button id="signup-button-submit" onClick={handleDemoLogin}>
-            Demo User
-          </button>
-          <button type="submit">Sign Up</button>
-        </span>
-      </form>
-    </div>
+            <div className="submit-button-submit-div">
+              <button id="login-button-submit" onClick={handleDemoLogin}>
+                Demo User
+              </button>
+              <button id="login-button-submit" type="submit">
+                Log In
+              </button>
+            </div>
+          </div>
+          {errors.length > 0 && (
+            <div>
+              <div className="errors-signup">
+                {errors.map((error, idx) => (
+                  <p key={idx} className="errors">
+                    {error}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+        </form>
+      </div>
+    </>
   );
-}
+};
 
-export default SignupFormModal;
+export default SignupDropdown;

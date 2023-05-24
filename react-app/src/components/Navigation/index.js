@@ -11,6 +11,8 @@ import { useModal } from '../../context/Modal';
 import CreateButton from './CreateButton';
 import { useEffect } from 'react';
 import { thunkGetCurrentUser } from '../../store/session';
+import LoginDropdown from './LoginDropdown';
+import SignupDropdown from './SignupDropdown';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -27,30 +29,18 @@ function Navigation({ isLoaded }){
 						<h2 id="site-logo">WATCHBOXD</h2>
 					</div>
 				</div>
-				{isLoaded && (
+				{sessionUser &&isLoaded && (
 					<div className='nav-profile-container'>
-						{sessionUser && <ProfileButton user={sessionUser} />}
+						<ProfileButton user={sessionUser} />
 					</div>
 				)}
 				{!sessionUser &&
 				<>
 							<div className='nav-profile-account-buttons'>
-								<OpenModalButton
-								buttonStyleClass="login-button change-cursor"
-								modalStyleClass="login-modal"
-								buttonText="SIGN IN"
-								onItemClick={closeMenu}
-								modalComponent={<LoginFormModal />}
-								/>
+								<LoginDropdown />
 							</div>
-							<div>
-								<OpenModalButton
-								buttonStyleClass="signup-button change-cursor"
-								modalStyleClass="signup-modal"
-								buttonText="CREATE ACCOUNT"
-								onItemClick={closeMenu}
-								modalComponent={<SignupFormModal />}
-								/>
+							<div className='nav-profile-account-buttons'>
+								<SignupDropdown />
 							</div>
 				</>}
 				<div className='nav-films-link'>
