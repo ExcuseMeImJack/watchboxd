@@ -1,12 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import "./UserProfile.css";
-import { useEffect } from "react";
-import { thunkGetUserById } from "../../store/session";
 
 const UserProfilePage = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
   const handleEditProfile = () => {
@@ -41,6 +38,7 @@ const UserProfilePage = () => {
   const calculateLikesAndWatchesForYear = () => {
     const totalThisYear = [];
     userFilms.forEach((like) => {
+      // eslint-disable-next-line
       if (like.created_at?.split(" ")[3] == new Date().getFullYear()) {
         totalThisYear.push({ [like.id]: like });
       }
@@ -53,7 +51,7 @@ const UserProfilePage = () => {
       <div className="user-profile-page">
         <div className="user-profile-info">
           <div className="user-profile-user-img-container">
-            <img id="user-profile-user-img" src={user.profile_img_url} />
+            <img id="user-profile-user-img" alt="" src={user.profile_img_url} />
           </div>
           <div className="user-profile-info-section-1">
             <div className="user-profile-edit-button-container">
@@ -66,7 +64,7 @@ const UserProfilePage = () => {
           </div>
           <div className="user-profile-info-section-2">
             <div className="user-profile-data-lists">
-              {userFilms.length == 1 ? (
+              {userFilms.length === 1 ? (
                 <div className="user-profile-films-watched-liked">
                   <h2>{userFilms.length}</h2>
                   <p>FILM</p>

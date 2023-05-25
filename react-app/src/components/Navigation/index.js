@@ -8,15 +8,21 @@ import OpenModalButton from '../OpenModalButton';
 import { useModal } from '../../context/Modal';
 import CreateButton from './CreateButton';
 import { useEffect } from 'react';
-import { thunkGetAllUsers, thunkGetCurrentUser } from '../../store/session';
+import { thunkGetAllUsers } from '../../store/session';
 import LoginDropdown from './LoginDropdown';
 import SignupDropdown from './SignupDropdown';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const users = useSelector(state => state.session.users)
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const {closeMenu} = useModal();
+
+	useEffect(() => {
+		dispatch(thunkGetAllUsers())
+	}, [dispatch])
 
 	return (
 		<div className='navbar-container'>
@@ -38,7 +44,7 @@ function Navigation({ isLoaded }){
 								<LoginDropdown />
 							</div>
 							<div className='nav-profile-account-buttons'>
-								<SignupDropdown />
+								<SignupDropdown users={users}/>
 							</div>
 				</>}
 				<div className='nav-films-link'>

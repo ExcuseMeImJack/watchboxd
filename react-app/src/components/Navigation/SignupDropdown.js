@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { login, signUp, thunkGetAllUsers } from "../../store/session";
 
-const SignupDropdown = () => {
+const SignupDropdown = ({users}) => {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
   const dispatch = useDispatch();
@@ -48,6 +48,10 @@ const SignupDropdown = () => {
     return emailRegex.test(email);
   }
 
+  const listOfExistingUsernames = users?.map(user => user.username.toLowerCase())
+
+  const existingUsers = (newUsername) => listOfExistingUsernames?.includes(newUsername.toLowerCase()) ? false : true
+
   useEffect(() => {
     const valErrors = {}
 
@@ -55,6 +59,7 @@ const SignupDropdown = () => {
     if(password.length < 4) valErrors.password = "Password must be more than 4 characters"
     if(username.length > 16 || username.length < 4) valErrors.username = "Username must be between 4 and 16 characters"
     if(validateEmail(email) === false) valErrors.email = "Email must be valid"
+    if(existingUsers(username) === false) valErrors.username = "Username already exists"
 
     setErrors(valErrors)
   }, [password, username, email, confirmPassword])

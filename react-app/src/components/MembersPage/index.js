@@ -15,12 +15,9 @@ const MembersPage = () => {
 
     if(!users) return null
 
-    console.log(users)
+    const topProfiles = () =>  users.sort((a, b) => b.films_watched.length - a.films_watched.length).slice(0, 5);
 
-    const topProfiles = () =>  users.sort((a, b) => b.films_watched.length - a.films_watched.length).slice(0, 5)
-
-
-    const publicLists = (user) => user.lists.filter(list => list.is_private === false).length
+    const publicLists = (user) => user.lists.filter(list => list.is_private === false).length;
 
     const topUsers = topProfiles();
 

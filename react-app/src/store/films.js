@@ -19,10 +19,10 @@ const actionCreateFilm = (newFilm) => ({
     payload: newFilm
 });
 
-const actionUpdateFilm = (updatedFilm) => ({
-    type: UPDATE_FILM,
-    payload: updatedFilm
-});
+// const actionUpdateFilm = (updatedFilm) => ({
+//     type: UPDATE_FILM,
+//     payload: updatedFilm
+// });
 
 const actionDeleteFilm = (film) => ({
     type: DELETE_FILM,
