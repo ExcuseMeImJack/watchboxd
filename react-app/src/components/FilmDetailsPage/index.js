@@ -49,11 +49,11 @@ const FilmDetailsPage = () => {
             <img id="film-details-tile-image" src={film.tile_img_url} />
             <div className="film-watches-likes-container">
               <div className="film-watches">
-                <i class="fa-solid fa-eye"></i>
+                <i className="fa-solid fa-eye"></i>
                 <p>#</p>
               </div>
               <div className="film-likes">
-                <i class="fa-solid fa-heart"></i>
+                <i className="fa-solid fa-heart"></i>
                 <p>#</p>
               </div>
             </div>

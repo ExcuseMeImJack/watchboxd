@@ -17,7 +17,6 @@ def get_current():
 
 # GET ALL USERS
 @user_routes.route('')
-@login_required
 def users():
     """
     Query for all users and returns them in a list of user dictionaries

@@ -2,10 +2,19 @@ import Footer from '../Navigation/Footer'
 import { useHistory } from "react-router-dom"
 import './HomePage.css'
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { thunkGetAllFilms } from '../../store/films';
 
 const HomePage = () => {
     const history = useHistory();
+    const dispatch = useDispatch();
     const [homeImg, setHomeImg] = useState('https://i.imgur.com/asAfCfy.jpg')
+
+    // const filmsReq = useSelector(state => state.films.films)
+
+    // useEffect(() => {
+    //     dispatch(thunkGetAllFilms())
+    // }, [dispatch])
 
     const imgArr = [
         'https://i.imgur.com/CjwCKIj.jpg',
@@ -38,6 +47,10 @@ const HomePage = () => {
         console.log(img)
         return img
     }
+
+    // if(!filmsReq) return null
+    // const films = Object.values(filmsReq).map(film => film.background_img_url)
+    // imgArr.push(...films)
 
     return (
         <>

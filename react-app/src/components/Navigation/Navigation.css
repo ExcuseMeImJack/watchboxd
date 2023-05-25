@@ -27,7 +27,7 @@
 
 .navbar-container{
   height: 75px;
-  width: 100%;
+  width: 101%;
   /* margin-left: -10px; */
   margin-top: -6px;
   background-color: var(--nav-color);
@@ -176,14 +176,14 @@
 }
 
 .nav-members-link > a:hover{
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 
 .watchlist-profile-link > p:hover{
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 #watchlist-selector:hover {
-  cursor: not-allowed;
+  cursor: pointer;
 }

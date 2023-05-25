@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import "./SignupDropdown.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { login, signUp } from "../../store/session";
+import { login, signUp, thunkGetAllUsers } from "../../store/session";
+
 const SignupDropdown = () => {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -11,10 +12,11 @@ const SignupDropdown = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
   const [username, setUsername] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const openMenu = () => {
     if (showMenu) return;
@@ -29,9 +31,10 @@ const SignupDropdown = () => {
         setShowMenu(false);
         setEmail("");
         setPassword("");
-        setErrors([]);
+        setErrors({});
         setUsername('')
         setConfirmPassword('')
+        setIsSubmitted(false)
       }
     };
 
@@ -40,23 +43,41 @@ const SignupDropdown = () => {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  useEffect(() => {
+    const valErrors = {}
+
+    if(password !== confirmPassword) valErrors.passwordConfirmation = "Confirm Password field must be the same as the Password field";
+    if(password.length < 4) valErrors.password = "Password must be more than 4 characters"
+    if(username.length > 16 || username.length < 4) valErrors.username = "Username must be between 4 and 16 characters"
+    if(validateEmail(email) === false) valErrors.email = "Email must be valid"
+
+    setErrors(valErrors)
+  }, [password, username, email, confirmPassword])
 
   const handleSubmit = async (e) => {
-    const valErrors = {}
     e.preventDefault();
-    if (password === confirmPassword) {
+    setIsSubmitted(true)
+    if(Object.keys(errors).length === 0) {
+      setIsSubmitted(false)
       const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data);
+      if(data){
+        setIsSubmitted(true)
+        const backendErrors = {}
+        const errAttr = data[0].split(' : ')[0]
+        const err = data[0].split(' : ')[1]
+        backendErrors[errAttr] = err;
+        setErrors(backendErrors)
       } else {
-        closeModal();
+        closeMenu();
+        history.push('/profile')
       }
-    } else {
-      setErrors([
-        "Confirm Password field must be the same as the Password field",
-      ]);
     }
-  };
+  }
 
   const handleDemoLogin = async (e) => {
     e.preventDefault();
@@ -70,6 +91,7 @@ const SignupDropdown = () => {
   };
 
   const ulClassName = "signup-dropdown" + (showMenu ? "" : " hidden");
+  const closeMenu = (e) => setShowMenu(false)
 
   return (
     <>
@@ -121,21 +143,20 @@ const SignupDropdown = () => {
         </div>
             <div className="submit-button-submit-div">
               <button id="login-button-submit" className="change-cursor" type="submit">
-                Log In
+                Sign Up
               </button>
               <button id="login-button-demo" className="change-cursor" onClick={handleDemoLogin} type="button">
                 Demo User
               </button>
             </div>
           </div>
-          {errors.length > 0 && (
+          {Object.keys(errors).length > 0 && (
             <div>
               <div className="errors-signup">
-                {errors.map((error, idx) => (
-                  <p key={idx} className="errors">
-                    {error}
-                  </p>
-                ))}
+                {isSubmitted && errors.email && <p className="errors">{errors.email}</p>}
+                {isSubmitted && errors.username && <p className="errors">{errors.username}</p>}
+                {isSubmitted && errors.passwordConfirmation && <p className="errors">{errors.passwordConfirmation}</p>}
+                {isSubmitted && errors.password && <p className="errors">{errors.password}</p>}
               </div>
             </div>
           )}

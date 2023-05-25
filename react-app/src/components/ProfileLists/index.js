@@ -24,7 +24,7 @@ const ProfileLists = () => {
             <div className="user-profile-navbar-links">
               <Link to="/profile">Profile</Link>
               <Link to="/profile/films">Films</Link>
-              <a to="/profile/watchlist" id="watchlist-selector">Watchlist</a>
+              <Link to="/profile/watchlist" id="watchlist-selector">Watchlist</Link>
               <Link to="/profile/lists">
                 <p
                   className="current-user-profile-section"

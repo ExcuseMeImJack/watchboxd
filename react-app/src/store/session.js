@@ -159,8 +159,8 @@ export const thunkDeleteUser = (user) => async(dispatch) => {
     }
 }
 
-export const thunkGetCurrentUser = (user) => async(dispatch) => {
-	const res = await fetch('/api/user/current')
+export const thunkGetCurrentUser = () => async(dispatch) => {
+	const res = await fetch('/api/users/current')
 	if(res.ok) {
 		const user = await res.json();
 		dispatch(actionGetCurrentUser())
@@ -177,7 +177,7 @@ export default function reducer(state = initialState, action) {
 		case REMOVE_USER:
 			return { user: null };
 		case GET_ALL_USERS:
-			return { user: action.users}
+			return { ...state, ...action.users}
 		case GET_ONE_USER:
 			return { user: action.user }
 		default:

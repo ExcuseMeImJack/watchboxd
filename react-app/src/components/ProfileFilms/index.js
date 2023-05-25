@@ -53,7 +53,7 @@ const ProfileFilms = () => {
                             >
                             Films
                             </p></Link>
-                        <a to="/profile/watchlist" id="watchlist-selector">Watchlist</a>
+                        <Link to="/profile/watchlist" id="watchlist-selector">Watchlist</Link>
                         <Link to="/profile/lists">Lists</Link>
                         <Link to="/profile/likes">Likes</Link>
                         </div>

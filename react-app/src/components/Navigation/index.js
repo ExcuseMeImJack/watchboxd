@@ -8,7 +8,7 @@ import OpenModalButton from '../OpenModalButton';
 import { useModal } from '../../context/Modal';
 import CreateButton from './CreateButton';
 import { useEffect } from 'react';
-import { thunkGetCurrentUser } from '../../store/session';
+import { thunkGetAllUsers, thunkGetCurrentUser } from '../../store/session';
 import LoginDropdown from './LoginDropdown';
 import SignupDropdown from './SignupDropdown';
 
@@ -27,7 +27,7 @@ function Navigation({ isLoaded }){
 						<h2 id="site-logo">WATCHBOXD</h2>
 					</div>
 				</div>
-				{sessionUser &&isLoaded && (
+				{sessionUser && isLoaded && (
 					<div className='nav-profile-container'>
 						<ProfileButton user={sessionUser} />
 					</div>
@@ -48,7 +48,7 @@ function Navigation({ isLoaded }){
 					<NavLink to="/lists">LISTS</NavLink>
 				</div>
 				<div className='nav-members-link'>
-					<a to="/members">MEMBERS</a>
+					<NavLink to="/members">MEMBERS</NavLink>
 				</div>
 				{sessionUser && <CreateButton user={sessionUser}/>}
 			</div>

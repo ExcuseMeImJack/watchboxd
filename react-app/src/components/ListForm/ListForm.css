@@ -142,3 +142,9 @@
 .film-confirmation-tile{
     margin-top: 20px;
 }
+
+.films-search-label > p {
+    display: flex;
+    margin: 0;
+    /* flex-direction: column; */
+}
