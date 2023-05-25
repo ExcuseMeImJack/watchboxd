@@ -3,6 +3,10 @@ const GET_ONE_FILM = "films/GET_FILM"
 const CREATE_FILM = "films/CREATE_FILM"
 const UPDATE_FILM = "films/UPDATE_FILM"
 const DELETE_FILM = "films/DELETE_FILM"
+const LIKE_FILM = "films/LIKE_FILM"
+const UNLIKE_FILM = "films/UNLIKE_FILM"
+const WATCH_FILM = "films/WATCH_FILM"
+const UNWATCH_FILM = "films/UNWATCH_FILM"
 
 const actionGetAllFilms = (films) => ({
     type: GET_ALL_FILMS,
@@ -19,15 +23,20 @@ const actionCreateFilm = (newFilm) => ({
     payload: newFilm
 });
 
-// const actionUpdateFilm = (updatedFilm) => ({
-//     type: UPDATE_FILM,
-//     payload: updatedFilm
-// });
-
 const actionDeleteFilm = (film) => ({
     type: DELETE_FILM,
     payload: film
 });
+
+const actionLikeFilm = (data) => ({
+    type: LIKE_FILM,
+    payload: data
+})
+
+const actionWatchFilm = (data) => ({
+    type: WATCH_FILM,
+    payload: data
+})
 
 export const thunkGetAllFilms = () => async(dispatch) => {
     const res = await fetch('/api/films');
@@ -95,6 +104,76 @@ export const thunkDeleteFilm = (film) => async(dispatch) => {
             return data.errors;
         }
         dispatch(actionDeleteFilm(film))
+    }
+}
+
+export const thunkLikeFilm = (filmId) => async (dispatch) => {
+    const res = await fetch(`/api/likes/${filmId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({filmId})
+    })
+
+    if(res.ok) {
+        const data = await res.json()
+        dispatch(actionLikeFilm(data))
+        return res
+    } else {
+        return {'message': 'Error liking a film'}
+    }
+}
+
+export const thunkUnlikeFilm = (filmId) => async (dispatch) => {
+    const res = await fetch(`/api/likes/${filmId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({filmId})
+    })
+
+    if(res.ok) {
+        const data = await res.json()
+        return res
+    } else {
+        return {'message': 'Error liking a film'}
+    }
+}
+
+export const thunkWatchFilm = (filmId) => async (dispatch) => {
+    const res = await fetch(`/api/watch/${filmId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({filmId})
+    })
+
+    if(res.ok) {
+        const data = await res.json()
+        dispatch(actionWatchFilm(data))
+        return res
+    } else {
+        return {'message': 'Error watching a film'}
+    }
+}
+
+export const thunkUnwatchFilm = (filmId) => async (dispatch) => {
+    const res = await fetch(`/api/watch/${filmId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({filmId})
+    })
+
+    if(res.ok) {
+        const data = await res.json()
+        return res
+    } else {
+        return {'message': 'Error unwatching a film'}
     }
 }
 
