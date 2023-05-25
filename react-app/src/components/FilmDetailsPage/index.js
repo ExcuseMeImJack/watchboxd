@@ -21,6 +21,7 @@ const FilmDetailsPage = () => {
     }
   });
 
+
   const isLiked = () => user.likes.find((currFilm) => currFilm.id === film?.id) ? true : false;
   const [likedFilm, setLikedFilm] = useState(isLiked())
 
@@ -28,7 +29,6 @@ const FilmDetailsPage = () => {
   const [watchedFilm, setWatchedFilm] = useState(isWatched())
 
   const isOnWatchlist = () => user.films_to_watch.find((currFilm) => currFilm.id === film?.id) ? true : false;
-
   const [addToWatchlist, setAddToWatchlist] = useState(isOnWatchlist())
 
   useEffect(() => {
@@ -55,8 +55,6 @@ const FilmDetailsPage = () => {
 
   const handleLike = () => {
     setLikedFilm(true)
-    setWatchedFilm(true)
-    dispatch(thunkWatchFilm(film.id))
     dispatch(thunkLikeFilm(film.id))
   }
 
@@ -144,7 +142,7 @@ const FilmDetailsPage = () => {
                 <div>
                   {user.likes.find((currFilm) => currFilm.id === film.id)
                   ? <i className="fa-solid fa-heart change-cursor" onClick={handleUnlike}/>
-                  : <i className="fa-regular fa-heart change-cursor" title="Liking a Film will also mark it as a Watched Film" onClick={handleLike}/> }
+                  : <i className="fa-regular fa-heart change-cursor" onClick={handleLike}/> }
                   <p>
                     {user.likes.find((currFilm) => currFilm.id === film.id)
                       ? "Liked"

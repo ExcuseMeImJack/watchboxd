@@ -19,6 +19,24 @@ const ListsPage = () => {
 
     if(!lists) return null
 
+    const orderLists = () => {
+        lists.sort((a, b) => {
+          const createdAtA = new Date(a.created_at).getTime();
+          const createdAtB = new Date(b.created_at).getTime();
+
+          if (createdAtA < createdAtB) {
+            return -1;
+          }
+          if (createdAtA > createdAtB) {
+            return 1;
+          }
+          return 0;
+        });
+        return lists;
+      };
+
+      const userLists = orderLists();
+
     return (
         <div className="lists-page-container">
             <div className="lists-page">
@@ -27,7 +45,7 @@ const ListsPage = () => {
                     {user && <button className="change-cursor" onClick={() => history.push('/lists/create')}>Start your own list</button>}
                 </div>
                 <div className="lists-container">
-                    {lists.map(list =>
+                    {userLists.map(list =>
                         <div className="list-tile-container" onClick={() => history.push(`/lists/${list.id}`)}>
                             <div className="list-tile">
                                 <span className="list-tile-overlap change-cursor">
