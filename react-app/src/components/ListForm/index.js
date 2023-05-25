@@ -27,13 +27,15 @@ const ListForm = ({ list, formType }) => {
   useEffect(() => {
     const valErrors = {};
 
-    if (list_name.length > 32 || list_name.length < 4)
+    if (list_name.length > 32 || list_name.length <= 3)
       valErrors.list_name = "List name must be between 4 and 32 characters";
     if (description.length > 1000)
       valErrors.description = "Description must be less than 1000 characters";
+    if(add_films.length === 0)
+      valErrors.add_films = "You must add atleast one film to the list"
 
     setErrors(valErrors);
-  }, [list_name, description]);
+  }, [list_name, description, add_films]);
 
   useEffect(() => {
     dispatch(thunkGetAllFilms());
@@ -43,6 +45,7 @@ const ListForm = ({ list, formType }) => {
     // If the film already is in add_films, don't add it
     if (!add_films.find((film) => film.id === filmToAdd.id)) {
       setAddFilms((oldArr) => [...oldArr, filmToAdd]);
+      setSearch("")
       closeMenu();
     }
   };
@@ -64,7 +67,6 @@ const ListForm = ({ list, formType }) => {
 
       filmIds = filmIds.join(",");
 
-      console.log(is_private)
       const formData = new FormData();
       formData.append("list_name", list_name);
       formData.append("is_private", is_private);
@@ -80,10 +82,6 @@ const ListForm = ({ list, formType }) => {
         history.push(`/lists/${editedList.id}`);
       }
     }
-    // Turn the add_films array into a string separated by commas
-    // Dispatch(CreateList())
-    console.log(is_private)
-    console.log("Submitted");
   };
 
   if (!films) return null;
@@ -104,7 +102,7 @@ const ListForm = ({ list, formType }) => {
           <div className="list-form-grid">
             <div className="list-form-left">
               <div className="list-name-form">
-                <label>Name *</label>
+                <label><span>List name</span> <span className="errors">*{list_name.length > 0 && errors.list_name}</span></label>
                 <input
                   type="text"
                   value={list_name}
@@ -121,7 +119,7 @@ const ListForm = ({ list, formType }) => {
                 </select>
               </div>
               <div className="list-film-search-bar">
-                <label className="films-search-label">ADD A FILM</label>
+                <label className="films-search-label"><span>Add a Film</span> <span className="errors">*{add_films.length === 0 && errors.add_films}</span></label>
                 <input
                   id="films-page-search-bar"
                   type="text"

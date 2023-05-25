@@ -38,19 +38,25 @@ const CreateButton = ({ user }) => {
         className="change-cursor"
         // className="change-cursor"
       >
-        <i class="fa-solid fa-plus navbar-log-plus"></i>
+        <i className="fa-solid fa-plus navbar-log-plus"></i>
         <p>CREATE</p>
       </button>
       <div className={ulClassName} ref={ulRef}>
         <div
           className="hoverable"
-          onClick={() => history.push("/films/create")}
+          onClick={() => {
+            history.push("/films/create")
+            closeMenu();
+          }}
         >
           <p>Create Film</p>
         </div>
         <div
           className="hoverable"
-          onClick={() => history.push("/lists/create")}
+          onClick={() => {
+            history.push("/lists/create")
+            closeMenu();
+          }}
         >
           <p>Create List</p>
         </div>

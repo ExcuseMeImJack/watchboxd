@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
@@ -38,10 +37,12 @@ function ProfileButton({ user }) {
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
+  // if(!user) return null
+
   return (
     <>
       <div className="navbar-profile-button" onClick={openMenu}>
-        <img className="change-cursor" id="navbar-profile-img" src={user.profile_img_url}/>
+        <img className="change-cursor" id="navbar-profile-img" src={user.profile_img_url} alt=''/>
         <p>{user.username}</p>
         <i className="fa-solid fa-caret-down"></i>
       </div>
@@ -49,16 +50,34 @@ function ProfileButton({ user }) {
         {user && (
           <>
             <div className="navbar-profile-button-fake" onClick={closeMenu}>
-              <img className="change-cursor" id="navbar-profile-img" src={user.profile_img_url}/>
+              <img className="change-cursor" id="navbar-profile-img" src={user.profile_img_url} alt=''/>
               <p>{user.username}</p>
               <i className="fa-solid fa-caret-down"></i>
             </div>
-            <div className="hoverable" onClick={() => history.push('/')}><p>Home</p></div>
-            <div className="hoverable" onClick={() => history.push('/profile')}><p>Profile</p></div>
-            <div className="hoverable" onClick={() => history.push('/profile/films')}><p>Films</p></div>
-            <div className="hoverable watchlist-profile-link" /*onClick={() => history.push('/profile/watchlist')}*/><p>Watchlist</p></div>
-            <div className="hoverable" onClick={() => history.push('/profile/lists')}><p>Lists</p></div>
-            <div className="hoverable dropdown-likes" onClick={() => history.push('/profile/likes')}><p>Likes</p></div>
+            <div className="hoverable" onClick={() => {
+              history.push('/')
+              closeMenu();
+            }}><p>Home</p></div>
+            <div className="hoverable" onClick={() => {
+              history.push('/profile')
+              closeMenu();
+            }}><p>Profile</p></div>
+            <div className="hoverable" onClick={() => {
+              history.push('/profile/films')
+              closeMenu();
+            }}><p>Films</p></div>
+            <div className="hoverable watchlist-profile-link" onClick={() => {
+              history.push('/profile/watchlist')
+              closeMenu();
+            }}><p>Watchlist</p></div>
+            <div className="hoverable" onClick={() => {
+              history.push('/profile/lists')
+              closeMenu();
+            }}><p>Lists</p></div>
+            <div className="hoverable dropdown-likes" onClick={() => {
+              history.push('/profile/likes')
+              closeMenu();
+            }}><p>Likes</p></div>
             <div>
               <div className="hoverable" onClick={handleLogout}><p>Sign Out</p></div>
             </div>

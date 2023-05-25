@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAllFilms, thunkGetFilmById } from "../../store/films";
+import { thunkAddToWatchlist, thunkGetAllFilms, thunkGetFilmById, thunkLikeFilm, thunkRemoveFromWatchlist, thunkUnlikeFilm, thunkUnwatchFilm, thunkWatchFilm } from "../../store/films";
 import { useHistory, useParams } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import "./FilmDetails.css";
 import DeleteFilmModal from "../DeleteFilmModal";
 import { useState } from "react";
+import { thunkGetUserById } from "../../store/session";
 
 const FilmDetailsPage = () => {
   const { filmId } = useParams();
@@ -13,15 +14,31 @@ const FilmDetailsPage = () => {
   const history = useHistory();
   const films = useSelector((state) => state.films.films);
   const user = useSelector((state) => state.session.user);
+
   const film = films?.find((film) => {
     if (film.id === parseInt(filmId)) {
       return film;
     }
   });
 
+  const isLiked = () => user.likes.find((currFilm) => currFilm.id === film?.id) ? true : false;
+  const [likedFilm, setLikedFilm] = useState(isLiked())
+
+  const isWatched = () => user.films_watched.find((currFilm) => currFilm.id === film?.id) ? true : false;
+  const [watchedFilm, setWatchedFilm] = useState(isWatched())
+
+  const isOnWatchlist = () => user.films_to_watch.find((currFilm) => currFilm.id === film?.id) ? true : false;
+
+  const [addToWatchlist, setAddToWatchlist] = useState(isOnWatchlist())
+
   useEffect(() => {
     dispatch(thunkGetAllFilms());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(thunkGetUserById(user.id))
+  }, [likedFilm, watchedFilm, addToWatchlist])
+
 
   if (!film) return null;
 
@@ -36,6 +53,38 @@ const FilmDetailsPage = () => {
     return id;
   };
 
+  const handleLike = () => {
+    setLikedFilm(true)
+    setWatchedFilm(true)
+    dispatch(thunkWatchFilm(film.id))
+    dispatch(thunkLikeFilm(film.id))
+  }
+
+  const handleUnlike = () => {
+    setLikedFilm(false)
+    dispatch(thunkUnlikeFilm(film.id))
+  }
+
+  const handleWatched = () => {
+    setWatchedFilm(true)
+    dispatch(thunkWatchFilm(film.id))
+  }
+
+  const handleUnwatched = () => {
+    setWatchedFilm(false)
+    dispatch(thunkUnwatchFilm(film.id))
+  }
+
+  const handleAddToWatchlist = () => {
+    setAddToWatchlist(true)
+    dispatch(thunkAddToWatchlist(film.id))
+  }
+
+  const handleRemoveFromWatchlist = () => {
+    setAddToWatchlist(false)
+    dispatch(thunkRemoveFromWatchlist(film.id))
+  }
+
   return (
     <div className="film-details-page-container">
       <div className="film-details-page">
@@ -49,11 +98,11 @@ const FilmDetailsPage = () => {
             <img id="film-details-tile-image" src={film.tile_img_url} />
             <div className="film-watches-likes-container">
               <div className="film-watches">
-                <i class="fa-solid fa-eye"></i>
+                <i className="fa-solid fa-eye"></i>
                 <p>#</p>
               </div>
               <div className="film-likes">
-                <i class="fa-solid fa-heart"></i>
+                <i className="fa-solid fa-heart"></i>
                 <p>#</p>
               </div>
             </div>
@@ -83,31 +132,19 @@ const FilmDetailsPage = () => {
             <div className="film-interactions-panel">
               <div className="film-interactions">
                 <div>
-                  <i
-                    className={
-                      user.films_watched.find(
-                        (currFilm) => currFilm.id === film.id
-                      )
-                        ? "fa-solid fa-eye change-cursor"
-                        : "fa-regular fa-eye change-cursor"
-                    }
-                  ></i>
+                  {user.films_watched.find((currFilm) => currFilm.id === film.id)
+                  ? <i className="fa-solid fa-eye change-cursor" onClick={handleUnwatched}/>
+                  : <i className="fa-regular fa-eye change-cursor" onClick={handleWatched}/>}
                   <p>
-                    {user.films_watched.find(
-                      (currFilm) => currFilm.id === film.id
-                    )
+                    {user.films_watched.find((currFilm) => currFilm.id === film.id)
                       ? "Watched"
                       : "Watch"}
                   </p>
                 </div>
                 <div>
-                  <i
-                    className={
-                      user.likes.find((currFilm) => currFilm.id === film.id)
-                        ? "fa-solid fa-heart change-cursor"
-                        : "fa-regular fa-heart change-cursor"
-                    }
-                  ></i>
+                  {user.likes.find((currFilm) => currFilm.id === film.id)
+                  ? <i className="fa-solid fa-heart change-cursor" onClick={handleUnlike}/>
+                  : <i className="fa-regular fa-heart change-cursor" title="Liking a Film will also mark it as a Watched Film" onClick={handleLike}/> }
                   <p>
                     {user.likes.find((currFilm) => currFilm.id === film.id)
                       ? "Liked"
@@ -115,7 +152,9 @@ const FilmDetailsPage = () => {
                   </p>
                 </div>
                 <div>
-                  <i className="fa-solid fa-clock change-cursor"></i>
+                  {user.films_to_watch.find((currFilm) => currFilm.id === film.id)
+                    ? <i className="fa-solid fa-clock change-cursor" onClick={handleRemoveFromWatchlist}/>
+                    : <i className="fa-regular fa-clock change-cursor" onClick={handleAddToWatchlist}/> }
                   <p>Watchlist</p>
                 </div>
               </div>

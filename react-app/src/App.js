@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import { authenticate, thunkGetUserById } from "./store/session";
+import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserProfilePage from "./components/UserProfilePage";
 import EditProfilePage from "./components/EditProfilePage";
@@ -19,12 +19,11 @@ import ProtectedRoute from "./components/auth/ProtectedRoute"
 import ListUpdate from "./components/ListUpdate";
 import ListCreate from "./components/ListCreate";
 import HomePage from "./components/HomePage";
+import MembersPage from "./components/MembersPage";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const user = useSelector((state) => state.session.user);
-  // console.log(user)
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -36,6 +35,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route path="/members">
+            <MembersPage />
           </Route>
           <Route path="/profile/watchlist">
             <ProtectedRoute>

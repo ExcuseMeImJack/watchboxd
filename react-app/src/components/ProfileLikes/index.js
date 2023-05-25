@@ -1,12 +1,10 @@
-import { useDispatch, useSelector } from "react-redux"
-import { thunkGetAllFilms } from "../../store/films";
+import { useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 // import './ProfileFilms.css'
 
 const ProfileLikes = () => {
     const user = useSelector(state => state.session.user)
-    const dispatch = useDispatch();
     const history = useHistory();
     const [search, setSearch] = useState("");
     let searchedFilms;
@@ -35,6 +33,7 @@ const ProfileLikes = () => {
 
       const userFilms = orderFilms();
 
+      // eslint-disable-next-line
       searchedFilms = userFilms.filter((film) => {
         if(search === '') return film
         else if(film.title.toLowerCase().includes(search.toLowerCase()) || film.description.toLowerCase().includes(search.toLowerCase()) || film.director.toLowerCase().includes(search.toLowerCase()) || film.genre.toLowerCase().includes(search.toLowerCase())) return film
@@ -48,7 +47,7 @@ const ProfileLikes = () => {
                         <div className="user-profile-navbar-links">
                         <Link to="/profile">Profile</Link>
                         <Link to="/profile/films">Films</Link>
-                        <a to="/profile/watchlist" id="watchlist-selector">Watchlist</a>
+                        <Link to="/profile/watchlist" id="watchlist-selector">Watchlist</Link>
                         <Link to="/profile/lists">Lists</Link>
                         <Link to="/profile/likes"><p
                             className="current-user-profile-section"
@@ -74,7 +73,7 @@ const ProfileLikes = () => {
                 <div className="user-films-all">
                     {searchedFilms.map(film =>
                     <div key={film.id} className="user-films-card change-cursor" onClick={() => history.push(`/films/${film.id}`)}>
-                        <img id="user-films-card-img" src={film.tile_img_url} />
+                        <img id="user-films-card-img" src={film.tile_img_url} alt=""/>
                     </div>
                     )}
                 </div>

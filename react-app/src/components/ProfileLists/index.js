@@ -24,7 +24,7 @@ const ProfileLists = () => {
             <div className="user-profile-navbar-links">
               <Link to="/profile">Profile</Link>
               <Link to="/profile/films">Films</Link>
-              <a to="/profile/watchlist" id="watchlist-selector">Watchlist</a>
+              <Link to="/profile/watchlist" id="watchlist-selector">Watchlist</Link>
               <Link to="/profile/lists">
                 <p
                   className="current-user-profile-section"
@@ -51,10 +51,10 @@ const ProfileLists = () => {
             >
               <div className="list-tile">
                 <span className="list-tile-overlap change-cursor">
-                  <img src={list.films[0]?.tile_img_url} />
-                  <img src={list.films[1]?.tile_img_url} />
-                  <img src={list.films[2]?.tile_img_url} />
-                  <img src={list.films[3]?.tile_img_url} />
+                  <img src={list.films[0]?.tile_img_url} alt="" />
+                  <img src={list.films[1]?.tile_img_url} alt="" />
+                  <img src={list.films[2]?.tile_img_url} alt="" />
+                  <img src={list.films[3]?.tile_img_url} alt="" />
                 </span>
               </div>
               <div className="list-tile-info">

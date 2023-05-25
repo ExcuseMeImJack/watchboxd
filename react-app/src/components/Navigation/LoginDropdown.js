@@ -93,10 +93,10 @@ const LoginDropdown = () => {
               />
             </div>
             <div className="login-button-submit-div">
-              <button id="login-button-submit" type="submit">
+              <button id="login-button-submit" className="change-cursor" type="submit">
                 Log In
               </button>
-              <button id="login-button-demo" onClick={handleDemoLogin} type="button">
+              <button id="login-button-demo" className="change-cursor" onClick={handleDemoLogin} type="button">
                 Demo User
               </button>
             </div>

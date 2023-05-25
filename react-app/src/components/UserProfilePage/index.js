@@ -1,12 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import "./UserProfile.css";
-import { useEffect } from "react";
-import { thunkGetUserById } from "../../store/session";
 
 const UserProfilePage = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
   const handleEditProfile = () => {
@@ -21,9 +18,8 @@ const UserProfilePage = () => {
     const uniqueFilms = [...new Map(activity.map((film) => [film.id, film])).values()];
 
     uniqueFilms.sort((a, b) => {
-
-      const createdAtA = new Date(a.createdAt).getTime();
-      const createdAtB = new Date(b.createdAt).getTime();
+      const createdAtA = new Date(a.created_at).getTime();
+      const createdAtB = new Date(b.created_at).getTime();
 
       if (createdAtA > createdAtB) {
         return -1;
@@ -41,6 +37,7 @@ const UserProfilePage = () => {
   const calculateLikesAndWatchesForYear = () => {
     const totalThisYear = [];
     userFilms.forEach((like) => {
+      // eslint-disable-next-line
       if (like.created_at?.split(" ")[3] == new Date().getFullYear()) {
         totalThisYear.push({ [like.id]: like });
       }
@@ -53,7 +50,7 @@ const UserProfilePage = () => {
       <div className="user-profile-page">
         <div className="user-profile-info">
           <div className="user-profile-user-img-container">
-            <img id="user-profile-user-img" src={user.profile_img_url} />
+            <img id="user-profile-user-img" alt="" src={user.profile_img_url} />
           </div>
           <div className="user-profile-info-section-1">
             <div className="user-profile-edit-button-container">
@@ -66,7 +63,7 @@ const UserProfilePage = () => {
           </div>
           <div className="user-profile-info-section-2">
             <div className="user-profile-data-lists">
-              {userFilms.length == 1 ? (
+              {userFilms.length === 1 ? (
                 <div className="user-profile-films-watched-liked">
                   <h2>{userFilms.length}</h2>
                   <p>FILM</p>
@@ -100,7 +97,7 @@ const UserProfilePage = () => {
                     </p>
                   </Link>
                   <Link to="/profile/films">Films</Link>
-                  <a to="/profile/watchlist" id="watchlist-selector">Watchlist</a>
+                  <Link to="/profile/watchlist" id="watchlist-selector">Watchlist</Link>
                   <Link to="/profile/lists">Lists</Link>
                   <Link to="/profile/likes">Likes</Link>
                 </div>
@@ -124,7 +121,7 @@ const UserProfilePage = () => {
             <div className="user-profile-watchlist-container">
               <p>WATCHLIST</p>
               <div className="user-profile-watchlist-content">
-                {user.films_to_watch.length > 4 ?
+                {user.films_to_watch.length ?
                   <Link to="/profile/watchlist">
                     <div className="watchlist-image-stack list-img-small">
                       <div className="watchlist-image-1">

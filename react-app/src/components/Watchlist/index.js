@@ -1,20 +1,42 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { thunkGetAllLists } from "../../store/lists";
 
 const Watchlist = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
-  const lists = useSelector((state) =>
-    state.lists.lists?.filter((list) => list.user_id === user.id)
-  );
 
-  useEffect(() => {
-    dispatch(thunkGetAllLists());
-  }, [dispatch]);
+  const [search, setSearch] = useState("");
+  let searchedFilms;
+
+  const orderFilms = () => {
+    const films = user.films_to_watch;
+    films.sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+    return films;
+  };
+
+  const userFilms = orderFilms();
+
+  // eslint-disable-next-line
+  searchedFilms = userFilms.filter((film) => {
+    if (search === "") return film;
+    else if (
+      film.title.toLowerCase().includes(search.toLowerCase()) ||
+      film.description.toLowerCase().includes(search.toLowerCase()) ||
+      film.director.toLowerCase().includes(search.toLowerCase()) ||
+      film.genre.toLowerCase().includes(search.toLowerCase())
+    )
+      return film;
+  });
 
   return (
     <div className="user-films-page-container">
@@ -38,6 +60,27 @@ const Watchlist = () => {
           </div>
           <div className="films-navbar-grid">
             <h1 id="films-page-title">MY WATCHLIST</h1>
+            <div className="films-page-search-bar-container">
+              <label className="films-search-label">FIND A FILM</label>
+              <input
+                id="films-page-search-bar"
+                type="text"
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+                autoComplete="off"
+              />
+            </div>
+          </div>
+          <div className="user-films-all">
+            {searchedFilms.map((film) => (
+              <div
+                key={film.id}
+                className="user-films-card change-cursor"
+                onClick={() => history.push(`/films/${film.id}`)}
+              >
+                <img id="user-films-card-img" src={film.tile_img_url} alt="" />
+              </div>
+            ))}
           </div>
         </div>
       </div>
