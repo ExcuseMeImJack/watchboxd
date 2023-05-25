@@ -53,32 +53,38 @@ const FilmDetailsPage = () => {
     return id;
   };
 
-  const handleLike = () => {
+  const handleLike = (e) => {
+    e.stopPropagation();
     setLikedFilm(true)
     dispatch(thunkLikeFilm(film.id))
   }
 
-  const handleUnlike = () => {
+  const handleUnlike = (e) => {
+    e.stopPropagation();
     setLikedFilm(false)
     dispatch(thunkUnlikeFilm(film.id))
   }
 
-  const handleWatched = () => {
+  const handleWatched = (e) => {
+    e.stopPropagation();
     setWatchedFilm(true)
     dispatch(thunkWatchFilm(film.id))
   }
 
-  const handleUnwatched = () => {
+  const handleUnwatched = (e) => {
+    e.stopPropagation();
     setWatchedFilm(false)
     dispatch(thunkUnwatchFilm(film.id))
   }
 
-  const handleAddToWatchlist = () => {
+  const handleAddToWatchlist = (e) => {
+    e.stopPropagation();
     setAddToWatchlist(true)
     dispatch(thunkAddToWatchlist(film.id))
   }
 
-  const handleRemoveFromWatchlist = () => {
+  const handleRemoveFromWatchlist = (e) => {
+    e.stopPropagation();
     setAddToWatchlist(false)
     dispatch(thunkRemoveFromWatchlist(film.id))
   }
