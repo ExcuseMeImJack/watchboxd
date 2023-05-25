@@ -4,9 +4,7 @@ const CREATE_FILM = "films/CREATE_FILM"
 const UPDATE_FILM = "films/UPDATE_FILM"
 const DELETE_FILM = "films/DELETE_FILM"
 const LIKE_FILM = "films/LIKE_FILM"
-const UNLIKE_FILM = "films/UNLIKE_FILM"
 const WATCH_FILM = "films/WATCH_FILM"
-const UNWATCH_FILM = "films/UNWATCH_FILM"
 
 const actionGetAllFilms = (films) => ({
     type: GET_ALL_FILMS,
@@ -37,6 +35,7 @@ const actionWatchFilm = (data) => ({
     type: WATCH_FILM,
     payload: data
 })
+
 
 export const thunkGetAllFilms = () => async(dispatch) => {
     const res = await fetch('/api/films');
@@ -135,7 +134,7 @@ export const thunkUnlikeFilm = (filmId) => async (dispatch) => {
     })
 
     if(res.ok) {
-        const data = await res.json()
+        await res.json()
         return res
     } else {
         return {'message': 'Error liking a film'}
@@ -170,10 +169,45 @@ export const thunkUnwatchFilm = (filmId) => async (dispatch) => {
     })
 
     if(res.ok) {
-        const data = await res.json()
+        await res.json()
         return res
     } else {
         return {'message': 'Error unwatching a film'}
+    }
+}
+
+export const thunkAddToWatchlist = (filmId) => async (dispatch) => {
+    const res = await fetch(`/api/watchlist/${filmId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({filmId})
+    })
+
+    if(res.ok) {
+        const data = await res.json()
+        dispatch(actionWatchFilm(data))
+        return res
+    } else {
+        return {'message': 'Error adding a film to the watchlist'}
+    }
+}
+
+export const thunkRemoveFromWatchlist = (filmId) => async (dispatch) => {
+    const res = await fetch(`/api/watchlist/${filmId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({filmId})
+    })
+
+    if(res.ok) {
+        await res.json()
+        return res
+    } else {
+        return {'message': 'Error removing a film from the watchlist'}
     }
 }
 

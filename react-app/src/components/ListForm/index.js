@@ -45,6 +45,7 @@ const ListForm = ({ list, formType }) => {
     // If the film already is in add_films, don't add it
     if (!add_films.find((film) => film.id === filmToAdd.id)) {
       setAddFilms((oldArr) => [...oldArr, filmToAdd]);
+      setSearch("")
       closeMenu();
     }
   };
@@ -65,7 +66,7 @@ const ListForm = ({ list, formType }) => {
       });
 
       filmIds = filmIds.join(",");
-      
+
       const formData = new FormData();
       formData.append("list_name", list_name);
       formData.append("is_private", is_private);

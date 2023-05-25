@@ -16,10 +16,35 @@ const FilmsPage = () => {
 
     if(!films) return null
 
-    searchedFilms = films.filter((film) => {
-        if(search === '') return film
-        else if(film.title.toLowerCase().includes(search.toLowerCase()) || film.description.toLowerCase().includes(search.toLowerCase()) || film.director.toLowerCase().includes(search.toLowerCase()) || film.genre.toLowerCase().includes(search.toLowerCase())) return film
-    })
+    const orderFilms = () => {
+      films.sort((a, b) => {
+        const createdAtA = new Date(a.created_at).getTime();
+        const createdAtB = new Date(b.created_at).getTime();
+
+        if (createdAtA < createdAtB) {
+          return -1;
+        }
+        if (createdAtA > createdAtB) {
+          return 1;
+        }
+        return 0;
+      });
+      return films;
+    };
+
+    const userFilms = orderFilms();
+
+    // eslint-disable-next-line
+    searchedFilms = userFilms.filter((film) => {
+      if (search === "") return film;
+      else if (
+        film.title.toLowerCase().includes(search.toLowerCase()) ||
+        film.description.toLowerCase().includes(search.toLowerCase()) ||
+        film.director.toLowerCase().includes(search.toLowerCase()) ||
+        film.genre.toLowerCase().includes(search.toLowerCase())
+      )
+        return film;
+    });
 
     return (
         <div className="films-page-container">

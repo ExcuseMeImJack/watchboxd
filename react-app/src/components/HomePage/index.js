@@ -44,7 +44,6 @@ const HomePage = () => {
     const randomImage = () => {
         const randomNum = Math.floor(Math.random() * imgArr.length);
         const img = imgArr[randomNum]
-        console.log(img)
         return img
     }
 

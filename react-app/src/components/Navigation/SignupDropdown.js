@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "./SignupDropdown.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { login, signUp, thunkGetAllUsers } from "../../store/session";
+import { login, signUp } from "../../store/session";
 
 const SignupDropdown = ({users}) => {
   const [showMenu, setShowMenu] = useState(false);

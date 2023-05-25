@@ -10,7 +10,7 @@ const ListsPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const lists = useSelector(state => state.lists.lists?.filter(list => list.is_private === false && list.films.length >= 4))
-    
+
     const user = useSelector(state => state.session.user)
 
     useEffect(() => {
@@ -18,7 +18,6 @@ const ListsPage = () => {
     }, [dispatch])
 
     if(!lists) return null
-    console.log(lists)
 
     return (
         <div className="lists-page-container">

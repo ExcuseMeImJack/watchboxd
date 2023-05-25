@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import watchboxdIcon from '../../watchboxd-icon.png'
-import OpenModalButton from '../OpenModalButton';
-import { useModal } from '../../context/Modal';
 import CreateButton from './CreateButton';
 import { useEffect } from 'react';
 import { thunkGetAllUsers } from '../../store/session';
@@ -18,7 +16,6 @@ function Navigation({ isLoaded }){
 
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const {closeMenu} = useModal();
 
 	useEffect(() => {
 		dispatch(thunkGetAllUsers())
@@ -29,7 +26,7 @@ function Navigation({ isLoaded }){
 			<div className='navbar-container-itself'>
 				<div className='nav-logo-container'>
 					<div className='change-cursor logo-navbar' onClick={() => history.push('/')}>
-						<img id="site-icon" src={watchboxdIcon}/>
+						<img id="site-icon" src={watchboxdIcon} alt=''/>
 						<h2 id="site-logo">WATCHBOXD</h2>
 					</div>
 				</div>

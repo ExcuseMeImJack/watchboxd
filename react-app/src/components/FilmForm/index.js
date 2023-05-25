@@ -44,7 +44,6 @@ const FilmForm = ({film, formType}) => {
         if(!(trailerUrl.includes('youtube') || trailerUrl.includes('youtu.be'))) valErrors.trailerUrl = "Trailer URL must be a YouTube link"
 
         const validUrlFileTypes = ['png', 'jpg', 'jpeg'];
-        console.log(backgroundImage)
         if(backgroundImage) {
             let urlArray;
             if(backgroundImage.name && !backgroundImage.name.includes('watchboxd-images-aa')){
@@ -78,7 +77,6 @@ const FilmForm = ({film, formType}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitted(true);
-        console.log(errors)
         if(Object.keys(errors).length < 1){
             const formData = new FormData();
             formData.append("title", title);

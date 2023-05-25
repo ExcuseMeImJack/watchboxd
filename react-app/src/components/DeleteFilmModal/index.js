@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import React from "react";
+import { useDispatch} from "react-redux"
 import { useModal } from "../../context/Modal";
 import { useHistory } from 'react-router-dom';
-import { logout, thunkDeleteUser, thunkGetUserById } from "../../store/session";
 import { thunkDeleteFilm } from "../../store/films";
 
 function DeleteFilmModal({film}) {

@@ -63,7 +63,6 @@ def update_user():
         if curr_user.username != form.data["username"]:
             curr_user.username=form.data["username"]
         curr_user.bio=form.data["bio"]
-        print(curr_user.to_dict())
         db.session.commit()
         return curr_user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

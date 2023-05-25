@@ -18,9 +18,8 @@ const UserProfilePage = () => {
     const uniqueFilms = [...new Map(activity.map((film) => [film.id, film])).values()];
 
     uniqueFilms.sort((a, b) => {
-
-      const createdAtA = new Date(a.createdAt).getTime();
-      const createdAtB = new Date(b.createdAt).getTime();
+      const createdAtA = new Date(a.created_at).getTime();
+      const createdAtB = new Date(b.created_at).getTime();
 
       if (createdAtA > createdAtB) {
         return -1;
@@ -122,7 +121,7 @@ const UserProfilePage = () => {
             <div className="user-profile-watchlist-container">
               <p>WATCHLIST</p>
               <div className="user-profile-watchlist-content">
-                {user.films_to_watch.length > 4 ?
+                {user.films_to_watch.length ?
                   <Link to="/profile/watchlist">
                     <div className="watchlist-image-stack list-img-small">
                       <div className="watchlist-image-1">

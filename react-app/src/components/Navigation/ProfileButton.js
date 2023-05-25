@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
 import { useHistory } from "react-router-dom";
 
 function ProfileButton({ user }) {
@@ -43,7 +42,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <div className="navbar-profile-button" onClick={openMenu}>
-        <img className="change-cursor" id="navbar-profile-img" src={user.profile_img_url}/>
+        <img className="change-cursor" id="navbar-profile-img" src={user.profile_img_url} alt=''/>
         <p>{user.username}</p>
         <i className="fa-solid fa-caret-down"></i>
       </div>
@@ -51,7 +50,7 @@ function ProfileButton({ user }) {
         {user && (
           <>
             <div className="navbar-profile-button-fake" onClick={closeMenu}>
-              <img className="change-cursor" id="navbar-profile-img" src={user.profile_img_url}/>
+              <img className="change-cursor" id="navbar-profile-img" src={user.profile_img_url} alt=''/>
               <p>{user.username}</p>
               <i className="fa-solid fa-caret-down"></i>
             </div>
