@@ -44,8 +44,8 @@ const SignupDropdown = ({users}) => {
   }, [showMenu]);
 
   function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
-    return emailRegex.test(email);
+    const emailRegex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
+    console.log(emailRegex.test(email));
   }
 
   const listOfExistingUsernames = users?.map(user => user.username.toLowerCase())
@@ -111,7 +111,7 @@ const SignupDropdown = ({users}) => {
           <div className="email-input-signup">
           <label>Email</label>
             <input
-              type="text"
+              type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

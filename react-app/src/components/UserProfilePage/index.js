@@ -139,7 +139,7 @@ const UserProfilePage = () => {
                     </div>
                   </Link>
                   :
-                  <button className="create-a-list-button change-cursor">Add some films to your watchlist!</button>
+                  <button className="create-a-list-button change-cursor" onClick={() => history.push('/films')}>Add some films to your watchlist!</button>
                 }
               </div>
             </div>
@@ -167,7 +167,7 @@ const UserProfilePage = () => {
                 <h4 id="user-profile-list-name">{list.list_name}</h4>
 
                 </div>
-                ) : <button className="create-a-list-button change-cursor">Create a List!</button>}
+                ) : <button className="create-a-list-button change-cursor" onClick={() => history.push('/lists/create')}>Create a List!</button>}
               </div>
             </div>
           </div>
