@@ -42,6 +42,36 @@ const FilmDetailsPage = () => {
 
   if (!film) return null;
 
+  const handleLike = async () => {
+    setLikedFilm(true)
+    await dispatch(thunkLikeFilm(film.id))
+  }
+
+  const handleUnlike = async () => {
+    setLikedFilm(false)
+    await dispatch(thunkUnlikeFilm(film.id))
+  }
+
+  const handleWatched = async () => {
+    setWatchedFilm(true)
+    await dispatch(thunkWatchFilm(film.id))
+  }
+
+  const handleUnwatched = async () => {
+    setWatchedFilm(false)
+    await dispatch(thunkUnwatchFilm(film.id))
+  }
+
+  const handleAddToWatchlist = async () => {
+    setAddToWatchlist(true)
+    await dispatch(thunkAddToWatchlist(film.id))
+  }
+
+  const handleRemoveFromWatchlist = async () => {
+    setAddToWatchlist(false)
+    await dispatch(thunkRemoveFromWatchlist(film.id))
+  }
+
   const getTrailerId = () => {
     const url = film.trailer_url;
     let id;
@@ -52,42 +82,6 @@ const FilmDetailsPage = () => {
     }
     return id;
   };
-
-  const handleLike = (e) => {
-    e.stopPropagation();
-    setLikedFilm(true)
-    dispatch(thunkLikeFilm(film.id))
-  }
-
-  const handleUnlike = (e) => {
-    e.stopPropagation();
-    setLikedFilm(false)
-    dispatch(thunkUnlikeFilm(film.id))
-  }
-
-  const handleWatched = (e) => {
-    e.stopPropagation();
-    setWatchedFilm(true)
-    dispatch(thunkWatchFilm(film.id))
-  }
-
-  const handleUnwatched = (e) => {
-    e.stopPropagation();
-    setWatchedFilm(false)
-    dispatch(thunkUnwatchFilm(film.id))
-  }
-
-  const handleAddToWatchlist = (e) => {
-    e.stopPropagation();
-    setAddToWatchlist(true)
-    dispatch(thunkAddToWatchlist(film.id))
-  }
-
-  const handleRemoveFromWatchlist = (e) => {
-    e.stopPropagation();
-    setAddToWatchlist(false)
-    dispatch(thunkRemoveFromWatchlist(film.id))
-  }
 
   return (
     <div className="film-details-page-container">
