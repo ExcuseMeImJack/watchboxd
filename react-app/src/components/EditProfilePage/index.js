@@ -10,6 +10,7 @@ const EditProfilePage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const users = useSelector(state => state.session.users);
 
   const [username, setUsername] = useState(user.username);
   const [firstName, setFirstName] = useState(user.first_name === null ? "" : user.first_name);
@@ -20,10 +21,16 @@ const EditProfilePage = () => {
   const [imageLoading, setImageLoading] = useState(false)
   const [errors, setErrors] = useState({})
 
+  const listOfExistingUsernames = users?.map(user => user.username.toLowerCase())
+
+  const existingUsers = (newUsername) => listOfExistingUsernames?.includes(newUsername.toLowerCase()) ? false : true
+
   useEffect(() => {
     const valErrors = {}
     if(username.length < 4 || username.length > 16) valErrors.username = "Username must be between 4 and 16 characters"
     if(bio && (bio.length > 100)) valErrors.bio = "Bio must be less than 100 characters"
+    if(username.includes(' ')) valErrors.username = "Username must not have spaces"
+    if(user.username !== username && (existingUsers(username)) === false) valErrors.username = "Username already exists"
     setErrors(valErrors)
   }, [username, bio])
 

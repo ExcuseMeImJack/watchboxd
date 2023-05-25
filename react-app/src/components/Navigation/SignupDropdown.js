@@ -60,6 +60,8 @@ const SignupDropdown = ({users}) => {
     if(username.length > 16 || username.length < 4) valErrors.username = "Username must be between 4 and 16 characters"
     if(validateEmail(email) === false) valErrors.email = "Email must be valid"
     if(existingUsers(username) === false) valErrors.username = "Username already exists"
+    if(username.includes(' ')) valErrors.username = "Username must not have spaces"
+    if(password.includes(' ')) valErrors.username = "Password must not have spaces"
 
     setErrors(valErrors)
   }, [password, username, email, confirmPassword])
