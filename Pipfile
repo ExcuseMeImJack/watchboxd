@@ -24,8 +24,8 @@ python-editor = "==1.0.4"
 six = "==1.16.0"
 sqlalchemy = "==1.4.46"
 werkzeug = "==2.2.2"
-wtforms = {extras = ["email"], version = "*"}
-boto3 = "*"
+wtforms = "==3.0.1"
+boto3 = "==1.26.129"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "42b5a286696661b7b35aeab8b273c8c87cc6ecb06316b40fe9f9033aa0e14897"
+            "sha256": "41bbc5c4383829c0f50b1af65d32fd4f62ae5430e992269c17449197f7c3ce97"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -26,11 +26,11 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:152def2fcc9854dcc42383d2b53e2ed2c9ccb5ff6cc0f3ada20f1ab54418ede4",
-                "sha256:a5d6fdcaec863bc7ad2f8133ff9a926d6f06468b83b5fb631cd90bd33b709c45"
+                "sha256:0686a62f424c4f3375a706555b765d1e24d03d70e7d317ffcb2d411b39aa8139",
+                "sha256:1dab3fcbeada61a3b5a42ea25a89143511a5b22626775c685e31e313f327cf3c"
             ],
             "index": "pypi",
-            "version": "==1.26.141"
+            "version": "==1.26.129"
         },
         "botocore": {
             "hashes": [
@@ -47,21 +47,6 @@
             ],
             "index": "pypi",
             "version": "==8.1.3"
-        },
-        "dnspython": {
-            "hashes": [
-                "sha256:224e32b03eb46be70e12ef6d64e0be123a64e621ab4c0822ff6d450d52a540b9",
-                "sha256:89141536394f909066cabd112e3e1a37e4e654db00a25308b0f130bc3152eb46"
-            ],
-            "markers": "python_version >= '3.7' and python_version < '4.0'",
-            "version": "==2.3.0"
-        },
-        "email-validator": {
-            "hashes": [
-                "sha256:1ff6e86044200c56ae23595695c54e9614f4a9551e0e393614f764860b3d7900",
-                "sha256:2466ba57cda361fb7309fd3d5a225723c788ca4bbad32a0ebd5373b99730285c"
-            ],
-            "version": "==2.0.0.post2"
         },
         "flask": {
             "hashes": [
@@ -184,14 +169,6 @@
             ],
             "index": "pypi",
             "version": "==20.1.0"
-        },
-        "idna": {
-            "hashes": [
-                "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4",
-                "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"
-            ],
-            "markers": "python_version >= '3.5'",
-            "version": "==3.4"
         },
         "importlib-metadata": {
             "hashes": [
@@ -404,9 +381,6 @@
             "version": "==2.2.2"
         },
         "wtforms": {
-            "extras": [
-                "email"
-            ],
             "hashes": [
                 "sha256:6b351bbb12dd58af57ffef05bc78425d08d1914e0fd68ee14143b7ade023c5bc",
                 "sha256:837f2f0e0ca79481b92884962b914eba4e72b7a2daaf1f939c890ed0124b834b"
