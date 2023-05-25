@@ -27,6 +27,8 @@ const FilmForm = ({film, formType}) => {
     useEffect(() => {
         const valErrors = {}
 
+        if(title.length >= 100 || title.length < 4) valErrors.title = "Film title must be between 4 and 100 characters"
+
         if(formType === "create") {
             films?.forEach(film => (film.title.toLowerCase().replace(/[^a-z0-9]/gi, '') === title.toLowerCase().replace(/[^a-z0-9]/gi, '')) ? valErrors.title = "Film already exists" : null)
         }
@@ -106,7 +108,7 @@ const FilmForm = ({film, formType}) => {
                 {formType === "create" ? <h1>Create a New Film</h1> : <h1>Update {film.title}</h1>}
 
                 <div>
-                    {errors.title && <p className='errors'>{errors.title}</p>}
+                    {title && errors.title && <p className='errors'>{errors.title}</p>}
                     {year && errors.year && <p className='errors'>{errors.year}</p>}
                     {description && errors.description && <p className='errors'>{errors.description}</p>}
                     {backgroundImage && errors.backgroundImage && <p className='errors'>{errors.backgroundImage}</p>}
