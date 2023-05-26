@@ -74,7 +74,7 @@ const FilmDetailsPage = () => {
     setWatchedFilm(true)
     await dispatch(thunkLikeFilm(film.id))
     await dispatch(thunkWatchFilm(film.id))
-     dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetUserById(user.id))
     await dispatch(thunkGetAllUsers())
   }
 
