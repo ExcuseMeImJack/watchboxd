@@ -21,8 +21,8 @@ class Film(db.Model):
     director = db.Column(db.String(100), nullable=False)
     genre = db.Column(db.String(100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    created_at = db.Column(db.Date, default=datetime.now())
-    updated_at = db.Column(db.Date, default=datetime.now())
+    created_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
 
     film_lists = db.relationship("List", secondary=film_lists, back_populates="film_list")
     film_user = db.relationship("User", back_populates="films")

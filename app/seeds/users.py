@@ -6,64 +6,64 @@ from .lists import seed_lists
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        first_name='Demo',
-        last_name='User',
-        username='Demo',
-        email='demo@aa.io',
-        profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
+    dom = User(
+        first_name='Dom',
+        last_name='Price',
+        username='Price',
+        email='dom@aa.io',
+        profile_img_url='https://i.imgur.com/0dH3sp9.png',
         password='password'
     )
-    marnie = User(
-        first_name='Marnie',
-        last_name='Gates',
-        username='marnie',
-        email='marnie@aa.io',
-        profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
-        password='password'
-    )
-    bobbie = User(
-        first_name='Bobbie',
-        last_name='Salazar',
-        username='bobbie',
-        email='bobbie@aa.io',
-        profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
-        password='password'
-    )
-    tester1 = User(
+    jack = User(
         first_name='Jack',
         last_name='Roybal',
-        username='tester1',
-        email='tester1@aa.io',
-        profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
+        username='ExcuseMeImJack',
+        email='jack@aa.io',
+        profile_img_url='https://i.imgur.com/vvdTmr8.png',
         password='password'
     )
-    tester2 = User(
-        first_name='Andre',
-        last_name='Hristu',
-        username='tester2',
-        email='tester2@aa.io',
-        profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
+    ryan = User(
+        first_name='Ryan',
+        last_name='Malmos',
+        username='Malmos',
+        email='ryan@aa.io',
+        profile_img_url='https://i.imgur.com/mwl6gBf.png',
         password='password'
     )
-    tester3 = User(
+    david = User(
         first_name='David',
         last_name='Kim',
-        username='tester3',
-        email='tester3@aa.io',
-        profile_img_url='https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg',
+        username='Sleepyz',
+        email='david@aa.io',
+        profile_img_url='https://i.imgur.com/FmfQU5i.png',
+        password='password'
+    )
+    andre = User(
+        first_name='Andre',
+        last_name='Hristu',
+        username='DrizzlyDre',
+        email='andre@aa.io',
+        profile_img_url='https://i.imgur.com/pLYIDwK.png',
+        password='password'
+    )
+    bao = User(
+        first_name='Bao',
+        last_name='Zhang',
+        username='BAO',
+        email='bao@aa.io',
+        profile_img_url='https://i.imgur.com/gfgeXDF.png',
         password='password'
     )
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
-    db.session.add(tester1)
-    db.session.add(tester2)
-    db.session.add(tester3)
+    db.session.add(dom)
+    db.session.add(jack)
+    db.session.add(ryan)
+    db.session.add(david)
+    db.session.add(andre)
+    db.session.add(bao)
     db.session.commit()
 
-    return [demo, marnie, bobbie, tester1, tester2, tester3]
+    return [dom, jack, ryan, david, andre, bao]
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

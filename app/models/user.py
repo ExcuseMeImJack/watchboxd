@@ -7,7 +7,6 @@ from .film_to_watch import films_to_watch
 from .watched import watches
 
 
-
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -22,8 +21,8 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(1000))
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_img_url = db.Column(db.String)
-    created_at = db.Column(db.Date, default=datetime.now())
-    updated_at = db.Column(db.Date, default=datetime.now())
+    created_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
 
     lists = db.relationship("List", back_populates="user", cascade="all, delete-orphan")
     films = db.relationship("Film", back_populates="film_user", cascade="all, delete-orphan")

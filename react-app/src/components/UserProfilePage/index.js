@@ -110,7 +110,7 @@ const UserProfilePage = () => {
             <p>RECENT ACTIVITY</p>
             <div className="user-profile-recent-activity-content">
                 {userFilms.length > 0 ? userFilms.map((film, i) =>
-                 i <= 12 && <Link key={film.title} className="user-profile-recent-films-card" to={`/films/${film.id}`}>
+                 i <= 11 && <Link key={film.title} className="user-profile-recent-films-card" to={`/films/${film.id}`}>
                  <img id="user-profile-recent-films-card-img" src={film.tile_img_url} alt="" />
                </Link>
 

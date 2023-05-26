@@ -49,7 +49,7 @@ const LoginDropdown = () => {
 
   const handleDemoLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login("tester1@aa.io", "password"));
+    const data = await dispatch(login("david@aa.io", "password"));
     if (data) {
       setErrors(data);
     } else {
