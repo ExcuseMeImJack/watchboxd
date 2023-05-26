@@ -14,6 +14,7 @@ def like_film(id):
     film = Film.query.get(id)
     user = User.query.get(current_user.id)
     film.film_likes.append(user)
+    film.film_watches.append(user)
     db.session.commit()
 
     return {'message': 'Film liked'}
