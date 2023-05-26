@@ -118,6 +118,7 @@ export const thunkLikeFilm = (filmId) => async (dispatch) => {
     if(res.ok) {
         const data = await res.json()
         dispatch(actionLikeFilm(data))
+        dispatch(actionWatchFilm(data))
         return res
     } else {
         return {'message': 'Error liking a film'}

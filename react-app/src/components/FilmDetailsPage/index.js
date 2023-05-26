@@ -70,47 +70,46 @@ const FilmDetailsPage = () => {
 
 
   const handleLike = async () => {
+    await dispatch(thunkLikeFilm(film.id))
+    await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
     setLikedFilm(true)
     setWatchedFilm(true)
-     dispatch(thunkLikeFilm(film.id))
-     dispatch(thunkWatchFilm(film.id))
-     dispatch(thunkGetUserById(user.id))
-     dispatch(thunkGetAllUsers())
   }
 
   const handleUnlike = async () => {
+    await dispatch(thunkUnlikeFilm(film.id))
+    await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
     setLikedFilm(false)
-     dispatch(thunkUnlikeFilm(film.id))
-     dispatch(thunkGetUserById(user.id))
-     dispatch(thunkGetAllUsers())
   }
 
   const handleWatched = async () => {
+    await dispatch(thunkWatchFilm(film.id))
+    await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
     setWatchedFilm(true)
-     dispatch(thunkWatchFilm(film.id))
-     dispatch(thunkGetUserById(user.id))
-     dispatch(thunkGetAllUsers())
   }
 
   const handleUnwatched = async () => {
+    await dispatch(thunkUnwatchFilm(film.id))
+    await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
     setWatchedFilm(false)
-     dispatch(thunkUnwatchFilm(film.id))
-     dispatch(thunkGetUserById(user.id))
-     dispatch(thunkGetAllUsers())
   }
 
   const handleAddToWatchlist = async () => {
+    await dispatch(thunkAddToWatchlist(film.id))
+    await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
     setAddToWatchlist(true)
-     dispatch(thunkAddToWatchlist(film.id))
-     dispatch(thunkGetUserById(user.id))
-     dispatch(thunkGetAllUsers())
   }
 
   const handleRemoveFromWatchlist = async () => {
+    await dispatch(thunkRemoveFromWatchlist(film.id))
+    await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
     setAddToWatchlist(false)
-     dispatch(thunkRemoveFromWatchlist(film.id))
-     dispatch(thunkGetUserById(user.id))
-     dispatch(thunkGetAllUsers())
   }
 
 const getTrailerId = () => {
