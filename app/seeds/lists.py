@@ -4,14 +4,14 @@ from random import randint, sample
 
 def seed_lists(users, films):
     list1 = List(
-        list_name = 'The wonderful list',
+        list_name = 'It Came from the Video Store',
         description = 'A list for my friends and I.',
         is_private = False,
         user = users[0],
         film_list = sample(films, randint(4, len(films)))
     )
     list2 = List(
-        list_name = 'Movies I Watched',
+        list_name = 'Showdown',
         description = 'A list for my friends and I.',
         is_private = False,
         user = users[0],
@@ -25,14 +25,14 @@ def seed_lists(users, films):
         film_list = sample(films, randint(4, len(films)))
     )
     list4 = List(
-        list_name = 'My wonderful list',
+        list_name = 'Game Night',
         description = 'A list for my friends and I.',
         is_private = False,
         user = users[3],
         film_list = sample(films, randint(4, len(films)))
     )
     list5 = List(
-        list_name = 'Movies I hate',
+        list_name = 'Life in Film',
         description = 'A list for all the movies I hate',
         is_private = False,
         user = users[3],

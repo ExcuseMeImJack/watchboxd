@@ -64,6 +64,11 @@
     gap: 30px;
 }
 
+.film-watches-likes-grid{
+    display: grid;
+    grid-template-columns: 2fr 2fr 5fr;
+}
+
 .film-tile-card{
     grid-area: tile;
 }

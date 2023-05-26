@@ -13,8 +13,8 @@ class List(db.Model):
     description = db.Column(db.String(500), nullable=False)
     is_private = db.Column(db.Boolean, nullable=False, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    created_at = db.Column(db.Date, default=datetime.now())
-    updated_at = db.Column(db.Date, default=datetime.now())
+    created_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
 
     film_list = db.relationship("Film", secondary=film_lists, back_populates='film_lists')
     user = db.relationship("User", back_populates="lists")

@@ -6,21 +6,21 @@ import OpenModalButton from "../OpenModalButton";
 import "./FilmDetails.css";
 import DeleteFilmModal from "../DeleteFilmModal";
 import { useState } from "react";
-import { thunkGetUserById } from "../../store/session";
+import { thunkGetAllUsers, thunkGetUserById } from "../../store/session";
 
 const FilmDetailsPage = () => {
   const { filmId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const films = useSelector((state) => state.films.films);
+  const users = useSelector(state => state.session.users);
   const user = useSelector((state) => state.session.user);
+  const films = useSelector((state) => state.films.films);
 
   const film = films?.find((film) => {
     if (film.id === parseInt(filmId)) {
       return film;
     }
   });
-
 
   const isLiked = () => user?.likes.find((currFilm) => currFilm.id === film?.id) ? true : false;
   const [likedFilm, setLikedFilm] = useState(isLiked())
@@ -31,63 +31,98 @@ const FilmDetailsPage = () => {
   const isOnWatchlist = () => user?.films_to_watch.find((currFilm) => currFilm.id === film?.id) ? true : false;
   const [addToWatchlist, setAddToWatchlist] = useState(isOnWatchlist())
 
-  useEffect(() => {
-    dispatch(thunkGetAllFilms());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(thunkGetAllUsers())
+  // }, [likedFilm, watchedFilm, addToWatchlist])
 
   useEffect(() => {
-    dispatch(thunkGetUserById(user?.id))
-  }, [likedFilm, watchedFilm, addToWatchlist])
+    dispatch(thunkGetAllFilms());
+    dispatch(thunkGetAllUsers())
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(thunkGetUserById(user?.id))
+  //   // dispatch(thunkGetAllUsers())
+  // }, [likedFilm, watchedFilm, addToWatchlist])
 
 
   if (!film) return null;
 
+  const calculateTotalWatches = () => {
+    let watches = users ? 0 : null;
+    users?.forEach(currUser => {
+      currUser.films_watched.forEach(filmPass => {
+            if(filmPass.id === film?.id) watches++;
+        })
+    })
+    return watches
+  }
+
+  const calculateTotalLikes = () => {
+      let likes = users ? 0 : null;
+      users?.forEach(currUser => {
+        currUser.likes.forEach(filmPass => {
+              if(filmPass.id === film?.id) likes++;
+          })
+      })
+      return likes
+  }
+
+
   const handleLike = async () => {
     setLikedFilm(true)
+    setWatchedFilm(true)
     await dispatch(thunkLikeFilm(film.id))
-    await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkWatchFilm(film.id))
+     dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
   }
 
   const handleUnlike = async () => {
     setLikedFilm(false)
     await dispatch(thunkUnlikeFilm(film.id))
     await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
   }
 
   const handleWatched = async () => {
     setWatchedFilm(true)
     await dispatch(thunkWatchFilm(film.id))
     await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
   }
 
   const handleUnwatched = async () => {
     setWatchedFilm(false)
     await dispatch(thunkUnwatchFilm(film.id))
     await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
   }
 
   const handleAddToWatchlist = async () => {
     setAddToWatchlist(true)
     await dispatch(thunkAddToWatchlist(film.id))
     await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
   }
 
   const handleRemoveFromWatchlist = async () => {
     setAddToWatchlist(false)
     await dispatch(thunkRemoveFromWatchlist(film.id))
     await dispatch(thunkGetUserById(user.id))
+    await dispatch(thunkGetAllUsers())
   }
 
-  const getTrailerId = () => {
-    const url = film.trailer_url;
-    let id;
-    if (url.includes("youtube.com")) { // https://www.youtube.com/watch?v=WRrCVyT09ow
-      id = url.split("=")[1];
-    } else if (url.includes("youtu.be")) { // https://www.youtu.be/WRrCVyT09ow
-      id = url.split("/")[3];
-    }
-    return id;
-  };
+const getTrailerId = () => {
+  const url = film.trailer_url;
+  let id;
+  if (url.includes("youtube.com")) { // https://www.youtube.com/watch?v=WRrCVyT09ow
+    id = url.split("=")[1];
+  } else if (url.includes("youtu.be")) { // https://www.youtu.be/WRrCVyT09ow
+    id = url.split("/")[3];
+  }
+  return id;
+};
 
   return (
     <div className="film-details-page-container">
@@ -100,14 +135,14 @@ const FilmDetailsPage = () => {
         <div className="film-details-grid">
           <div className="film-tile-card">
             <img id="film-details-tile-image" src={film.tile_img_url} />
-            <div className="film-watches-likes-container">
+            <div className="film-watches-likes-grid">
               <div className="film-watches">
                 <i className="fa-solid fa-eye"></i>
-                <p>#</p>
+                <p>{calculateTotalWatches()}</p>
               </div>
               <div className="film-likes">
                 <i className="fa-solid fa-heart"></i>
-                <p>#</p>
+                <p>{calculateTotalLikes()}</p>
               </div>
             </div>
           </div>
@@ -148,7 +183,7 @@ const FilmDetailsPage = () => {
                 <div>
                   {user.likes.find((currFilm) => currFilm.id === film.id)
                   ? <i className="fa-solid fa-heart change-cursor" onClick={handleUnlike}/>
-                  : <i className="fa-regular fa-heart change-cursor" onClick={handleLike}/> }
+                  : <i className="fa-regular fa-heart change-cursor" title="Liking a film will also say that you Watched the film" onClick={handleLike}/> }
                   <p>
                     {user.likes.find((currFilm) => currFilm.id === film.id)
                       ? "Liked"

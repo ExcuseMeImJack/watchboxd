@@ -24,10 +24,10 @@ const ListsPage = () => {
           const createdAtA = new Date(a.created_at).getTime();
           const createdAtB = new Date(b.created_at).getTime();
 
-          if (createdAtA < createdAtB) {
+          if (createdAtA > createdAtB) {
             return -1;
           }
-          if (createdAtA > createdAtB) {
+          if (createdAtA < createdAtB) {
             return 1;
           }
           return 0;

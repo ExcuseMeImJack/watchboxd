@@ -139,7 +139,7 @@ const EditProfilePage = () => {
             </div>
         </form>
         <div className="delete-user">
-            {user.email !== "tester1@aa.io" ?
+            {user.email !== "david@aa.io" ?
             <OpenModalButton
                 buttonStyleClass={"delete-profile change-cursor"}
                 buttonText={"DELETE ACCOUNT"}

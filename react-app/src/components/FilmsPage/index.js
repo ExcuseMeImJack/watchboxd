@@ -2,29 +2,33 @@ import React, {useEffect, useState} from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkGetAllFilms } from "../../store/films";
+import {thunkGetAllUsers} from "../../store/session";
 import './FilmsPage.css'
 const FilmsPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [search, setSearch] = useState("");
     const films = useSelector(state => state.films.films) // Returns an array of all the films on the site
+    const users = useSelector(state => state.session.users)
     let searchedFilms;
 
     useEffect(() => {
         dispatch(thunkGetAllFilms())
+        dispatch(thunkGetAllUsers())
     }, [dispatch])
 
     if(!films) return null
+    if(!users) return null
 
     const orderFilms = () => {
       films.sort((a, b) => {
         const createdAtA = new Date(a.created_at).getTime();
         const createdAtB = new Date(b.created_at).getTime();
 
-        if (createdAtA < createdAtB) {
+        if (createdAtA > createdAtB) {
           return -1;
         }
-        if (createdAtA > createdAtB) {
+        if (createdAtA < createdAtB) {
           return 1;
         }
         return 0;
@@ -45,6 +49,26 @@ const FilmsPage = () => {
       )
         return film;
     });
+
+    const calculateTotalWatches = (currFilm) => {
+        let watches = 0;
+        users?.forEach(user => {
+            user.films_watched.forEach(film => {
+                if(film.id === currFilm.id) watches++;
+            })
+        })
+        return watches
+    }
+
+    const calculateTotalLikes = (currFilm) => {
+        let likes = 0;
+        users?.forEach(user => {
+            user.likes.forEach(film => {
+                if(film.id === currFilm.id) likes++;
+            })
+        })
+        return likes
+    }
 
     return (
         <div className="films-page-container">
@@ -68,11 +92,11 @@ const FilmsPage = () => {
                                 <div className="film-watches-likes-container">
                                     <div className="film-watches">
                                         <i className="fa-solid fa-eye"></i>
-                                        <p>#</p>
+                                        <p>{calculateTotalWatches(film)}</p>
                                     </div>
                                     <div className="film-likes">
                                         <i className="fa-solid fa-heart"></i>
-                                        <p>#</p>
+                                        <p>{calculateTotalLikes(film)}</p>
                                     </div>
                                 </div>
                             </div>
