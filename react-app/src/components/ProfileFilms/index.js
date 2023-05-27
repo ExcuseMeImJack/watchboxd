@@ -1,13 +1,20 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './ProfileFilms.css'
+import { thunkGetAllFilms } from "../../store/films";
 
 const ProfileFilms = () => {
     const user = useSelector(state => state.session.user)
     const history = useHistory();
     const [search, setSearch] = useState("");
     let searchedFilms;
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(thunkGetAllFilms())
+    }, [dispatch])
+
 
       const orderFilms = () => {
         const watched = user.films_watched;

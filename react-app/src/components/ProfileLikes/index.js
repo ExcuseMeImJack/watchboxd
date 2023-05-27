@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link, useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { thunkGetAllFilms } from "../../store/films";
 // import './ProfileFilms.css'
 
 const ProfileLikes = () => {
@@ -8,6 +9,11 @@ const ProfileLikes = () => {
     const history = useHistory();
     const [search, setSearch] = useState("");
     let searchedFilms;
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(thunkGetAllFilms())
+    }, [dispatch])
 
       const orderFilms = () => {
         const likes = user.likes;

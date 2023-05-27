@@ -29,8 +29,6 @@ const FilmDetailsPage = () => {
   const [watchedFilm, setWatchedFilm] = useState(isWatched())
   const [addToWatchlist, setAddToWatchlist] = useState(isOnWatchlist())
 
-
-
   useEffect(() => {
     // dispatch(thunkGetAllFilms());
     dispatch(thunkGetFilmById(filmId))
