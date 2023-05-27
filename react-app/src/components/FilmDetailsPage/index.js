@@ -34,7 +34,7 @@ const FilmDetailsPage = () => {
   useEffect(() => {
     // dispatch(thunkGetAllFilms());
     dispatch(thunkGetFilmById(filmId))
-  }, [dispatch]);
+  }, [dispatch, likedFilm, watchedFilm, addToWatchlist]);
 
 
   if (!film) return <Loading />;
