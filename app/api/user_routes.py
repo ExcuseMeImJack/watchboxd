@@ -7,6 +7,12 @@ from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
 
+@user_routes.route('/<int:id>/update')
+@login_required
+def get_update(id):
+    user = User.query.get(id)
+    return user.to_update()
+
 @user_routes.route('/current')
 @login_required
 def get_current():
