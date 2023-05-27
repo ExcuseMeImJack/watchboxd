@@ -3,6 +3,7 @@ import './MembersPage.css'
 import { useHistory } from "react-router-dom";
 import { useEffect } from 'react';
 import { thunkGetAllUsers, thunkGetCurrentUser } from '../../store/session';
+import Loading from '../Loading';
 
 const MembersPage = () => {
     const history = useHistory();
@@ -13,7 +14,7 @@ const MembersPage = () => {
         dispatch(thunkGetAllUsers())
     }, [dispatch])
 
-    if(!users) return null
+    if(!users) return <Loading/>
 
     const topProfiles = () =>  users.sort((a, b) => b.films_watched.length - a.films_watched.length).slice(0, 5);
 

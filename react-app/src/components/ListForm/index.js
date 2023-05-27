@@ -8,6 +8,7 @@ import FilmList from "./FilmList";
 import ListFilmTile from "../ListFilmTile";
 import { thunkCreateList, thunkUpdateList } from "../../store/lists";
 import { thunkGetUserById } from "../../store/session";
+import Loading from "../Loading";
 
 const ListForm = ({ list, formType }) => {
   const history = useHistory();
@@ -84,7 +85,7 @@ const ListForm = ({ list, formType }) => {
     }
   };
 
-  if (!films) return null;
+  if (!films) return <Loading />;
 
   const searchedFilms = films.filter((film) => {
     if (search === "") return null;

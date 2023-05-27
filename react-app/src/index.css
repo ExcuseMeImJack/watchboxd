@@ -57,6 +57,13 @@ h3, h4, h5 {
     color: #F765A3;
 }
 
+.loading-bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
 @media screen and (max-width: 1024px){
     .login-dropdown{
         left: 31%;

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { thunkGetAllFilms } from "../../store/films";
 import {thunkGetAllUsers} from "../../store/session";
 import './FilmsPage.css'
+import Loading from "../Loading";
 const FilmsPage = () => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -15,7 +16,7 @@ const FilmsPage = () => {
         dispatch(thunkGetAllFilms())
     }, [dispatch])
 
-    if(!films) return null
+    if(!films) return <Loading/>
 
 
     const orderFilms = () => {
