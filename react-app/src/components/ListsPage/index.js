@@ -5,6 +5,7 @@ import { thunkGetAllLists } from "../../store/lists";
 import './ListsPage.css'
 import UserProfilePage from "../UserProfilePage";
 import { thunkGetAllUsers } from "../../store/session";
+import Loading from "../Loading";
 
 const ListsPage = () => {
     const history = useHistory();
@@ -17,7 +18,7 @@ const ListsPage = () => {
         dispatch(thunkGetAllLists())
     }, [dispatch])
 
-    if(!lists) return null
+    if(!lists) return <Loading/>
 
     const orderLists = () => {
         lists.sort((a, b) => {

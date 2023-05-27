@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { thunkGetAllLists } from "../../store/lists";
 import OpenModalButton from "../OpenModalButton";
 import DeleteListModal from "../DeleteListModal";
+import Loading from "../Loading";
 
 const ListDetailsPage = () => {
     const {listId} = useParams();
@@ -18,7 +19,7 @@ const ListDetailsPage = () => {
         dispatch(thunkGetAllLists())
     }, [dispatch])
 
-    if(!list) return null
+    if(!list) return <Loading/>
 
     const checkAmountWatched = () => {
         const userFilms = user.films_watched;

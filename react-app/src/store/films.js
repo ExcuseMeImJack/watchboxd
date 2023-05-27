@@ -217,11 +217,11 @@ const initialState = { films: null }
 export default function reducer(state = initialState, action) {
     switch(action.type){
         case GET_ALL_FILMS: {
-            const newState = {...state, films: action.payload.films}
+            const newState = {films: action.payload.films}
             return newState
         }
         case GET_ONE_FILM: {
-            const newState = {...state, film: action.payload}
+            const newState = {film: action.payload}
             return newState
         }
         case CREATE_FILM: {

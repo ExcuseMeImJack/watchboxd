@@ -7,6 +7,7 @@ import "./FilmDetails.css";
 import DeleteFilmModal from "../DeleteFilmModal";
 import { useState } from "react";
 import { thunkGetAllUsers, thunkGetUserById, thunkUpdateUserInfo } from "../../store/session";
+import Loading from "../Loading";
 
 const FilmDetailsPage = () => {
   const { filmId } = useParams();
@@ -33,15 +34,15 @@ const FilmDetailsPage = () => {
   useEffect(() => {
     // dispatch(thunkGetAllFilms());
     dispatch(thunkGetFilmById(filmId))
-  }, [dispatch]);
+  }, [dispatch, likedFilm, watchedFilm, addToWatchlist]);
 
 
-  if (!film) return null;
+  if (!film) return <Loading />;
 
   const handleLike = async () => {
     await dispatch(thunkLikeFilm(filmId))
     await dispatch(thunkUpdateUserInfo(user.id))
-    await dispatch(thunkGetFilmById(filmId))
+    // await dispatch(thunkGetFilmById(filmId))
     setLikedFilm(true)
     setWatchedFilm(true)
   }
@@ -49,35 +50,35 @@ const FilmDetailsPage = () => {
   const handleUnlike = async () => {
     await dispatch(thunkUnlikeFilm(filmId))
     await dispatch(thunkUpdateUserInfo(user.id))
-    await dispatch(thunkGetFilmById(filmId))
+    // await dispatch(thunkGetFilmById(filmId))
     setLikedFilm(false)
   }
 
   const handleWatched = async () => {
     await dispatch(thunkWatchFilm(filmId))
     await dispatch(thunkUpdateUserInfo(user.id))
-    await dispatch(thunkGetFilmById(filmId))
+    // await dispatch(thunkGetFilmById(filmId))
     setWatchedFilm(true)
   }
 
   const handleUnwatched = async () => {
     await dispatch(thunkUnwatchFilm(filmId))
     await dispatch(thunkUpdateUserInfo(user.id))
-    await dispatch(thunkGetFilmById(filmId))
+    // await dispatch(thunkGetFilmById(filmId))
     setWatchedFilm(false)
   }
 
   const handleAddToWatchlist = async () => {
     await dispatch(thunkAddToWatchlist(filmId))
     await dispatch(thunkUpdateUserInfo(user.id))
-    await dispatch(thunkGetFilmById(filmId))
+    // await dispatch(thunkGetFilmById(filmId))
     setAddToWatchlist(true)
   }
 
   const handleRemoveFromWatchlist = async () => {
     await dispatch(thunkRemoveFromWatchlist(filmId))
     await dispatch(thunkUpdateUserInfo(user.id))
-    await dispatch(thunkGetFilmById(filmId))
+    // await dispatch(thunkGetFilmById(filmId))
     setAddToWatchlist(false)
   }
 
