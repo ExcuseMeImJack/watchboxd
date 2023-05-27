@@ -12,7 +12,6 @@ const FilmDetailsPage = () => {
   const { filmId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const users = useSelector(state => state.session.users);
   const user = useSelector((state) => state.session.user);
   const films = useSelector((state) => state.films.films);
 
@@ -31,48 +30,16 @@ const FilmDetailsPage = () => {
   const isOnWatchlist = () => user?.films_to_watch.find((currFilm) => currFilm.id === film?.id) ? true : false;
   const [addToWatchlist, setAddToWatchlist] = useState(isOnWatchlist())
 
-  // useEffect(() => {
-  //   dispatch(thunkGetAllUsers())
-  // }, [likedFilm, watchedFilm, addToWatchlist])
-
   useEffect(() => {
     dispatch(thunkGetAllFilms());
-    dispatch(thunkGetAllUsers())
-  }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(thunkGetUserById(user?.id))
-  //   // dispatch(thunkGetAllUsers())
-  // }, [likedFilm, watchedFilm, addToWatchlist])
+  }, [dispatch,likedFilm, watchedFilm, addToWatchlist]);
 
 
   if (!film) return null;
 
-  const calculateTotalWatches = () => {
-    let watches = users ? 0 : null;
-    users?.forEach(currUser => {
-      currUser.films_watched.forEach(filmPass => {
-            if(filmPass.id === film?.id) watches++;
-        })
-    })
-    return watches
-  }
-
-  const calculateTotalLikes = () => {
-      let likes = users ? 0 : null;
-      users?.forEach(currUser => {
-        currUser.likes.forEach(filmPass => {
-              if(filmPass.id === film?.id) likes++;
-          })
-      })
-      return likes
-  }
-
-
   const handleLike = async () => {
     await dispatch(thunkLikeFilm(film.id))
     await dispatch(thunkGetUserById(user.id))
-    await dispatch(thunkGetAllUsers())
     setLikedFilm(true)
     setWatchedFilm(true)
   }
@@ -80,35 +47,30 @@ const FilmDetailsPage = () => {
   const handleUnlike = async () => {
     await dispatch(thunkUnlikeFilm(film.id))
     await dispatch(thunkGetUserById(user.id))
-    await dispatch(thunkGetAllUsers())
     setLikedFilm(false)
   }
 
   const handleWatched = async () => {
     await dispatch(thunkWatchFilm(film.id))
     await dispatch(thunkGetUserById(user.id))
-    await dispatch(thunkGetAllUsers())
     setWatchedFilm(true)
   }
 
   const handleUnwatched = async () => {
     await dispatch(thunkUnwatchFilm(film.id))
     await dispatch(thunkGetUserById(user.id))
-    await dispatch(thunkGetAllUsers())
     setWatchedFilm(false)
   }
 
   const handleAddToWatchlist = async () => {
     await dispatch(thunkAddToWatchlist(film.id))
     await dispatch(thunkGetUserById(user.id))
-    await dispatch(thunkGetAllUsers())
     setAddToWatchlist(true)
   }
 
   const handleRemoveFromWatchlist = async () => {
     await dispatch(thunkRemoveFromWatchlist(film.id))
     await dispatch(thunkGetUserById(user.id))
-    await dispatch(thunkGetAllUsers())
     setAddToWatchlist(false)
   }
 
@@ -137,11 +99,11 @@ const getTrailerId = () => {
             <div className="film-watches-likes-grid">
               <div className="film-watches">
                 <i className="fa-solid fa-eye"></i>
-                <p>{calculateTotalWatches()}</p>
+                <p>{film.watches}</p>
               </div>
               <div className="film-likes">
                 <i className="fa-solid fa-heart"></i>
-                <p>{calculateTotalLikes()}</p>
+                <p>{film.likes}</p>
               </div>
             </div>
           </div>

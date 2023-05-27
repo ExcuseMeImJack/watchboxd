@@ -9,7 +9,7 @@ like_routes = Blueprint('likes', __name__)
 @login_required
 def like_film(id):
     """
-    Add a like to a film byt id
+    Add a like to a film by id
     """
     film = Film.query.get(id)
     user = User.query.get(current_user.id)

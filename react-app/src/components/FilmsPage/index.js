@@ -9,16 +9,14 @@ const FilmsPage = () => {
     const history = useHistory();
     const [search, setSearch] = useState("");
     const films = useSelector(state => state.films.films) // Returns an array of all the films on the site
-    const users = useSelector(state => state.session.users)
     let searchedFilms;
 
     useEffect(() => {
         dispatch(thunkGetAllFilms())
-        dispatch(thunkGetAllUsers())
     }, [dispatch])
 
     if(!films) return null
-    if(!users) return null
+
 
     const orderFilms = () => {
       films.sort((a, b) => {
@@ -50,26 +48,6 @@ const FilmsPage = () => {
         return film;
     });
 
-    const calculateTotalWatches = (currFilm) => {
-        let watches = 0;
-        users?.forEach(user => {
-            user.films_watched.forEach(film => {
-                if(film.id === currFilm.id) watches++;
-            })
-        })
-        return watches
-    }
-
-    const calculateTotalLikes = (currFilm) => {
-        let likes = 0;
-        users?.forEach(user => {
-            user.likes.forEach(film => {
-                if(film.id === currFilm.id) likes++;
-            })
-        })
-        return likes
-    }
-
     return (
         <div className="films-page-container">
             <div className="films-page">
@@ -92,11 +70,11 @@ const FilmsPage = () => {
                                 <div className="film-watches-likes-container">
                                     <div className="film-watches">
                                         <i className="fa-solid fa-eye"></i>
-                                        <p>{calculateTotalWatches(film)}</p>
+                                        <p>{film.watches}</p>
                                     </div>
                                     <div className="film-likes">
                                         <i className="fa-solid fa-heart"></i>
-                                        <p>{calculateTotalLikes(film)}</p>
+                                        <p>{film.likes}</p>
                                     </div>
                                 </div>
                             </div>
