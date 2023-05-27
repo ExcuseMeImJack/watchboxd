@@ -38,39 +38,39 @@ const FilmDetailsPage = () => {
   if (!film) return null;
 
   const handleLike = async () => {
-    await dispatch(thunkLikeFilm(film.id))
-    await dispatch(thunkGetUserById(user.id))
+     dispatch(thunkLikeFilm(film.id))
+     dispatch(thunkGetUserById(user.id))
     setLikedFilm(true)
     setWatchedFilm(true)
   }
 
   const handleUnlike = async () => {
-    await dispatch(thunkUnlikeFilm(film.id))
-    await dispatch(thunkGetUserById(user.id))
+     dispatch(thunkUnlikeFilm(film.id))
+     dispatch(thunkGetUserById(user.id))
     setLikedFilm(false)
   }
 
   const handleWatched = async () => {
-    await dispatch(thunkWatchFilm(film.id))
-    await dispatch(thunkGetUserById(user.id))
+     dispatch(thunkWatchFilm(film.id))
+     dispatch(thunkGetUserById(user.id))
     setWatchedFilm(true)
   }
 
   const handleUnwatched = async () => {
-    await dispatch(thunkUnwatchFilm(film.id))
-    await dispatch(thunkGetUserById(user.id))
+     dispatch(thunkUnwatchFilm(film.id))
+     dispatch(thunkGetUserById(user.id))
     setWatchedFilm(false)
   }
 
   const handleAddToWatchlist = async () => {
-    await dispatch(thunkAddToWatchlist(film.id))
-    await dispatch(thunkGetUserById(user.id))
+     dispatch(thunkAddToWatchlist(film.id))
+     dispatch(thunkGetUserById(user.id))
     setAddToWatchlist(true)
   }
 
   const handleRemoveFromWatchlist = async () => {
-    await dispatch(thunkRemoveFromWatchlist(film.id))
-    await dispatch(thunkGetUserById(user.id))
+     dispatch(thunkRemoveFromWatchlist(film.id))
+     dispatch(thunkGetUserById(user.id))
     setAddToWatchlist(false)
   }
 
