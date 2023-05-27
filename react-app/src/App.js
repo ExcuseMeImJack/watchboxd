@@ -101,6 +101,9 @@ function App() {
           <Route path="/lists">
             <ListsPage />
           </Route>
+          <Route>
+            <h1>Page Not Found</h1>
+          </Route>
         </Switch>
       )}
     </>
