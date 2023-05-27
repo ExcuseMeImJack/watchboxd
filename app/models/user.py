@@ -57,3 +57,19 @@ class User(db.Model, UserMixin):
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
+
+    def to_update(self):
+        return {
+            'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'username': self.username,
+            'email': self.email,
+            'profile_img_url': self.profile_img_url,
+            'bio': self.bio,
+            'likes': [film.to_dict() for film in self.user_likes],
+            'films_to_watch': [film.to_dict() for film in self.user_films_to_watch],
+            'films_watched': [film.to_dict() for film in self.user_watches],
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }

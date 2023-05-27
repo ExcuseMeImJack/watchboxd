@@ -4,6 +4,7 @@ const GET_ONE_USER = "users/GET_USER"
 const GET_ALL_USERS = "users/GET_USERS"
 const DELETE_USER = "users/DELETE_USER"
 const CURRENT_USER = "users/CURRENT_USER"
+const USER_UPDATE = "users/USER_UPDATE"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -31,6 +32,11 @@ export const actionDeleteUser = (user) => ({
 
 export const actionGetCurrentUser = (user) => ({
 	type: CURRENT_USER,
+	user
+})
+
+export const actionUpdateUserInfo = (user) => ({
+	type: GET_ONE_USER,
 	user
 })
 
@@ -168,6 +174,18 @@ export const thunkGetCurrentUser = () => async(dispatch) => {
 	}
 }
 
+export const thunkUpdateUserInfo = (userId) => async(dispatch) => {
+	const res = await fetch(`/api/users/${userId}/update`);
+	if(res.ok){
+			const user = await res.json();
+			dispatch(actionUpdateUserInfo(user));
+			return user;
+	} else {
+			const errors = await res.json();
+			return errors;
+	}
+}
+
 const initialState = { user: null };
 
 export default function reducer(state = initialState, action) {
@@ -179,6 +197,8 @@ export default function reducer(state = initialState, action) {
 		case GET_ALL_USERS:
 			return { ...state, ...action.users}
 		case GET_ONE_USER:
+			return { user: action.user }
+		case USER_UPDATE:
 			return { user: action.user }
 		default:
 			return state;
