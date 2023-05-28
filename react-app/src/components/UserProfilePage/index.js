@@ -77,12 +77,12 @@ const UserProfilePage = () => {
             <div className="user-profile-data-lists">
               {userFilms.length === 1 ? (
                 <div className="user-profile-films-watched-liked">
-                  <h2>{userFilms.length}</h2>
+                  <h2>{userFilms ? userFilms.length : 0}</h2>
                   <p>FILM</p>
                 </div>
               ) : (
                 <div className="user-profile-films-watched-liked">
-                  <h2>{userFilms.length}</h2>
+                  <h2>{userFilms ? userFilms.length : 0}</h2>
                   <p>FILMS</p>
                 </div>
               )}
@@ -93,7 +93,7 @@ const UserProfilePage = () => {
               </div>
               <div id="right-divider"></div>
               <div className="user-profile-lists-created">
-                <h2>{user.lists.length}</h2>
+                <h2>{user.lists ? user.lists.length : 0}</h2>
                 <p>LISTS</p>
               </div>
             </div>
@@ -121,7 +121,7 @@ const UserProfilePage = () => {
           <div className="user-profile-recent-activity-container">
             <p>RECENT ACTIVITY</p>
             <div className="user-profile-recent-activity-content">
-                {userFilms.length > 0 ? userFilms.map((film, i) =>
+                {userFilms && userFilms.length > 0 ? userFilms.map((film, i) =>
                  i <= 11 && <div key={film.title} className="user-profile-recent-films-card" onClick={() => history.push(`/films/${film.id}`)}>
                  <img id="user-profile-recent-films-card-img" src={film.tile_img_url} alt="" />
                </div>
@@ -133,7 +133,7 @@ const UserProfilePage = () => {
             <div className="user-profile-watchlist-container">
               <p>WATCHLIST</p>
               <div className="user-profile-watchlist-content">
-                {user.films_to_watch.length ?
+                {user.films_to_watch && user.films_to_watch.length ?
                   <Link to="/profile/watchlist">
                     <div className="watchlist-image-stack list-img-small">
                       <div className="watchlist-image-1">
@@ -158,7 +158,7 @@ const UserProfilePage = () => {
             <div className="user-profile-watchlist-container">
               <p>LISTS</p>
               <div className="user-profile-watchlist-content">
-                {user.lists.length > 0 ? user.lists.map(list =>
+                {user.lists && user.lists.length > 0 ? user.lists.map(list =>
                 <div>
                   <Link to={`/lists/${list.id}`}>
                   <div className="watchlist-image-stack list-img-small">
