@@ -16,12 +16,6 @@ const FilmDetailsPage = () => {
   const user = useSelector((state) => state.session.user);
   const film = useSelector((state) => state.films.film);
 
-  // const film = films?.find((film) => {
-  //   if (film.id === parseInt(filmId)) {
-  //     return film;
-  //   }
-  // });
-
   const isLiked = () => user?.likes.find((currFilm) => currFilm.id === film?.id) ? true : false;
   const isWatched = () => user?.films_watched.find((currFilm) => currFilm.id === film?.id) ? true : false;
   const isOnWatchlist = () => user?.films_to_watch.find((currFilm) => currFilm.id === film?.id) ? true : false;
@@ -34,8 +28,8 @@ const FilmDetailsPage = () => {
     dispatch(thunkGetFilmById(filmId))
   }, [dispatch, likedFilm, watchedFilm, addToWatchlist]);
 
-
   if (!film) return <Loading />;
+  if(film.id === filmId) return <Loading />
 
   const handleLike = async () => {
     await dispatch(thunkLikeFilm(filmId))
