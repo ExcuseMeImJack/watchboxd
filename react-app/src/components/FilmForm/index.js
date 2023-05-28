@@ -39,11 +39,23 @@ const FilmForm = ({film, formType}) => {
 
         if(year.length > 1 && year.length < 4) valErrors.year = "Year must have 4 characters"
 
+        if(director.length < 2) valErrors.director = "Atleast 1 director must be entered"
+
+        if(director.length > 100) valErrors.director = "Director list must be lower than 100 characters"
+
+        if(genre.length < 2) valErrors.genre = "Atleast 1 Genre must be entered"
+
+        if(genre.length > 100) valErrors.genre = "Genre List must be lower than 100 characters"
+
         if(description.length > 1000) valErrors.description = "Description must be lower than 1000 characters"
 
         if(description.length < 10) valErrors.description = "Description must be more than 10 characters"
 
+        if(trailerUrl.length < 1) valErrors.trailerUrl = "A Trailer URL must be entered"
+
         if(!(trailerUrl.includes('youtube') || trailerUrl.includes('youtu.be'))) valErrors.trailerUrl = "Trailer URL must be a YouTube link"
+
+
 
         const validUrlFileTypes = ['png', 'jpg', 'jpeg'];
         if(backgroundImage) {
@@ -55,7 +67,7 @@ const FilmForm = ({film, formType}) => {
             }
 
             const urlSuffix = urlArray[urlArray.length - 1];
-            !validUrlFileTypes.includes(urlSuffix) ? valErrors.backgroundImage = 'Image URL must end in .png, .jpg, or .jpeg' : console.log("PASS")
+            !validUrlFileTypes.includes(urlSuffix) ? valErrors.backgroundImage = 'Image URL must end in .png, .jpg, or .jpeg' : console.log("")
         } else {
             valErrors.backgroundImage = "Background Image is required"
         }
@@ -68,13 +80,13 @@ const FilmForm = ({film, formType}) => {
                 urlArray = tileImage.split('.');
             }
             const urlSuffix = urlArray[urlArray.length - 1];
-            !validUrlFileTypes.includes(urlSuffix) ? valErrors.tileImage = 'Image URL must end in .png, .jpg, or .jpeg' : console.log("PASS")
+            !validUrlFileTypes.includes(urlSuffix) ? valErrors.tileImage = 'Image URL must end in .png, .jpg, or .jpeg' : console.log("")
         } else {
             valErrors.tileImage = "Tile Image is required"
         }
 
         setErrors(valErrors)
-    }, [title, year, description, backgroundImage, trailerUrl, tileImage])
+    }, [title, year, description, backgroundImage, trailerUrl, tileImage, genre, director])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -110,6 +122,8 @@ const FilmForm = ({film, formType}) => {
                 <div>
                     {title && errors.title && <p className='errors'>{errors.title}</p>}
                     {year && errors.year && <p className='errors'>{errors.year}</p>}
+                    {genre && errors.genre && <p className='errors'>{errors.genre}</p>}
+                    {director && errors.director && <p className='errors'>{errors.director}</p>}
                     {description && errors.description && <p className='errors'>{errors.description}</p>}
                     {backgroundImage && errors.backgroundImage && <p className='errors'>{errors.backgroundImage}</p>}
                     {trailerUrl && errors.trailerUrl && <p className='errors'>{errors.trailerUrl}</p>}

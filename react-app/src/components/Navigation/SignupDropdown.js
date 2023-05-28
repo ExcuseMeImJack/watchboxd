@@ -45,7 +45,7 @@ const SignupDropdown = ({users}) => {
 
   function validateEmail(email) {
     const emailRegex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
-    console.log(emailRegex.test(email));
+    return emailRegex.test(email);
   }
 
   const listOfExistingUsernames = users?.map(user => user.username.toLowerCase())
