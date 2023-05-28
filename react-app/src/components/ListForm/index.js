@@ -129,7 +129,7 @@ const ListForm = ({ list, formType }) => {
                   placeholder="Enter name of film..."
                   autoComplete="off"
                 />
-                {search.length > 1 && (
+                {search.length > 0 && (
                   <FilmList
                     films={searchedFilms}
                     addFilmsToList={addFilmsToList}

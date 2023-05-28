@@ -1,14 +1,26 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import "./UserProfile.css";
+import Loading from "../Loading";
+import { useEffect } from "react";
+import { thunkGetAllFilms } from "../../store/films";
 
 const UserProfilePage = () => {
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+  // const films = useSelector((state) => state.session.films)
+
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(thunkGetAllFilms())
+  }, [dispatch])
 
   const handleEditProfile = () => {
     history.push("/profile/settings");
   };
+
+  if(!user) return <Loading/>
 
   const orderFilms = () => {
     const likes = user.likes;
@@ -110,9 +122,9 @@ const UserProfilePage = () => {
             <p>RECENT ACTIVITY</p>
             <div className="user-profile-recent-activity-content">
                 {userFilms.length > 0 ? userFilms.map((film, i) =>
-                 i <= 11 && <Link key={film.title} className="user-profile-recent-films-card" to={`/films/${film.id}`}>
+                 i <= 11 && <div key={film.title} className="user-profile-recent-films-card" onClick={() => history.push(`/films/${film.id}`)}>
                  <img id="user-profile-recent-films-card-img" src={film.tile_img_url} alt="" />
-               </Link>
+               </div>
 
                 ) : null}
             </div>

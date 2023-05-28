@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import { thunkGetAllFilms } from "../../store/films";
 
 const Watchlist = () => {
   const history = useHistory();
@@ -9,6 +10,12 @@ const Watchlist = () => {
 
   const [search, setSearch] = useState("");
   let searchedFilms;
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(thunkGetAllFilms())
+  }, [dispatch])
+
 
   const orderFilms = () => {
     const films = user.films_to_watch;

@@ -6,6 +6,7 @@ import { thunkGetAllLists } from "../../store/lists";
 import OpenModalButton from "../OpenModalButton";
 import DeleteListModal from "../DeleteListModal";
 import Loading from "../Loading";
+import { thunkGetAllFilms } from "../../store/films";
 
 const ListDetailsPage = () => {
     const {listId} = useParams();
@@ -17,6 +18,10 @@ const ListDetailsPage = () => {
 
     useEffect(() => {
         dispatch(thunkGetAllLists())
+    }, [dispatch])
+
+    useEffect(() => {
+      dispatch(thunkGetAllFilms())
     }, [dispatch])
 
     if(!list) return <Loading/>
