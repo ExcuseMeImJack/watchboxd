@@ -24,8 +24,8 @@ const ProfileFilms = () => {
 
         uniqueFilms.sort((a, b) => {
 
-          const createdAtA = new Date(a.createdAt).getTime();
-          const createdAtB = new Date(b.createdAt).getTime();
+          const createdAtA = new Date(a.created_at).getTime();
+          const createdAtB = new Date(b.created_at).getTime();
 
           if (createdAtA > createdAtB) {
             return -1;
