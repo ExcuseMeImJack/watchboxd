@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5968e4986670
+Revision ID: 7afca0c23b52
 Revises:
-Create Date: 2023-05-25 11:23:06.909565
+Create Date: 2023-05-28 14:03:11.775603
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '5968e4986670'
+revision = '7afca0c23b52'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,8 +30,8 @@ def upgrade():
     sa.Column('bio', sa.String(length=1000), nullable=True),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('profile_img_url', sa.String(), nullable=True),
-    sa.Column('created_at', sa.Date(), nullable=True),
-    sa.Column('updated_at', sa.Date(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
@@ -47,8 +47,8 @@ def upgrade():
     sa.Column('director', sa.String(length=100), nullable=False),
     sa.Column('genre', sa.String(length=100), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('created_at', sa.Date(), nullable=True),
-    sa.Column('updated_at', sa.Date(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('title')
@@ -59,8 +59,8 @@ def upgrade():
     sa.Column('description', sa.String(length=500), nullable=False),
     sa.Column('is_private', sa.Boolean(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('created_at', sa.Date(), nullable=True),
-    sa.Column('updated_at', sa.Date(), nullable=True),
+    sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
+    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -74,8 +74,8 @@ def upgrade():
     op.create_table('films_to_watch',
     sa.Column('users', sa.Integer(), nullable=False),
     sa.Column('films', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.Date(), nullable=True),
-    sa.Column('updated_at', sa.Date(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['films'], ['films.id'], ),
     sa.ForeignKeyConstraint(['users'], ['users.id'], ),
     sa.PrimaryKeyConstraint('users', 'films')
@@ -83,8 +83,8 @@ def upgrade():
     op.create_table('likes',
     sa.Column('users', sa.Integer(), nullable=False),
     sa.Column('films', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.Date(), nullable=True),
-    sa.Column('updated_at', sa.Date(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['films'], ['films.id'], ),
     sa.ForeignKeyConstraint(['users'], ['users.id'], ),
     sa.PrimaryKeyConstraint('users', 'films')
@@ -92,8 +92,8 @@ def upgrade():
     op.create_table('watches',
     sa.Column('users', sa.Integer(), nullable=False),
     sa.Column('films', sa.Integer(), nullable=False),
-    sa.Column('created_at', sa.Date(), nullable=True),
-    sa.Column('updated_at', sa.Date(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['films'], ['films.id'], ),
     sa.ForeignKeyConstraint(['users'], ['users.id'], ),
     sa.PrimaryKeyConstraint('users', 'films')
