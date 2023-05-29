@@ -1,16 +1,19 @@
 import React from "react";
-import { useDispatch} from "react-redux"
+import { useDispatch, useSelector} from "react-redux"
 import { useModal } from "../../context/Modal";
 import { useHistory } from 'react-router-dom';
 import { thunkDeleteFilm } from "../../store/films";
+import { thunkGetUserById } from "../../store/session";
 
 function DeleteFilmModal({film}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const { closeModal } = useModal();
+    const user = useSelector(state => state.session.user)
 
     const handleDeleteFilm = async () => {
         await dispatch(thunkDeleteFilm(film))
+        await dispatch(thunkGetUserById(user.id))
         history.push('/films')
         closeModal();
     }
