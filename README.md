@@ -125,3 +125,42 @@ Check out [Watchboxd](https://watchboxd.onrender.com)
 
 ### Websockets
 * Logged in users can message other users they friend
+
+***
+
+# API-Routes
+This web app uses the following API routes to dynamically update the page to create a single-page-app-like feel for the user for specific features.
+
+## FILMS
+    * `GET /api/films` view all films
+    * `GET /api/films/{film_id}` view film by id
+    * `POST /api/films` add a new film to site
+    * `PUT /api/films/{film_id}` update a film's details
+    * `DELETE /api/films/{film_id}` delete a film by id
+
+## LISTS
+    * `GET /api/lists` view all lists
+    * `GET /api/lists/{list_id}` view list by id
+    * `POST /api/lists` create a new list
+    * `PUT /api/lists/{list_id}` update a list by id
+    * `DELETE /api/lists/{list_id}` delete a list by id
+
+## LIKES
+    * `POST /api/likes/{film_id}` Add a like to a film
+    * `DELETE /api/likes/{film_id}` Remove a like from a film
+
+## WATCHED
+    * `POST /api/watched/{film_id}` Add a watched to a film
+    * `DELETE /api/watched/{film_id}` Remove a watched from a film
+
+## WATCHLIST
+    * `POST /api/watchlist/{film_id}` Add a film to the user's watchlist
+    * `DELETE /api/watchlist/{film_id}` Remove a film from the user's watchlist
+
+## USERS
+    * `GET /api/users` view all the users
+    * `GET /api/users/{user_id}` view a specific user by id
+    * `POST /api/auth/signup` create a new user
+    * `PUT /api/users` update the current user
+    * `DELETE /api/users` delete the current user
+
