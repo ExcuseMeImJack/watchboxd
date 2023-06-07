@@ -132,35 +132,77 @@ Check out [Watchboxd](https://watchboxd.onrender.com)
 This web app uses the following API routes to dynamically update the page to create a single-page-app-like feel for the user for specific features.
 
 ## FILMS
-    * `GET /api/films` view all films
-    * `GET /api/films/{film_id}` view film by id
-    * `POST /api/films` add a new film to site
-    * `PUT /api/films/{film_id}` update a film's details
-    * `DELETE /api/films/{film_id}` delete a film by id
+  * `GET /api/films`
+      * Purpose: Query for all the films and returns them in a list of film dictionaries
+      * Return: `{'films': [{'id': 1, 'title': 'Jurassic Park', . . . }, {'id': 1, . . . }]}`
+  * `GET /api/films/{film_id}`
+      * Purpose: Query for a film by the film id and returns a film in a dictionary
+      * Return: `{'id': 1, 'title': 'Jurassic Park', . . . }`
+  * `POST /api/films`
+      * Purpose: Create a film that will assign the current user as it's creator and returns the created film in a dictionary
+      * Return: `{'id': 1, 'title': 'Jurassic Park', . . . }`
+  * `PUT /api/films/{film_id}`
+      * Purpose: Update a film by id if the film belongs to the current user and returns the updated film in a dictionary
+      * Return: `{'id': 1, 'title': 'Jurassic Park', . . . }`
+  * `PUT /api/films/{film_id}`
+  * `DELETE /api/films/{film_id}`
+      * Purpose: Delete a film by id
+      * Return: `{'message': 'Successfully deleted!'}`
 
 ## LISTS
-    * `GET /api/lists` view all lists
-    * `GET /api/lists/{list_id}` view list by id
-    * `POST /api/lists` create a new list
-    * `PUT /api/lists/{list_id}` update a list by id
-    * `DELETE /api/lists/{list_id}` delete a list by id
+  * `GET /api/lists`
+      * Purpose: Query for all the lists and returns them in a dictionary
+      * Return: `{'lists': [{'id': 1, 'list_name': 'My List', . . . }, {'id': 2, 'list_name': 'My List', . . . }]}`
+  * `GET /api/lists/{list_id}`
+      * Purpose: Query for a list by the list id and returns a list in a dictionary
+      * Return: `{'id': 1, 'list_name': 'My List', . . . }`
+  * `POST /api/lists`
+      * Purpose: Create a new list
+      * Return: `{'id': 1, 'list_name': 'My List', . . . }`
+  * `PUT /api/lists/{list_id}`
+      * Purpose: Update a list by id
+      * Return: `{'id': 1, 'list_name': 'My List', . . . }`
+  * `DELETE /api/lists/{list_id}`
+      * Purpose: Delete a list by id
+      * Return: `{'message': 'Successfully deleted!'}`
 
 ## LIKES
-    * `POST /api/likes/{film_id}` Add a like to a film
-    * `DELETE /api/likes/{film_id}` Remove a like from a film
+  * `POST /api/likes/{film_id}`
+      * Purpose: Add a like to a film
+      * Return: `'message': 'Film liked'`
+  * `DELETE /api/likes/{film_id}`
+      * Purpose: Remove a like from a film
+      * Return: `{'message': 'Film unliked'}`
 
 ## WATCHED
-    * `POST /api/watched/{film_id}` Add a watched to a film
-    * `DELETE /api/watched/{film_id}` Remove a watched from a film
+  * `POST /api/watched/{film_id}`
+      * Purpose: Add a watched to a film
+      * Return: `'message': 'Film watched'`
+  * `DELETE /api/watched/{film_id}`
+      * Purpose: Remove a watched from a film
+      * Return: `{'message': 'Film unwatched'}`
 
 ## WATCHLIST
-    * `POST /api/watchlist/{film_id}` Add a film to the user's watchlist
-    * `DELETE /api/watchlist/{film_id}` Remove a film from the user's watchlist
+  * `POST /api/watchlist/{film_id}`
+      * Purpose: Add a film to the user's watchlist
+      * Return: `{'message': 'Film added to watchlist'}`
+  * `DELETE /api/watchlist/{film_id}`
+      * Purpose: Remove a film from the user's watchlist
+      * Return: `{'message': 'Film removed from watchlist'}`
 
 ## USERS
-    * `GET /api/users` view all the users
-    * `GET /api/users/{user_id}` view a specific user by id
-    * `POST /api/auth/signup` create a new user
-    * `PUT /api/users` update the current user
-    * `DELETE /api/users` delete the current user
-
+  * `GET /api/users`
+      * Purpose: Query for all users and returns them in a list of user dictionaries
+      * Return: `{'users': [{'id': 1, 'first_name': 'Tester', . . .}, {'id': 2, 'first_name': 'Tester', . . .}]}`
+  * `GET /api/users/{user_id}`
+      * Purpose: View a specific user by id
+      * Return: `{'id': 1, 'first_name': 'Tester', . . .}`
+  * `POST /api/auth/signup`
+      * Purpose: Create a new user
+      * Return `{'id': 1, 'first_name': 'Tester', . . .}`
+  * `PUT /api/users`
+      * Purpose: Update the current user
+      * Return: `{'id': 1, 'first_name': 'Tester', . . .}`
+  * `DELETE /api/users`
+      * Purpose: Delete the current user
+      * Return: `{'message': 'Successfully deleted!'}`
