@@ -48,6 +48,7 @@ const ProfileLists = () => {
             <div
               className="list-tile-container"
               onClick={() => history.push(`/lists/${list.id}`)}
+              title={list.list_name + ' | Created by: ' + list.creator_username + ' | List length: ' + list.films.length}
             >
               <div className="list-tile">
                 <span className="list-tile-overlap change-cursor">
