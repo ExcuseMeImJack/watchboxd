@@ -78,7 +78,7 @@ const ProfileLikes = () => {
                 </div>
                 <div className="user-films-all">
                     {searchedFilms.map(film =>
-                    <div key={film.id} className="user-films-card change-cursor" onClick={() => history.push(`/films/${film.id}`)}>
+                    <div key={film.id} className="user-films-card change-cursor" onClick={() => history.push(`/films/${film.id}`)} title={film.title + ' | ' + film.year + ' | ' + film.director}>
                         <img id="user-films-card-img" src={film.tile_img_url} alt=""/>
                     </div>
                     )}

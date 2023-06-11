@@ -67,7 +67,7 @@ const Watchlist = () => {
           </div>
           <div className="films-navbar-grid">
             <h1 id="films-page-title">MY WATCHLIST</h1>
-            <div className="films-page-search-bar-container">
+            {user.films_to_watch > 0 && <div className="films-page-search-bar-container">
               <label className="films-search-label">FIND A FILM</label>
               <input
                 id="films-page-search-bar"
@@ -76,11 +76,12 @@ const Watchlist = () => {
                 value={search}
                 autoComplete="off"
               />
-            </div>
+            </div>}
           </div>
-          <div className="user-films-all">
+          {user.films_to_watch.length > 0 ? <div className="user-films-all">
             {searchedFilms.map((film) => (
               <div
+                title={film.title + ' | ' + film.year + ' | ' + film.director}
                 key={film.id}
                 className="user-films-card change-cursor"
                 onClick={() => history.push(`/films/${film.id}`)}
@@ -88,7 +89,7 @@ const Watchlist = () => {
                 <img id="user-films-card-img" src={film.tile_img_url} alt="" />
               </div>
             ))}
-          </div>
+          </div> : <div><h3>You have no Films in your Watchlist!</h3><br/><button className="create-a-list-button change-cursor" onClick={() => history.push('/films')}>Add some films to your watchlist!</button></div>}
         </div>
       </div>
     </div>
