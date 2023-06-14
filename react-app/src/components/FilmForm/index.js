@@ -67,7 +67,7 @@ const FilmForm = ({film, formType}) => {
             }
 
             const urlSuffix = urlArray[urlArray.length - 1];
-            !validUrlFileTypes.includes(urlSuffix) ? valErrors.backgroundImage = 'Image URL must end in .png, .jpg, or .jpeg' : console.log("")
+            if(!validUrlFileTypes.includes(urlSuffix)) valErrors.backgroundImage = 'Image URL must end in .png, .jpg, or .jpeg'
         } else {
             valErrors.backgroundImage = "Background Image is required"
         }
@@ -80,7 +80,7 @@ const FilmForm = ({film, formType}) => {
                 urlArray = tileImage.split('.');
             }
             const urlSuffix = urlArray[urlArray.length - 1];
-            !validUrlFileTypes.includes(urlSuffix) ? valErrors.tileImage = 'Image URL must end in .png, .jpg, or .jpeg' : console.log("")
+            if(!validUrlFileTypes.includes(urlSuffix)) valErrors.tileImage = 'Image URL must end in .png, .jpg, or .jpeg'
         } else {
             valErrors.tileImage = "Tile Image is required"
         }
@@ -183,7 +183,7 @@ const FilmForm = ({film, formType}) => {
                                 type="file"
                                 accept="image/*"
                                 onChange={(e) => setBackgroundImage(e.target.files[0])}
-                                /></label>
+                                />{backgroundImage ? <i className="fa-solid fa-check"></i> : <i className="fa-solid fa-x"></i>}</label>
                         </div>
                     </div>
                     <div className="right-create-film-form">
@@ -203,6 +203,7 @@ const FilmForm = ({film, formType}) => {
                                 accept="image/*"
                                 onChange={(e) => setTileImage(e.target.files[0])}
                                 />
+                                {tileImage ? <i className="fa-solid fa-check"></i> : <i className="fa-solid fa-x"></i>}
                             </label>
                         </div>
                         {(imageLoading) && null}

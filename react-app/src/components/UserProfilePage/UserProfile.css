@@ -174,13 +174,19 @@
 }
 
 #user-profile-recent-films-card-img{
-    max-width: 150px;
-    max-height: 250px;
-    min-width: 150px;
-    min-height: 150px;
+    object-fit: cover;
+    width: 160px;
+    height: 240px;
     border-radius: 5px;
     border: 3px solid var(--text-color);
+
 }
+
+/* object-fit: cover;
+height: 335px;
+width: 215px;
+border: 3px var(--text-color) solid;
+border-radius: 5px; */
 
 .user-profile-recent-activity-content{
     display: grid;

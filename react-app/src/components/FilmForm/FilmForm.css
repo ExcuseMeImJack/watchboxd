@@ -155,12 +155,22 @@
 .file-form-background-image-button{
     border: 1px solid #ccc;
     display: flex;
-    width: 250px;
+    width: 260px;
     padding: 6px 12px;
     cursor: pointer;
     border-radius: 10px;
+    align-items: center;
+    gap: 10px;
 }
 
 #file-upload {
     display: none;
+}
+
+.fa-x{
+    color: #F765A3;
+}
+
+.fa-check{
+    color: var(--hover-link-color);
 }
