@@ -67,7 +67,7 @@ const FilmsPage = () => {
                 <div className="films-page-tiles-container">
                     {searchedFilms.map((film, index) =>
                             <div key={index} className="films-page-tile change-cursor" onClick={() => history.push(`/films/${film.id}`)}>
-                                <img src={film.tile_img_url} />
+                                <img className="film-image-tile-filmpage" src={film.tile_img_url} />
                                 <div className="film-watches-likes-container">
                                     <div className="film-watches">
                                         <i className="fa-solid fa-eye"></i>

@@ -59,6 +59,8 @@
 }
 
 .films-page-tile > img {
+    object-fit: cover;
+    height: 335px;
     width: 215px;
     border: 3px var(--text-color) solid;
     border-radius: 5px;
