@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Film
 from ..forms import EditUserForm
-from app.api.aws_helpers import get_unique_filename, upload_file_to_s3
+from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
@@ -56,6 +56,7 @@ def update_user():
         profile_img_url = form.data["profile_img_url"]
 
         if profile_img_url:
+            remove_file_from_s3(curr_user.profile_img_url)
             profile_img_url.filename = get_unique_filename(profile_img_url.filename)
             upload = upload_file_to_s3(profile_img_url)
             if "url" not in upload:

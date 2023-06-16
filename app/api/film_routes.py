@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Film
 from ..forms import CreateFilmForm, EditFilmForm
-from app.api.aws_helpers import get_unique_filename, upload_file_to_s3
+from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 from .auth_routes import validation_errors_to_error_messages
 
 film_routes = Blueprint('films', __name__)
@@ -95,6 +95,7 @@ def update_film(id):
             tile_img_url = form.data["tile_img_url"]
 
             if background_img_url:
+                remove_file_from_s3(film.background_img_url)
                 background_img_url.filename = get_unique_filename(background_img_url.filename)
                 upload = upload_file_to_s3(background_img_url)
                 if "url" not in upload:
@@ -103,6 +104,7 @@ def update_film(id):
                 film.background_img_url = background_img_url
 
             if tile_img_url:
+                remove_file_from_s3(film.tile_img_url)
                 tile_img_url.filename = get_unique_filename(tile_img_url.filename)
                 upload = upload_file_to_s3(tile_img_url)
                 if "url" not in upload:
