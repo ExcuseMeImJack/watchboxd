@@ -17,6 +17,7 @@ const EditProfilePage = () => {
   const [lastName, setLastName] = useState(user.last_name === null ? "" : user.last_name);
   const [bio, setBio] = useState(user.bio === null ? "" : user.bio);
   const [profilePic, setProfilePic] = useState(null);
+  const [profilePicPreview, setProfilePicPreview] = useState(user.profile_img_url)
   const [email, setEmail] = useState(user.email)
   const [imageLoading, setImageLoading] = useState(false)
   const [errors, setErrors] = useState({})
@@ -126,12 +127,15 @@ const EditProfilePage = () => {
             </div>
             <div className="edit-avatar-container">
               <label className="change-cursor edit-avatar-img-container">
-                <img id="edit-avatar-pic" src={user.profile_img_url}/>
+                <img id="edit-avatar-pic" src={profilePicPreview}/>
                 <input
                   className="upload-profile-pic-input"
                   type="file"
                   accept="image/*"
-                  onChange={(e) => setProfilePic(e.target.files[0])}
+                  onChange={(e) => {
+                    setProfilePic(e.target.files[0])
+                    setProfilePicPreview(URL.createObjectURL(e.target.files[0]))
+                  }}
                 />
               </label>
             </div>

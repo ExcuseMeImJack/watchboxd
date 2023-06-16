@@ -40,6 +40,7 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .members-big-username{
@@ -93,6 +94,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .members-page-user-details{

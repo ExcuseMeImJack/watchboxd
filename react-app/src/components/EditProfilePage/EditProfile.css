@@ -76,6 +76,7 @@
     height: 190px;
     width: 190px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .button-enabled{
