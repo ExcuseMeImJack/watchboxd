@@ -116,8 +116,21 @@ const FilmDetailsPage = () => {
           </div>
         </div>
         <div className="film-details-details">
-          <div className="film-details-grid">
-            <div className="film-tile-card">
+          <div className="film-details-grid-small">
+            {!user ?
+            <div className="film-tile-card-small">
+            <img id="film-details-tile-image-small" src={film.tile_img_url} />
+            <div className="film-watches-likes-grid">
+              <div className="film-watches">
+                <i className="fa-solid fa-eye"></i>
+                <p>{film.watches}</p>
+              </div>
+              <div className="film-likes">
+                <i className="fa-solid fa-heart"></i>
+                <p>{film.likes}</p>
+              </div>
+            </div>
+          </div> : <div className="film-tile-card">
               <img id="film-details-tile-image" src={film.tile_img_url} />
               <div className="film-watches-likes-grid">
                 <div className="film-watches">
@@ -129,7 +142,7 @@ const FilmDetailsPage = () => {
                   <p>{film.likes}</p>
                 </div>
               </div>
-            </div>
+            </div>}
             <div className="film-details-grid-new">
               <div className="film-details">
                 <div className="film-title">
