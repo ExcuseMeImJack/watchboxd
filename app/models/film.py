@@ -30,7 +30,7 @@ class Film(db.Model):
     film_watches = db.relationship("User", secondary=watches, back_populates="user_watches")
     film_to_watch = db.relationship("User", secondary=films_to_watch, back_populates="user_films_to_watch")
 
-
+    film_reviews = db.relationship("Review", back_populates="film")
 
     def to_dict(self):
         return {
@@ -46,6 +46,7 @@ class Film(db.Model):
             'user_id': self.user_id,
             'likes': len(self.film_likes),
             'watches': len(self.film_watches),
+            'reviews': len(self.film_reviews),
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

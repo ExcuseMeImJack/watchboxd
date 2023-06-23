@@ -5,3 +5,5 @@ from .create_film_form import CreateFilmForm
 from .create_list_form import CreateListForm
 from .edit_list_form import EditListForm
 from .edit_film_form import EditFilmForm
+from .create_review_form import CreateReviewForm
+from .update_review_form import UpdateReviewForm
