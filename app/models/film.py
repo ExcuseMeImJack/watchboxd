@@ -46,7 +46,7 @@ class Film(db.Model):
             'user_id': self.user_id,
             'likes': len(self.film_likes),
             'watches': len(self.film_watches),
-            'reviews': len(self.film_reviews),
+            'reviews': len([review for review in self.film_reviews]),
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

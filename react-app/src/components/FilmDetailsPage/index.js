@@ -117,32 +117,46 @@ const FilmDetailsPage = () => {
         </div>
         <div className="film-details-details">
           <div className="film-details-grid-small">
-            {!user ?
-            <div className="film-tile-card-small">
-            <img id="film-details-tile-image-small" src={film.tile_img_url} />
-            <div className="film-watches-likes-grid">
-              <div className="film-watches">
-                <i className="fa-solid fa-eye"></i>
-                <p>{film.watches}</p>
-              </div>
-              <div className="film-likes">
-                <i className="fa-solid fa-heart"></i>
-                <p>{film.likes}</p>
-              </div>
-            </div>
-          </div> : <div className="film-tile-card">
-              <img id="film-details-tile-image" src={film.tile_img_url} />
-              <div className="film-watches-likes-grid">
-                <div className="film-watches">
-                  <i className="fa-solid fa-eye"></i>
-                  <p>{film.watches}</p>
-                </div>
-                <div className="film-likes">
-                  <i className="fa-solid fa-heart"></i>
-                  <p>{film.likes}</p>
+            {!user ? (
+              <div className="film-tile-card-small">
+                <img
+                  id="film-details-tile-image-small"
+                  src={film.tile_img_url}
+                />
+                <div className="film-watches-likes-grid">
+                  <div className="film-watches">
+                    <i className="fa-solid fa-eye"></i>
+                    <p>{film.watches}</p>
+                  </div>
+                  <div className="film-likes">
+                    <i className="fa-solid fa-heart"></i>
+                    <p>{film.likes}</p>
+                  </div>
+                  <div className="film-reviews">
+                    <i className="fa-solid fa-message"></i>
+                    <p>{film.reviews}</p>
+                  </div>
                 </div>
               </div>
-            </div>}
+            ) : (
+              <div className="film-tile-card">
+                <img id="film-details-tile-image" src={film.tile_img_url} />
+                <div className="film-watches-likes-grid">
+                  <div className="film-watches">
+                    <i className="fa-solid fa-eye"></i>
+                    <p>{film.watches}</p>
+                  </div>
+                  <div className="film-likes">
+                    <i className="fa-solid fa-heart"></i>
+                    <p>{film.likes}</p>
+                  </div>
+                  <div className="film-reviews">
+                    <i className="fa-solid fa-message"></i>
+                    <p>{film.reviews}</p>
+                  </div>
+                </div>
+              </div>
+            )}
             <div className="film-details-grid-new">
               <div className="film-details">
                 <div className="film-title">
@@ -250,10 +264,13 @@ const FilmDetailsPage = () => {
                 )}
               </div>
             </div>
-
           </div>
           <div className="border-divider"></div>
-          <div className="film-trailer-player-container">
+          <div className="film-trailer-review-details">
+            <div className="film-review-details-panel">
+              <p>Test</p>
+            </div>
+            <div className="film-trailer-player-container">
               <iframe
                 className="trailer-film-player"
                 height="550px"
@@ -264,8 +281,8 @@ const FilmDetailsPage = () => {
                 title="Embedded youtube"
               />
             </div>
+          </div>
         </div>
-
       </div>
     </div>
   );

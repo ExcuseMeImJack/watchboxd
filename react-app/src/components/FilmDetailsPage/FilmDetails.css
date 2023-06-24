@@ -219,10 +219,6 @@
     background-color: var(--button-color);
 }
 
-.film-trailer-player-container{
-    display: flex;
-    justify-content: flex-end;
-}
 
 .trailer-film-player{
     width: 70%;
@@ -270,3 +266,21 @@
 .control-buttons > button:hover{
     border-color: var(--text-color);
 }
+
+.film-trailer-review-details{
+    display: flex;
+
+}
+
+.film-review-details-panel{
+    background-color: #495c6e;
+    height: 95px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.301);
+    max-width: 250px;
+}
+
+/* .film-trailer-player-container{
+    display: flex;
+    justify-content: flex-end;
+} */

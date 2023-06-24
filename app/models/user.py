@@ -53,7 +53,7 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'lists': [list.to_dict() for list in self.lists],
             'likes': [film.to_dict() for film in self.user_likes],
-            'reviews': [film.to_dict() for film in self.user_reviews],
+            'reviews': [review.to_dict() for review in self.user_reviews],
             'films_to_watch': [film.to_dict() for film in self.user_films_to_watch],
             'films_watched': [film.to_dict() for film in self.user_watches],
             'created_at': self.created_at,
@@ -72,7 +72,7 @@ class User(db.Model, UserMixin):
             'likes': [film.to_dict() for film in self.user_likes],
             'films_to_watch': [film.to_dict() for film in self.user_films_to_watch],
             'films_watched': [film.to_dict() for film in self.user_watches],
-            'reviews': [film.to_dict() for film in self.user_reviews],
+            'reviews': [review.to_dict() for review in self.user_reviews],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
