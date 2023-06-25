@@ -11,7 +11,7 @@ class Review(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     film_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('films.id')))
     review = db.Column(db.String(250), nullable=False)
-    rating = db.Column(db.Integer, nullable=False)
+    rating = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.utcnow)
 

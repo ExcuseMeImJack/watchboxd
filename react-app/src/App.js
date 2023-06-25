@@ -80,7 +80,7 @@ function App() {
             </ProtectedRoute>
           </Route>
           <Route path="/films/:filmId">
-            <FilmDetailsPage />
+              <FilmDetailsPage />
           </Route>
           <Route path="/films">
             <FilmsPage />

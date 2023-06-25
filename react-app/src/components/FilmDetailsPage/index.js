@@ -21,6 +21,9 @@ import {
   thunkUpdateUserInfo,
 } from "../../store/session";
 import Loading from "../Loading";
+import { thunkGetAllFilmReviews, thunkGetAllUserReviews, thunkGetReviewById } from "../../store/reviews"
+import ReactStars from 'react-stars'
+import Histogram from 'react-chart-histogram';
 
 const FilmDetailsPage = () => {
   const { filmId } = useParams();
@@ -28,6 +31,7 @@ const FilmDetailsPage = () => {
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const film = useSelector((state) => state.films.film);
+  const filmReviews = useSelector(state => state.reviews.reviews);
 
   const isLiked = () =>
     user?.likes.find((currFilm) => currFilm.id === film?.id) ? true : false;
@@ -44,11 +48,14 @@ const FilmDetailsPage = () => {
   const [addToWatchlist, setAddToWatchlist] = useState(isOnWatchlist());
 
   useEffect(() => {
-    // dispatch(thunkGetAllFilms());
-    dispatch(thunkGetFilmById(filmId));
+    const renderOrder = async () => {
+      await dispatch(thunkGetFilmById(filmId));
+      await dispatch(thunkGetAllFilmReviews(filmId));
+    }
+    renderOrder();
   }, [dispatch, likedFilm, watchedFilm, addToWatchlist]);
 
-  if (!film) return <Loading />;
+  if (!film || !filmReviews) return <Loading />;
   if (film.id === filmId) return <Loading />;
 
   const handleLike = async () => {
@@ -106,6 +113,20 @@ const FilmDetailsPage = () => {
     }
     return id;
   };
+
+
+
+  const ratingCounter = () => {
+    const ratingCounterArr = [0, 0, 0, 0, 0];
+    film.ratings.forEach(rate => {
+      if(rate === 1) ratingCounterArr[0]++;
+      if(rate === 2) ratingCounterArr[1]++;
+      if(rate === 3) ratingCounterArr[2]++;
+      if(rate === 4) ratingCounterArr[3]++;
+      if(rate === 5) ratingCounterArr[4]++;
+    })
+    return ratingCounterArr;
+  }
 
   return (
     <div className="film-details-page-container">
@@ -268,7 +289,44 @@ const FilmDetailsPage = () => {
           <div className="border-divider"></div>
           <div className="film-trailer-review-details">
             <div className="film-review-details-panel">
-              <p>Test</p>
+              <div className="film-reviews-details-title">
+                <h4>RATINGS</h4>
+                <p>{film.reviews} FANS</p>
+              </div>
+              <div className="film-reviews-ratings">
+                <ReactStars
+                  className="fake-star"
+                  count={1}
+                  edit={false}
+                  value={1}
+                  size={18}
+                  color2={'#23ce31'}
+                />
+                <div className="review-histogram">
+                  <Histogram
+                    width='160'
+                    height='72'
+                    xLabels={['', '', '', '', '']}
+                    yValues={ratingCounter()}
+                    options={{fillColor: '#44525F', strokeColor: '#44525F'}}
+                  />
+                </div>
+                <div className="review-total-star-rating">
+                  <h2>{film.rating % 1 === 0 ?
+                    film.rating + '.0'
+                    :
+                    film.rating
+                  }</h2>
+                  <ReactStars
+                    id="real-star-rating"
+                    count={5}
+                    edit={false}
+                    value={film.rating}
+                    size={18}
+                    color2={'#23ce31'} />
+                </div>
+
+              </div>
             </div>
             <div className="film-trailer-player-container">
               <iframe

@@ -162,6 +162,7 @@
     border-radius: 10px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.301);
     max-width: 250px;
+    min-width: 250px;
 }
 
 .secondary-film-details-heading{
@@ -221,7 +222,7 @@
 
 
 .trailer-film-player{
-    width: 70%;
+    width: 100%;
     height: 24em;
     border-radius: 10px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.301);
@@ -268,19 +269,57 @@
 }
 
 .film-trailer-review-details{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
 
 }
 
 .film-review-details-panel{
-    background-color: #495c6e;
     height: 95px;
-    border-radius: 10px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.301);
-    max-width: 250px;
+    width: 250px;
 }
 
-/* .film-trailer-player-container{
+.film-trailer-player-container{
+
+}
+
+.film-reviews-details-title{
     display: flex;
-    justify-content: flex-end;
-} */
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--text-color);
+}
+
+.film-reviews-details-title > h4 {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.film-reviews-details-title > p{
+    font-size: 12px;
+    margin-bottom: 0;
+    padding-bottom: 2px;
+}
+
+.review-total-star-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.review-total-star-rating > h2{
+    margin: 0;
+    font-weight: 200;
+}
+
+.film-reviews-ratings{
+    display: flex;
+    margin-top: 10px;
+}
+
+.fake-star{
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+}

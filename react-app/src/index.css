@@ -1,12 +1,12 @@
 /* TODO Add site wide styles */
 #root {
     --background: #21272E;
-    --text-color: rgb(216, 216, 216);
+    --text-color: #d8d8d8;
     --secondary-text-color: #99AABB;
     --button-color: #44525F;
     --divider-color: #333538;
     --border-color: #333538;
-    --hover-link-color: rgb(35, 206, 49);
+    --hover-link-color: #23ce31;
     --nav-color: #15141B;
     --profile-button-background: var(--secondary-text-color);
     --dropdown-text-color: #282f3a;
