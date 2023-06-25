@@ -1,0 +1,25 @@
+.review-histogram{
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 6px;
+}
+
+.histogram-panel{
+  display: flex;
+  align-items: flex-end;
+}
+
+#histogram-bar{
+  margin: 0px 1px;
+  width: 12px;
+  border-radius: 2px;
+  color: #44525F;
+  background-color: #44525F;
+  border: 1px solid #44525F;
+  transition: border-color 0.3s;
+}
+
+#histogram-bar:hover{
+  cursor: pointer;
+  border-color: var(--text-color);
+}

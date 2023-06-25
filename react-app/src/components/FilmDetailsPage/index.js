@@ -23,7 +23,7 @@ import {
 import Loading from "../Loading";
 import { thunkGetAllFilmReviews, thunkGetAllUserReviews, thunkGetReviewById } from "../../store/reviews"
 import ReactStars from 'react-stars'
-import Histogram from 'react-chart-histogram';
+import ReviewsHistogram from "../ReviewsHistogram";
 
 const FilmDetailsPage = () => {
   const { filmId } = useParams();
@@ -117,13 +117,18 @@ const FilmDetailsPage = () => {
 
 
   const ratingCounter = () => {
-    const ratingCounterArr = [0, 0, 0, 0, 0];
+    const ratingCounterArr = [{0.5: 0}, {1: 0}, {1.5: 0}, {2: 0}, {2.5: 0}, {3: 0}, {3.5: 0}, {4: 0}, {4.5: 0}, {5: 0}];
     film.ratings.forEach(rate => {
-      if(rate === 1) ratingCounterArr[0]++;
-      if(rate === 2) ratingCounterArr[1]++;
-      if(rate === 3) ratingCounterArr[2]++;
-      if(rate === 4) ratingCounterArr[3]++;
-      if(rate === 5) ratingCounterArr[4]++;
+      if(rate === 0.5) ratingCounterArr[0]["0.5"]++;
+      if(rate === 1) ratingCounterArr[1][1]++;
+      if(rate === 1.5) ratingCounterArr[2]["1.5"]++;
+      if(rate === 2) ratingCounterArr[3][2]++;
+      if(rate === 2.5) ratingCounterArr[4]["2.5"]++;
+      if(rate === 3) ratingCounterArr[5][3]++;
+      if(rate === 3.5) ratingCounterArr[6]["3.5"]++;
+      if(rate === 4) ratingCounterArr[7][4]++;
+      if(rate === 4.5) ratingCounterArr[8]["4.5"]++;
+      if(rate === 5) ratingCounterArr[9][5]++;
     })
     return ratingCounterArr;
   }
@@ -303,13 +308,7 @@ const FilmDetailsPage = () => {
                   color2={'#23ce31'}
                 />
                 <div className="review-histogram">
-                  <Histogram
-                    width='160'
-                    height='72'
-                    xLabels={['', '', '', '', '']}
-                    yValues={ratingCounter()}
-                    options={{fillColor: '#44525F', strokeColor: '#44525F'}}
-                  />
+                  <ReviewsHistogram reviewCounter={ratingCounter()}/>
                 </div>
                 <div className="review-total-star-rating">
                   <h2>{film.rating % 1 === 0 ?

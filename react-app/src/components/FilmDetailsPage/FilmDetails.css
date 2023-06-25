@@ -262,6 +262,7 @@
     width: 145px;
     height: 40px;
     border: 2px solid transparent;
+    transition: border-color 0.3s;
 }
 
 .control-buttons > button:hover{
@@ -277,11 +278,7 @@
 
 .film-review-details-panel{
     height: 95px;
-    width: 250px;
-}
-
-.film-trailer-player-container{
-
+    width: 300px;
 }
 
 .film-reviews-details-title{
@@ -316,10 +313,11 @@
 .film-reviews-ratings{
     display: flex;
     margin-top: 10px;
+    gap: 25px;
 }
 
 .fake-star{
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     padding-top: 10px;
 }

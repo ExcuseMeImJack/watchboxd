@@ -64,6 +64,7 @@
     width: 215px;
     border: 3px var(--text-color) solid;
     border-radius: 5px;
+    transition: border-color 0.3s;
 }
 
 .film-watches-likes-container{
