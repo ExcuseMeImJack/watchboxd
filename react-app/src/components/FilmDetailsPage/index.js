@@ -21,8 +21,12 @@ import {
   thunkUpdateUserInfo,
 } from "../../store/session";
 import Loading from "../Loading";
-import { thunkGetAllFilmReviews, thunkGetAllUserReviews, thunkGetReviewById } from "../../store/reviews"
-import ReactStars from 'react-stars'
+import {
+  thunkGetAllFilmReviews,
+  thunkGetAllUserReviews,
+  thunkGetReviewById,
+} from "../../store/reviews";
+import ReactStars from "react-stars";
 import ReviewsHistogram from "../ReviewsHistogram";
 
 const FilmDetailsPage = () => {
@@ -31,7 +35,7 @@ const FilmDetailsPage = () => {
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const film = useSelector((state) => state.films.film);
-  const filmReviews = useSelector(state => state.reviews.reviews);
+  const filmReviews = useSelector((state) => state.reviews.reviews);
 
   const isLiked = () =>
     user?.likes.find((currFilm) => currFilm.id === film?.id) ? true : false;
@@ -51,7 +55,7 @@ const FilmDetailsPage = () => {
     const renderOrder = async () => {
       await dispatch(thunkGetFilmById(filmId));
       await dispatch(thunkGetAllFilmReviews(filmId));
-    }
+    };
     renderOrder();
   }, [dispatch, likedFilm, watchedFilm, addToWatchlist]);
 
@@ -114,24 +118,43 @@ const FilmDetailsPage = () => {
     return id;
   };
 
-
-
   const ratingCounter = () => {
-    const ratingCounterArr = [{0.5: 0}, {1: 0}, {1.5: 0}, {2: 0}, {2.5: 0}, {3: 0}, {3.5: 0}, {4: 0}, {4.5: 0}, {5: 0}];
-    film.ratings.forEach(rate => {
-      if(rate === 0.5) ratingCounterArr[0]["0.5"]++;
-      if(rate === 1) ratingCounterArr[1][1]++;
-      if(rate === 1.5) ratingCounterArr[2]["1.5"]++;
-      if(rate === 2) ratingCounterArr[3][2]++;
-      if(rate === 2.5) ratingCounterArr[4]["2.5"]++;
-      if(rate === 3) ratingCounterArr[5][3]++;
-      if(rate === 3.5) ratingCounterArr[6]["3.5"]++;
-      if(rate === 4) ratingCounterArr[7][4]++;
-      if(rate === 4.5) ratingCounterArr[8]["4.5"]++;
-      if(rate === 5) ratingCounterArr[9][5]++;
-    })
+    const ratingCounterArr = [
+      { 0.5: 0 },
+      { 1: 0 },
+      { 1.5: 0 },
+      { 2: 0 },
+      { 2.5: 0 },
+      { 3: 0 },
+      { 3.5: 0 },
+      { 4: 0 },
+      { 4.5: 0 },
+      { 5: 0 },
+    ];
+    film.ratings.forEach((rate) => {
+      if (rate === 0.5) ratingCounterArr[0]["0.5"]++;
+      if (rate === 1) ratingCounterArr[1][1]++;
+      if (rate === 1.5) ratingCounterArr[2]["1.5"]++;
+      if (rate === 2) ratingCounterArr[3][2]++;
+      if (rate === 2.5) ratingCounterArr[4]["2.5"]++;
+      if (rate === 3) ratingCounterArr[5][3]++;
+      if (rate === 3.5) ratingCounterArr[6]["3.5"]++;
+      if (rate === 4) ratingCounterArr[7][4]++;
+      if (rate === 4.5) ratingCounterArr[8]["4.5"]++;
+      if (rate === 5) ratingCounterArr[9][5]++;
+    });
     return ratingCounterArr;
-  }
+  };
+
+  const findReview = () => {
+    const reviewsFound = filmReviews.filter(
+      (review) => review.user_id === user.id
+    );
+    if (reviewsFound.length > 0) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <div className="film-details-page-container">
@@ -305,26 +328,39 @@ const FilmDetailsPage = () => {
                   edit={false}
                   value={1}
                   size={18}
-                  color2={'#23ce31'}
+                  color2={"#23ce31"}
                 />
                 <div className="review-histogram">
-                  <ReviewsHistogram reviewCounter={ratingCounter()}/>
+                  <ReviewsHistogram reviewCounter={ratingCounter()} />
                 </div>
                 <div className="review-total-star-rating">
-                  <h2>{film.rating % 1 === 0 ?
-                    film.rating + '.0'
-                    :
-                    film.rating
-                  }</h2>
+                  <h2>
+                    {film.rating % 1 === 0 ? film.rating + ".0" : film.rating}
+                  </h2>
                   <ReactStars
                     id="real-star-rating"
                     count={5}
                     edit={false}
                     value={film.rating}
                     size={18}
-                    color2={'#23ce31'} />
+                    color2={"#23ce31"}
+                  />
                 </div>
-
+              </div>
+              <div className="film-review-create-form" id="review-form-content">
+                {!user ? (
+                  <button className="create-a-list-button change-cursor" onClick={() => history.push('/')}>
+                    Sign in to make a review
+                  </button>
+                ) : findReview() ? (
+                  <button className="create-a-list-button change-cursor">
+                    Edit Form
+                  </button>
+                ) : (
+                  <button className="create-a-list-button change-cursor">
+                    Create Form
+                  </button>
+                )}
               </div>
             </div>
             <div className="film-trailer-player-container">

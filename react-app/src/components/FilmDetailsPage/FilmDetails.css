@@ -29,7 +29,7 @@
     justify-content: center;
     z-index: -1;
     position: absolute;
-    top: 0;
+    top: -25px;
 }
 
 .faded-all:after{
@@ -65,7 +65,7 @@
 
 .film-details-details{
     position: relative;
-    top: -45px;
+    top: -70px;
     width: 1000px;
     min-width: 950px;
     max-width: 1000px;
@@ -308,6 +308,7 @@
 .review-total-star-rating > h2{
     margin: 0;
     font-weight: 200;
+    text-align: center;
 }
 
 .film-reviews-ratings{
@@ -320,4 +321,10 @@
     display: flex;
     align-items: flex-end;
     padding-top: 10px;
+}
+
+#review-form-content{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
