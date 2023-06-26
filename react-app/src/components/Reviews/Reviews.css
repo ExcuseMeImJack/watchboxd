@@ -60,6 +60,16 @@
   font-family: 'Hanken Grotesk', sans-serif;
 }
 
+.button-enabled-review-delete{
+  background-color: rgb(196, 20, 20);
+  padding: 5px 8px;
+  border: none;
+  border-radius: 5px;
+  color: var(--text-color);
+  font-weight: 600;
+  font-family: 'Hanken Grotesk', sans-serif;
+}
+
 .button-enabled-review:hover{
   background-color: rgb(5, 158, 5);
 }
@@ -99,4 +109,20 @@
 .border-divider-reviews{
   border: 1px solid var(--text-color);
   margin-top: 30px;
+}
+
+.review-tile-update-delete-buttons{
+  margin-top: 5px;
+  display: flex;
+  gap: 20px;
+}
+
+.delete-review{
+  background-color: rgb(196, 20, 20);
+  padding: 5px 8px;
+  border: none;
+  border-radius: 5px;
+  color: var(--text-color);
+  font-weight: 600;
+  font-family: 'Hanken Grotesk', sans-serif;
 }

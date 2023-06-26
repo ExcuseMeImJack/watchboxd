@@ -10,8 +10,10 @@ import "./Reviews.css";
 import ReactStars from "react-stars";
 import { thunkGetFilmById } from "../../store/films";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import OpenModalButton from "../OpenModalButton";
+import DeleteReviewModal from "../DeleteReviewModal";
 
-const ReviewForm = ({ reviewInfo, formType, film}) => {
+const ReviewForm = ({ reviewInfo, formType, film }) => {
   const [errors, setErrors] = useState({});
   const history = useHistory();
   const [reviewCharCount, setReviewCharCount] = useState(
@@ -31,8 +33,7 @@ const ReviewForm = ({ reviewInfo, formType, film}) => {
     const err = {};
     if (rating === 0) err.rating = "A star rating must be selected";
     if (rating > 5) err.rating = "The star rating must be 5 or less stars";
-    if (review.length < 5)
-      err.review = "A review must be atleast 5 characters";
+    if (review.length < 5) err.review = "A review must be atleast 5 characters";
     if (review.length > 250)
       err.review = "A review must be less than 250 characters";
     setErrors(err);
@@ -53,13 +54,17 @@ const ReviewForm = ({ reviewInfo, formType, film}) => {
       formData.append("review", review);
       formData.append("rating", rating);
       if (formType === "create") {
-        const createdReview = await dispatch(thunkCreateReviewByFilmId(formData, film.id));
-        await dispatch(thunkGetFilmById(film.id))
-        await dispatch(thunkGetAllFilmReviews(film.id))
+        const createdReview = await dispatch(
+          thunkCreateReviewByFilmId(formData, film.id)
+        );
+        await dispatch(thunkGetFilmById(film.id));
+        await dispatch(thunkGetAllFilmReviews(film.id));
       } else if (formType === "update") {
-        const updatedReview =  await dispatch(thunkUpdateReviewById(formData, reviewInfo.id));
-        await dispatch(thunkGetFilmById(film.id))
-        await dispatch(thunkGetAllFilmReviews(film.id))
+        const updatedReview = await dispatch(
+          thunkUpdateReviewById(formData, reviewInfo.id)
+        );
+        await dispatch(thunkGetFilmById(film.id));
+        await dispatch(thunkGetAllFilmReviews(film.id));
       }
     }
   };
@@ -107,19 +112,27 @@ const ReviewForm = ({ reviewInfo, formType, film}) => {
               }
               disabled={Object.keys(errors).length > 0}
             >
-              Submit Film
+              Submit Review
             </button>
           ) : (
-            <button
-              className={
-                Object.keys(errors).length > 0
-                  ? "button-disabled-review"
-                  : "button-enabled-review change-cursor"
-              }
-              disabled={Object.keys(errors).length > 0}
-            >
-              Update Film
-            </button>
+            <div className="review-tile-update-delete-buttons">
+              <button
+                className={
+                  Object.keys(errors).length > 0
+                    ? "button-disabled-review"
+                    : "button-enabled-review change-cursor"
+                }
+                disabled={Object.keys(errors).length > 0}
+              >
+                Update Review
+              </button>
+              <OpenModalButton
+                buttonStyleClass={"delete-review change-cursor"}
+                buttonText={"Delete Review"}
+                modalComponent={<DeleteReviewModal review={reviewInfo} film={film}/>}
+                modalStyleClass={"delete-profile-modal-content"}
+              />
+            </div>
           )}
         </div>
       </form>

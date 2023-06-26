@@ -37,6 +37,7 @@ const FilmDetailsPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+  const users = useSelector((state) => state.session.users);
   const film = useSelector((state) => state.films.film);
   const filmReviews = useSelector((state) => state.reviews.reviews);
 
@@ -55,20 +56,24 @@ const FilmDetailsPage = () => {
   const [addToWatchlist, setAddToWatchlist] = useState(isOnWatchlist());
 
   useEffect(() => {
+    dispatch(thunkGetAllFilmReviews(filmId));
     const renderOrder = async () => {
+      await dispatch(thunkGetAllUsers());
       await dispatch(thunkGetFilmById(filmId));
-      await dispatch(thunkGetAllFilmReviews(filmId));
     };
     renderOrder();
   }, [dispatch, likedFilm, watchedFilm, addToWatchlist]);
 
-  if (!film || !filmReviews) return <Loading />;
+  if (!film) return <Loading />;
+  if(!filmReviews || !users) return <Loading/>
+
   if (film.id === filmId) return <Loading />;
 
   const handleLike = async () => {
     await dispatch(thunkLikeFilm(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
+    dispatch(thunkGetAllFilmReviews(filmId));
     setLikedFilm(true);
     setWatchedFilm(true);
   };
@@ -77,6 +82,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkUnlikeFilm(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
+    dispatch(thunkGetAllFilmReviews(filmId));
     setLikedFilm(false);
   };
 
@@ -84,6 +90,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkWatchFilm(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
+    dispatch(thunkGetAllFilmReviews(filmId));
     setWatchedFilm(true);
   };
 
@@ -91,6 +98,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkUnwatchFilm(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
+    dispatch(thunkGetAllFilmReviews(filmId));
     setWatchedFilm(false);
   };
 
@@ -98,6 +106,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkAddToWatchlist(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
+    dispatch(thunkGetAllFilmReviews(filmId));
     setAddToWatchlist(true);
   };
 
@@ -105,6 +114,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkRemoveFromWatchlist(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
+    dispatch(thunkGetAllFilmReviews(filmId));
     setAddToWatchlist(false);
   };
 
@@ -149,6 +159,8 @@ const FilmDetailsPage = () => {
     return ratingCounterArr;
   };
 
+
+
   const findReview = () => {
     const reviewsFound = filmReviews.filter((review) => review.user_id === user.id);
     if (reviewsFound.length > 0) {
@@ -172,6 +184,10 @@ const FilmDetailsPage = () => {
     });
     return filmReviews;
   };
+
+  const findReviewUser = (review) => {
+    return users.find(user => user.id === review.user_id)
+  }
 
   return (
     <div className="film-details-page-container">
@@ -301,15 +317,6 @@ const FilmDetailsPage = () => {
                       </div>
                     </div>
 
-                    {/* <div className="film-add-to-lists">
-                <OpenModalButton
-                  buttonText={"Add to lists..."}
-                  buttonStyleClass={
-                    "add-to-list-button-film-details change-cursor"
-                  }
-                />
-              </div> */}
-
                     {user.id === film.user_id && (
                       <div className="control-buttons">
                         <button
@@ -392,7 +399,7 @@ const FilmDetailsPage = () => {
           </div>
         <div>
           {orderReviews().map(review =>
-            <ReviewTile key={review.id} review={review} />
+            <ReviewTile key={review.id} review={review} reviewUser={findReviewUser(review)}/>
           )}
         </div>
         </div>
