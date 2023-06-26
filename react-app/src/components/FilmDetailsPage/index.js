@@ -144,18 +144,23 @@ const FilmDetailsPage = () => {
       { 4.5: 0 },
       { 5: 0 },
     ];
-    film.ratings.forEach((rate) => {
-      if (rate === 0.5) ratingCounterArr[0]["0.5"]++;
-      if (rate === 1) ratingCounterArr[1][1]++;
-      if (rate === 1.5) ratingCounterArr[2]["1.5"]++;
-      if (rate === 2) ratingCounterArr[3][2]++;
-      if (rate === 2.5) ratingCounterArr[4]["2.5"]++;
-      if (rate === 3) ratingCounterArr[5][3]++;
-      if (rate === 3.5) ratingCounterArr[6]["3.5"]++;
-      if (rate === 4) ratingCounterArr[7][4]++;
-      if (rate === 4.5) ratingCounterArr[8]["4.5"]++;
-      if (rate === 5) ratingCounterArr[9][5]++;
-    });
+    if(film.ratings.length > 0){
+      film.ratings.forEach((rate) => {
+        if (rate === 0.5) ratingCounterArr[0]["0.5"]++;
+        if (rate === 1) ratingCounterArr[1][1]++;
+        if (rate === 1.5) ratingCounterArr[2]["1.5"]++;
+        if (rate === 2) ratingCounterArr[3][2]++;
+        if (rate === 2.5) ratingCounterArr[4]["2.5"]++;
+        if (rate === 3) ratingCounterArr[5][3]++;
+        if (rate === 3.5) ratingCounterArr[6]["3.5"]++;
+        if (rate === 4) ratingCounterArr[7][4]++;
+        if (rate === 4.5) ratingCounterArr[8]["4.5"]++;
+        if (rate === 5) ratingCounterArr[9][5]++;
+      });
+    } else {
+      return ratingCounterArr;
+    }
+
     return ratingCounterArr;
   };
 
@@ -399,7 +404,7 @@ const FilmDetailsPage = () => {
           </div>
         <div>
           {orderReviews().map(review =>
-            <ReviewTile key={review.id} review={review} reviewUser={findReviewUser(review)}/>
+            <ReviewTile key={review.id} review={review} reviewUser={findReviewUser(review)} film={film}/>
           )}
         </div>
         </div>

@@ -57,12 +57,15 @@ const ReviewForm = ({ reviewInfo, formType, film }) => {
         const createdReview = await dispatch(
           thunkCreateReviewByFilmId(formData, film.id)
         );
+
         await dispatch(thunkGetFilmById(film.id));
         await dispatch(thunkGetAllFilmReviews(film.id));
+
       } else if (formType === "update") {
         const updatedReview = await dispatch(
           thunkUpdateReviewById(formData, reviewInfo.id)
         );
+
         await dispatch(thunkGetFilmById(film.id));
         await dispatch(thunkGetAllFilmReviews(film.id));
       }
@@ -126,12 +129,6 @@ const ReviewForm = ({ reviewInfo, formType, film }) => {
               >
                 Update Review
               </button>
-              <OpenModalButton
-                buttonStyleClass={"delete-review change-cursor"}
-                buttonText={"Delete Review"}
-                modalComponent={<DeleteReviewModal review={reviewInfo} film={film}/>}
-                modalStyleClass={"delete-profile-modal-content"}
-              />
             </div>
           )}
         </div>

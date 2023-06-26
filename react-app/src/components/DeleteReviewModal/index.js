@@ -8,10 +8,8 @@ import { thunkGetFilmById } from "../../store/films";
 function DeleteReviewModal({review, film}) {
     const dispatch = useDispatch()
     const { closeModal } = useModal();
-    const user = useSelector(state => state.session.user)
     const handleReviewDelete = async () => {
         await dispatch(thunkDeleteReviewById(review))
-        await dispatch(thunkGetUserById(user.id))
         await dispatch(thunkGetAllFilmReviews(film.id))
         await dispatch(thunkGetFilmById(film.id))
         closeModal();
