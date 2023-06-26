@@ -5,13 +5,10 @@ import {
   thunkGetAllFilmReviews,
   thunkUpdateReviewById,
 } from "../../store/reviews";
-import Loading from "../Loading";
 import "./Reviews.css";
 import ReactStars from "react-stars";
 import { thunkGetFilmById } from "../../store/films";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import OpenModalButton from "../OpenModalButton";
-import DeleteReviewModal from "../DeleteReviewModal";
 
 const ReviewForm = ({ reviewInfo, formType, film }) => {
   const [errors, setErrors] = useState({});
@@ -58,16 +55,16 @@ const ReviewForm = ({ reviewInfo, formType, film }) => {
           thunkCreateReviewByFilmId(formData, film.id)
         );
 
-        await dispatch(thunkGetFilmById(film.id));
-        await dispatch(thunkGetAllFilmReviews(film.id));
+         dispatch(thunkGetAllFilmReviews(film.id));
+         dispatch(thunkGetFilmById(film.id));
 
       } else if (formType === "update") {
         const updatedReview = await dispatch(
           thunkUpdateReviewById(formData, reviewInfo.id)
         );
 
-        await dispatch(thunkGetFilmById(film.id));
-        await dispatch(thunkGetAllFilmReviews(film.id));
+         dispatch(thunkGetAllFilmReviews(film.id));
+         dispatch(thunkGetFilmById(film.id));
       }
     }
   };

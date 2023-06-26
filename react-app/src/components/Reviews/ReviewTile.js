@@ -2,9 +2,12 @@ import ReactStars from "react-stars";
 import OpenModalButton from "../OpenModalButton";
 import DeleteReviewModal from "../DeleteReviewModal";
 import { useSelector } from "react-redux";
+import Loading from "../Loading";
 
-const ReviewTile = ({ review, reviewUser, film }) => {
+const ReviewTile = ({ review, film }) => {
   const user = useSelector(state => state.session.user)
+  const users = useSelector(state => state.session.users)
+
   const formatDate = () => {
     const unFormattedDate = review.created_at.split(" ");
     const date = unFormattedDate[1];
@@ -12,6 +15,14 @@ const ReviewTile = ({ review, reviewUser, film }) => {
     const year = unFormattedDate[3];
     return `${date} ${month} ${year}`;
   };
+
+  if(!users) return <Loading/>
+
+  const findReviewUser = (review) => {
+    return users.find(user => user.id === review.user_id)
+  }
+
+  const reviewUser = findReviewUser(review)
 
   return (
     <div className="review-tile-container">
@@ -32,7 +43,7 @@ const ReviewTile = ({ review, reviewUser, film }) => {
             Reviewed by <strong>{reviewUser.username}</strong>
           </p>
           <p>{formatDate()}</p>
-          {user.id === review.user_id && (
+          {user && user.id === review.user_id && (
             <OpenModalButton
               buttonStyleClass={"delete-review change-cursor"}
               buttonText={"Delete Review"}

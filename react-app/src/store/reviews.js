@@ -145,10 +145,10 @@ export default function reducer(state = initialState, action){
       const newState = {...state, reviews: action.payload.review}
       return newState
     }
-    case CREATE_REVIEW: {
-      const newState = {...state, reviews: action.payload.newReview}
-      return newState
-    }
+    // case CREATE_REVIEW: {
+    //   const newState = {...state, reviews: action.payload.newReview}
+    //   return newState
+    // }
     case DELETE_REVIEW: {
       const newState = {...state}
       delete newState[action.review]

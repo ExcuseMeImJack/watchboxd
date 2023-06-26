@@ -56,16 +56,15 @@ const FilmDetailsPage = () => {
   const [addToWatchlist, setAddToWatchlist] = useState(isOnWatchlist());
 
   useEffect(() => {
-    dispatch(thunkGetAllFilmReviews(filmId));
     const renderOrder = async () => {
       await dispatch(thunkGetAllUsers());
       await dispatch(thunkGetFilmById(filmId));
+      await dispatch(thunkGetAllFilmReviews(filmId));
     };
     renderOrder();
   }, [dispatch, likedFilm, watchedFilm, addToWatchlist]);
 
-  if (!film) return <Loading />;
-  if(!filmReviews || !users) return <Loading/>
+  if(!film || !filmReviews) return <Loading/>
 
   if (film.id === filmId) return <Loading />;
 
@@ -73,7 +72,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkLikeFilm(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
-    dispatch(thunkGetAllFilmReviews(filmId));
+    await dispatch(thunkGetAllFilmReviews(filmId));
     setLikedFilm(true);
     setWatchedFilm(true);
   };
@@ -82,7 +81,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkUnlikeFilm(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
-    dispatch(thunkGetAllFilmReviews(filmId));
+    await dispatch(thunkGetAllFilmReviews(filmId));
     setLikedFilm(false);
   };
 
@@ -90,7 +89,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkWatchFilm(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
-    dispatch(thunkGetAllFilmReviews(filmId));
+    await dispatch(thunkGetAllFilmReviews(filmId));
     setWatchedFilm(true);
   };
 
@@ -98,7 +97,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkUnwatchFilm(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
-    dispatch(thunkGetAllFilmReviews(filmId));
+    await dispatch(thunkGetAllFilmReviews(filmId));
     setWatchedFilm(false);
   };
 
@@ -106,7 +105,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkAddToWatchlist(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
-    dispatch(thunkGetAllFilmReviews(filmId));
+    await dispatch(thunkGetAllFilmReviews(filmId));
     setAddToWatchlist(true);
   };
 
@@ -114,7 +113,7 @@ const FilmDetailsPage = () => {
     await dispatch(thunkRemoveFromWatchlist(filmId));
     await dispatch(thunkUpdateUserInfo(user.id));
     await dispatch(thunkGetFilmById(filmId));
-    dispatch(thunkGetAllFilmReviews(filmId));
+    await dispatch(thunkGetAllFilmReviews(filmId));
     setAddToWatchlist(false);
   };
 
@@ -189,10 +188,6 @@ const FilmDetailsPage = () => {
     });
     return filmReviews;
   };
-
-  const findReviewUser = (review) => {
-    return users.find(user => user.id === review.user_id)
-  }
 
   return (
     <div className="film-details-page-container">
@@ -404,7 +399,7 @@ const FilmDetailsPage = () => {
           </div>
         <div>
           {orderReviews().map(review =>
-            <ReviewTile key={review.id} review={review} reviewUser={findReviewUser(review)} film={film}/>
+            <ReviewTile key={review.id} review={review} film={film}/>
           )}
         </div>
         </div>
