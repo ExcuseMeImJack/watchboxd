@@ -69,5 +69,34 @@
 }
 
 .review-tile-container{
-  border-bottom: 1px splid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+  display: flex;
+  margin: 20px 0;
+}
+
+#review-tile-profile-image{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-tile-details{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.review-tile-details > p{
+  margin: 0;
+}
+
+.review-tile-info > p{
+  margin-left: 20px;
+}
+
+.border-divider-reviews{
+  border: 1px solid var(--text-color);
+  margin-top: 30px;
 }

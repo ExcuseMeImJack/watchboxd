@@ -157,6 +157,22 @@ const FilmDetailsPage = () => {
     return false;
   };
 
+  const orderReviews = () => {
+    filmReviews.sort((a, b) => {
+      const createdAtA = new Date(a.created_at).getTime();
+      const createdAtB = new Date(b.created_at).getTime();
+
+      if (createdAtA > createdAtB) {
+        return -1;
+      }
+      if (createdAtA < createdAtB) {
+        return 1;
+      }
+      return 0;
+    });
+    return filmReviews;
+  };
+
   return (
     <div className="film-details-page-container">
       <div className="film-details-page">
@@ -372,11 +388,13 @@ const FilmDetailsPage = () => {
               />
             </div>
           </div>
-        </div>
+          <div className="border-divider-reviews">
+          </div>
         <div>
-          {filmReviews.map(review =>
+          {orderReviews().map(review =>
             <ReviewTile key={review.id} review={review} />
           )}
+        </div>
         </div>
       </div>
     </div>
