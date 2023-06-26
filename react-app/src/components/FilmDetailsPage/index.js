@@ -30,6 +30,7 @@ import ReactStars from "react-stars";
 import ReviewsHistogram from "../ReviewsHistogram";
 import ReviewUpdate from "../Reviews/ReviewUpdate";
 import ReviewCreate from "../Reviews/ReviewCreate";
+import ReviewTile from "../Reviews/ReviewTile";
 
 const FilmDetailsPage = () => {
   const { filmId } = useParams();
@@ -371,6 +372,11 @@ const FilmDetailsPage = () => {
               />
             </div>
           </div>
+        </div>
+        <div>
+          {filmReviews.map(review =>
+            <ReviewTile key={review.id} review={review} />
+          )}
         </div>
       </div>
     </div>
