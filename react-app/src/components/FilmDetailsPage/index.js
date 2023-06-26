@@ -28,6 +28,8 @@ import {
 } from "../../store/reviews";
 import ReactStars from "react-stars";
 import ReviewsHistogram from "../ReviewsHistogram";
+import ReviewUpdate from "../Reviews/ReviewUpdate";
+import ReviewCreate from "../Reviews/ReviewCreate";
 
 const FilmDetailsPage = () => {
   const { filmId } = useParams();
@@ -147,11 +149,9 @@ const FilmDetailsPage = () => {
   };
 
   const findReview = () => {
-    const reviewsFound = filmReviews.filter(
-      (review) => review.user_id === user.id
-    );
+    const reviewsFound = filmReviews.filter((review) => review.user_id === user.id);
     if (reviewsFound.length > 0) {
-      return true;
+      return reviewsFound[0];
     }
     return false;
   };
@@ -334,7 +334,7 @@ const FilmDetailsPage = () => {
                   <ReviewsHistogram reviewCounter={ratingCounter()} />
                 </div>
                 <div className="review-total-star-rating">
-                  <h2>
+                  <h2 className={film.rating === "No Reviews" ? 'review-total-size' : ''}>
                     {film.rating % 1 === 0 ? film.rating + ".0" : film.rating}
                   </h2>
                   <ReactStars
@@ -353,13 +353,9 @@ const FilmDetailsPage = () => {
                     Sign in to make a review
                   </button>
                 ) : findReview() ? (
-                  <button className="create-a-list-button change-cursor">
-                    Edit Form
-                  </button>
+                  <ReviewUpdate review={findReview()} film={film}/>
                 ) : (
-                  <button className="create-a-list-button change-cursor">
-                    Create Form
-                  </button>
+                  <ReviewCreate film={film}/>
                 )}
               </div>
             </div>

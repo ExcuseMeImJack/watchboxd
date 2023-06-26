@@ -36,7 +36,7 @@ def update_review(id):
     """
     review = Review.query.get(id)
 
-    if not list:
+    if not review:
         return {'errors': ['Review does not exist']}, 404
 
     if review.user_id == current_user.id:
@@ -48,7 +48,7 @@ def update_review(id):
             if(form.data["rating"]):
                 review.rating = form.data["rating"]
             db.session.commit()
-            return list.to_dict()
+            return review.to_dict()
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     return {'errors': ["Unauthorized"]}
 

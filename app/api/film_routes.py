@@ -29,6 +29,10 @@ def create_review(id):
     form = CreateReviewForm()
     film = Film.query.get(id)
 
+    print("\n\n\n\n\n\n\n\n")
+    print(form.data["review"])
+    print(form.data["rating"])
+
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         review = Review(
