@@ -30,9 +30,19 @@ class Film(db.Model):
     film_watches = db.relationship("User", secondary=watches, back_populates="user_watches")
     film_to_watch = db.relationship("User", secondary=films_to_watch, back_populates="user_films_to_watch")
 
+    film_reviews = db.relationship("Review", back_populates="film")
 
+    def calculate_rating(self, ratings, numOfReviews):
+        if(numOfReviews == 0): return "No Reviews"
+        sum = 0;
+        for num in ratings:
+            sum += num
+        return round(sum/numOfReviews, 1)
 
     def to_dict(self):
+        numOfReviews = len([review for review in self.film_reviews])
+        sumOfRatings = [review.rating for review in self.film_reviews]
+        rating = self.calculate_rating(sumOfRatings, numOfReviews)
         return {
             'id': self.id,
             'title': self.title,
@@ -46,6 +56,9 @@ class Film(db.Model):
             'user_id': self.user_id,
             'likes': len(self.film_likes),
             'watches': len(self.film_watches),
+            'reviews': numOfReviews,
+            'rating': rating,
+            'ratings': sumOfRatings,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

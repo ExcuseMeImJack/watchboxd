@@ -31,7 +31,7 @@
 
 .film-list-confirmation-remove > i{
     color: #99AABB;
-
+    transition: border-color 0.3s;
 }
 
 .film-list-confirmation-remove >i:hover{

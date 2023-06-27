@@ -1,11 +1,20 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, User, Film
+from app.models import db, User, Film, Review
 from ..forms import EditUserForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
+
+@user_routes.route('/reviews')
+@login_required
+def user_reviews():
+    """
+    Query for all the reviews for a user by the current user id
+    """
+    reviews = Review.query.filter(Review.user_id == current_user.id)
+    return {'reviews': [review.to_dict() for review in reviews]}
 
 @user_routes.route('/<int:id>/update')
 @login_required

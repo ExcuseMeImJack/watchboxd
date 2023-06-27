@@ -1,11 +1,49 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, User, Film
-from ..forms import CreateFilmForm, EditFilmForm
+from app.models import db, User, Film, Review
+from ..forms import CreateReviewForm, UpdateReviewForm, CreateFilmForm, EditFilmForm
 from app.api.aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 from .auth_routes import validation_errors_to_error_messages
 
 film_routes = Blueprint('films', __name__)
+
+@film_routes.route('/<int:id>/reviews')
+def film_reviews(id):
+    """
+    Query for all reviews for a film by film id
+    """
+    film = Film.query.get(id)
+
+    if not film:
+        return {'errors': ['Film does not exist']}, 404
+
+    reviews = Review.query.filter(Review.film_id == id)
+    return {'reviews': [review.to_dict() for review in reviews]}
+
+@film_routes.route('/<int:id>/reviews', methods=['POST'])
+@login_required
+def create_review(id):
+    """
+    Create a review that will assign the current user as it's creator as well as assigning the film. Then returns the created review in a dictionary
+    """
+    form = CreateReviewForm()
+    film = Film.query.get(id)
+
+
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        review = Review(
+            review=form.data["review"],
+            rating=form.data["rating"],
+            user_id=current_user.id,
+            film_id=film.id
+        )
+
+        db.session.add(review)
+        db.session.commit()
+        return review.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @film_routes.route('')
 def films():

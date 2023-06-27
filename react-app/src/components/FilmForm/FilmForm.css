@@ -17,8 +17,8 @@
 
 .create-film-form{
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas: 'left-film-form right-film-form';;
+    grid-template-columns: 1.8fr 1fr;
+    grid-template-areas: 'left-film-form right-film-form';
 }
 
 .left-create-film-form{
@@ -149,7 +149,16 @@
     outline: none;
     height: 20px;
     font-size: 16px;
+    margin-bottom: 15px;
 }
+
+.trailer-film-preview{
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid white;
+
+}
+
 .film-form-tile-image{
     display: flex;
     flex-direction: column;
@@ -184,8 +193,8 @@
 #background-image-preview {
     margin-top: 10px;
     object-fit: cover;
-    width: 505px;
-    height: 297px;
+    width: 530px;
+    height: 348px;
     border-radius: 10px;
     border:  1px solid white;
 }

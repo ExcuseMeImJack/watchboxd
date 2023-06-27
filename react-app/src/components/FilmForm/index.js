@@ -35,6 +35,7 @@ const FilmForm = ({ film, formType }) => {
   const [tileImagePreview, setTileImagePreview] = useState(
     film.tile_img_url ? film.tile_img_url : ""
   );
+  const [trailerPreview, setTrailerPreview] = useState(film.trailer_url ? film.trailer_url : "")
 
   useEffect(() => {
     const valErrors = {};
@@ -72,8 +73,8 @@ const FilmForm = ({ film, formType }) => {
     if (genre.length > 100)
       valErrors.genre = "Genre List must be lower than 100 characters";
 
-    if (description.length > 1000)
-      valErrors.description = "Description must be lower than 1000 characters";
+    if (description.length > 620)
+      valErrors.description = "Description must be lower than 620 characters";
 
     if (description.length < 10)
       valErrors.description = "Description must be more than 10 characters";
@@ -155,6 +156,20 @@ const FilmForm = ({ film, formType }) => {
       }
     }
   };
+
+  const getTrailerId = () => {
+    const url = film.trailer_url;
+    let id;
+    if (url.includes("youtube.com")) {
+      // https://www.youtube.com/watch?v=WRrCVyT09ow
+      id = url.split("=")[1];
+    } else if (url.includes("youtu.be")) {
+      // https://www.youtu.be/WRrCVyT09ow
+      id = url.split("/")[3];
+    }
+    return id;
+  };
+
   return (
     <div className="create-film-page-container">
       <div className="create-film-page">
@@ -276,6 +291,17 @@ const FilmForm = ({ film, formType }) => {
                   onChange={(e) => setTrailerUrl(e.target.value)}
                   required
                 />
+                {trailerPreview && (
+                   <iframe
+                   className="trailer-film-preview"
+                   height="550px"
+                   src={`https://www.youtube.com/embed/${getTrailerId()}`}
+                   frameBorder="0"
+                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                   allowFullScreen
+                   title="Embedded youtube"
+                 />
+                )}
               </div>
               <div className="film-form-tile-image file-input-div">
                 <label className="file-form-tile-image-button" >

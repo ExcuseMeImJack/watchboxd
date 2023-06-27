@@ -6,7 +6,6 @@ from .like import likes
 from .film_to_watch import films_to_watch
 from .watched import watches
 
-
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -30,6 +29,8 @@ class User(db.Model, UserMixin):
     user_watches = db.relationship("Film", secondary=watches, back_populates="film_watches")
     user_films_to_watch = db.relationship("Film", secondary=films_to_watch, back_populates="film_to_watch")
 
+    user_reviews = db.relationship("Review", back_populates="user")
+
     @property
     def password(self):
         return self.hashed_password
@@ -52,6 +53,7 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'lists': [list.to_dict() for list in self.lists],
             'likes': [film.to_dict() for film in self.user_likes],
+            'reviews': [review.to_dict() for review in self.user_reviews],
             'films_to_watch': [film.to_dict() for film in self.user_films_to_watch],
             'films_watched': [film.to_dict() for film in self.user_watches],
             'created_at': self.created_at,
@@ -70,6 +72,7 @@ class User(db.Model, UserMixin):
             'likes': [film.to_dict() for film in self.user_likes],
             'films_to_watch': [film.to_dict() for film in self.user_films_to_watch],
             'films_watched': [film.to_dict() for film in self.user_watches],
+            'reviews': [review.to_dict() for review in self.user_reviews],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

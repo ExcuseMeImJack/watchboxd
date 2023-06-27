@@ -36,6 +36,7 @@
     color: #b4b6b8;
     text-align: center;
     margin: 0px 0px 30px 0px;
+    transition: background-color 0.3s;
 }
 
 .lists-page-intro > button:hover{
@@ -110,6 +111,7 @@
 .list-tile > span{
     border: 2px solid transparent;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.301);
+    transition: border-color 0.3s;
 }
 
 .list-tile > span:hover{

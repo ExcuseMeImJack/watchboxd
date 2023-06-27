@@ -77,6 +77,10 @@ const FilmsPage = () => {
                                         <i className="fa-solid fa-heart"></i>
                                         <p>{film.likes}</p>
                                     </div>
+                                    <div className="film-reviews">
+                                        <i className="fa-solid fa-message"></i>
+                                        <p>{film.reviews}</p>
+                                    </div>
                                 </div>
                             </div>
                     )}
