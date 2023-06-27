@@ -17,8 +17,7 @@ const FilmsPage = () => {
     }, [dispatch])
 
     if(!films) return <Loading/>
-
-
+    
     const orderFilms = () => {
       films.sort((a, b) => {
         const createdAtA = new Date(a.created_at).getTime();

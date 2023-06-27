@@ -6,7 +6,7 @@ def seed_films(users):
     film1 = Film(
         title = "Interstellar",
         year = 2014,
-        description = "Mankind was born on Earth. It was never meant to die here. The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.",
+        description = "Interstellar, directed by Christopher Nolan, is an extraordinary sci-fi epic that propels audiences on a transcendent voyage through space and time. With a captivating storyline, mesmerizing visuals, and a stellar ensemble cast led by Matthew McConaughey, the film delves into the exploration of a wormhole as a last hope for humanity's survival. It's a thought-provoking odyssey that delves deep into themes of love, sacrifice, and the boundless resilience of the human spirit. Interstellar is a cinematic masterpiece that will leave you breathless, forever pondering the mysteries of the universe.",
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/r4/0u/oq/0i/interstellar-1200-1200-675-675-crop-000000.jpg",
         trailer_url = "https://www.youtube.com/watch?v=2LqzF5WauAw",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/1/1/7/6/2/1/117621-interstellar-0-500-0-750-crop.jpg",
@@ -19,7 +19,7 @@ def seed_films(users):
     film2 = Film(
         title = "Jurassic World: Fallen Kingdom",
         year = 2018,
-        description = "The park is gone. Three years after the demise of Jurassic World, a volcanic eruption threatens the remaining dinosaurs on the isla Nublar, so Claire Dearing, the former park manager, recruits Owen Grady to help prevent the extinction of the dinosaurs once again.",
+        description = "Jurassic World: Fallen Kingdom takes audiences on a thrilling adventure as dinosaurs face an imminent extinction once again. Directed by J.A. Bayona, this action-packed sequel explores the moral dilemmas of saving these creatures from an erupting volcano. Chris Pratt and Bryce Dallas Howard reprise their roles, navigating treacherous terrain and facing unexpected dangers. With stunning visual effects, intense suspense, and heartfelt moments, the film delivers a roller-coaster ride that reminds us of the fragility and wonder of these ancient creatures. Brace yourself for a Jurassic journey unlike any other.",
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/hr/q4/5n/t1/jurassic-world-fallen-kingdom-1200-1200-675-675-crop-000000.jpg",
         trailer_url = "https://www.youtube.com/watch?v=vn9mMeWcgoM",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/2/8/1/5/2/9/281529-jurassic-world-fallen-kingdom-0-460-0-690-crop.jpg",
@@ -33,7 +33,7 @@ def seed_films(users):
     film3 = Film(
         title = "In the Heights",
         year = 2021,
-        description = "The time has come. The story of Usnavi, a bodega owner who has mixed feelings about closing his store and retiring to the Dominican Republic or staying in Washington Heights.",
+        description = "In the Heights, directed by Jon M. Chu, is a vibrant musical that celebrates the dreams and diversity of Washington Heights community. Based on Lin-Manuel Miranda's stage production, it follows characters navigating love, identity, and aspirations. With infectious songs, dazzling choreography, and talented cast, including Anthony Ramos and Melissa Barrera, In the Heights immerses viewers in a world of energy and emotions. It captures resilience, community, and the importance of roots. With dazzling visuals and heartfelt storytelling, In the Heights is a joyous celebration of culture, love, and finding home.",
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/6o/n7/l3/an/in%20the%20hieghts-1200-1200-675-675-crop-000000.jpg",
         trailer_url = "https://www.youtube.com/watch?v=U0CL-ZSuCrQ",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/3/9/9/5/0/0/399500-in-the-heights-0-460-0-690-crop.jpg",
@@ -46,7 +46,7 @@ def seed_films(users):
     film4 = Film(
         title = "Aladdin",
         year = 2019,
-        description = "Choose Wisely. A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.",
+        description = 'Aladdin, directed by Guy Ritchie, is a magical live-action adaptation of the beloved Disney classic. With stunning visuals and an enchanting cast, it follows the journey of Aladdin, a charming "diamond in the rough," as he navigates love, adventure, and the pursuit of his dreams. This visually captivating spectacle, filled with dazzling musical numbers and heartwarming moments, captures the timeless themes of self-discovery, love, and the power of staying true to oneself. Aladdin is a magical and joyous cinematic experience that will transport you to a world of wonder and leave you with a smile on your face.',
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/t5/xc/w8/fo/aladdin-2019-1200-1200-675-675-crop-000000.jpg",
         trailer_url = "https://youtu.be/foyufD52aog",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/3/5/4/5/3/8/354538-aladdin-0-460-0-690-crop.jpg",
@@ -59,7 +59,7 @@ def seed_films(users):
     film5 = Film(
         title = "Pixels",
         year = 2015,
-        description = "Game on. Video game experts are recruited by the military to fight 1980s-era video game characters who’ve attacked New York.",
+        description = "Pixels, directed by Chris Columbus, is a fun and nostalgic sci-fi comedy that brings beloved arcade game characters to life. When aliens misinterpret video feeds as a declaration of war, they unleash classic game characters on Earth. It's up to a group of skilled gamers, led by Adam Sandler and Josh Gad, to save the world. With its clever blend of action, humor, and retro gaming references, Pixels offers an entertaining ride filled with pixelated mayhem and nostalgia-inducing moments. It's a lighthearted and enjoyable film that appeals to both gaming enthusiasts and those seeking a dose of '80s nostalgia.",
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/f1/ct/oh/jq/pixels-2015-1200-1200-675-675-crop-000000.jpg",
         trailer_url = "https://www.youtube.com/watch?v=XAHprLW48no",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/1/8/1/1/1/8/181118-pixels-0-460-0-690-crop.jpg",
@@ -72,7 +72,7 @@ def seed_films(users):
     film6 = Film(
         title = "Kingsman: The Secret Service",
         year = 2014,
-        description = "Manners Maketh Man. The story of a super-secret spy organization that recruits an unrefined but promising street kid into the agency’s ultra-competitive training program just as a global threat emerges from a twisted tech genius.",
+        description = "Kingsman: The Secret Service, directed by Matthew Vaughn, is a thrilling and stylish spy-action film that redefines the genre. It follows Eggsy, a street-smart young man, as he enters a clandestine training program to become a gentleman spy. With Colin Firth as his mentor, the duo faces off against a megalomaniac villain, played by Samuel L. Jackson. Packed with exhilarating action sequences, witty dialogue, and a fresh take on the spy genre, Kingsman delivers a wild ride that balances humor and high-stakes espionage. It's a visually stunning and adrenaline-pumping film that leaves audiences craving for more.",
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/hq/ob/tz/ns/uRHdkM871YJQDl3ux3ulCQw7BfV-1200-1200-675-675-crop-000000.jpg",
         trailer_url = "https://www.youtube.com/watch?v=kl8F-8tR8to",
         tile_img_url = "https://a.ltrbxd.com/resized/film-poster/1/4/8/2/0/0/148200-kingsman-the-secret-service-0-460-0-690-crop.jpg",
@@ -85,7 +85,7 @@ def seed_films(users):
     film7 = Film(
         title = "Big Hero 6",
         year = 2014,
-        description = "The special bond that develops between plus-sized inflatable robot Baymax, and prodigy Hiro Hamada, who team up with a group of friends to form a band of high-tech heroes.",
+        description = 'In the heartwarming animated adventure "Big Hero 6," a young prodigy and his lovable robot team up with friends to become high-tech heroes in the vibrant city of San Fransokyo. Together, they face thrilling challenges, battling a dangerous villain who threatens their community. With cutting-edge technology, heartwarming friendship, and a dash of humor, this visually stunning film celebrates the power of teamwork, self-discovery, and the courage to face adversity. Join Hiro, Baymax, and their team as they embark on an exhilarating journey that will leave you inspired and cheering for the heroes of San Fransokyo.',
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/wc/nn/r0/8o/big-hero-6-1200-1200-675-675-crop-000000.jpg",
         trailer_url = "https://www.youtube.com/watch?v=z3biFxZIJOQ",
         tile_img_url = "https://a.ltrbxd.com/resized/sm/upload/hu/db/3b/mm/q6WZxPlic8hpKzCxnzWOFCCLQfo-0-460-0-690-crop.jpg",
@@ -98,7 +98,7 @@ def seed_films(users):
     film8 = Film(
         title = "If I Stay",
         year = 2014,
-        description = "Live For Love. Mia Hall, a talented young cellist, thought the most difficult decision she would ever have to make would be whether to pursue her musical dreams at prestigious Juilliard or follow her heart to be with the love of her life, Adam, a rock singer/guitarist. However, a car wreck changes everything in an instant, and now Mia’s life hangs in the balance. Suspended between life and death, Mia faces a choice that will decide her future.",
+        description = "'If I Stay' is an emotional drama that explores the profound impact of life-altering choices. After a tragic accident, a talented musician finds herself in a coma, caught between life and death. As she contemplates her existence, memories of love, family, and her passion for music intertwine, prompting a soul-searching journey. With heartfelt performances and a poignant soundtrack, this thought-provoking film delves into themes of love, loss, and the power of embracing life's fleeting moments. Prepare to be moved as you witness the transformative journey of one girl's ultimate decision.",
         background_img_url = "https://a.ltrbxd.com/resized/sm/upload/1y/zu/aq/50/if-i-stay-1200-1200-675-675-crop-000000.jpg",
         trailer_url = "https://www.youtube.com/watch?v=wH6PNeTy6Nc",
         tile_img_url = "https://a.ltrbxd.com/resized/sm/upload/81/57/w1/3y/mLnBvLD3qJC82rhjJFZJijfYkFD-0-460-0-690-crop.jpg",
