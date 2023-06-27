@@ -36,7 +36,6 @@ class Film(db.Model):
         if(numOfReviews == 0): return "No Reviews"
         sum = 0;
         for num in ratings:
-            print(num)
             sum += num
         return round(sum/numOfReviews, 1)
 
