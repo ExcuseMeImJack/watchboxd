@@ -55,7 +55,8 @@ const HomePage = () => {
         <>
             <div className="home-page-container">
                 <div className="home-page">
-                    <div className="home-img-container" style={{backgroundImage: `url(${homeImg})`}}>
+                    <div className="home-img-container">
+                        <img src={homeImg} id='home-img-preview'/>
                     </div>
                     <div className='home-text'>
                         <h1>Track films you've watched.</h1>

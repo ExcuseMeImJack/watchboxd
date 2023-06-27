@@ -78,13 +78,13 @@ h3, h4, h5 {
         right: -2px
     }
 
-    .home-img-container{
+    /* .home-img-container{
         width: 1045px;
         height: 625px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center top;
-    }
+    } */
 
     .home-text{
         top: 400px;
@@ -114,14 +114,14 @@ h3, h4, h5 {
         right: 204px;
     }
 
-    .home-img-container{
+    /* .home-img-container{
         width: 1459px;
         height: 690px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center top;
 
-    }
+    } */
 
     .home-text{
         top: 400px;
@@ -151,14 +151,14 @@ h3, h4, h5 {
         right: 452px
     }
 
-    .home-img-container{
+    /* .home-img-container{
         width: 1937px;
         height: 830px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center top;
-        /* background-position: bottom 20px; */
-    }
+        //background-position: bottom 20px;
+    } */
 
     .home-text{
         top: 550px;
