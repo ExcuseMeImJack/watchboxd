@@ -21,6 +21,7 @@ const ReviewsHistogram = ({ reviewCounter }) => {
     return { height: height };
   };
 
+  console.log(reviewCounter)
   return (
     <div className="histogram-panel">
       {reviewCounter.map((ratingCount, i) => (
