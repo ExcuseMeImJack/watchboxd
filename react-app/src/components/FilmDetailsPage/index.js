@@ -144,7 +144,8 @@ const FilmDetailsPage = () => {
       { 5: 0 },
     ];
     if(film.ratings.length > 0){
-      film.ratings.forEach((rate) => {
+      film.ratings.forEach((rating) => {
+        const rate = parseFloat(rating);
         if (rate === 0.5) ratingCounterArr[0]["0.5"]++;
         if (rate === 1) ratingCounterArr[1][1]++;
         if (rate === 1.5) ratingCounterArr[2]["1.5"]++;
@@ -359,7 +360,7 @@ const FilmDetailsPage = () => {
                 </div>
                 <div className="review-total-star-rating">
                   <h2 className={film.rating === "No Reviews" ? 'review-total-size' : ''}>
-                    {film.rating % 1 === 0 ? film.rating + ".0" : film.rating}
+                    {film.rating}
                   </h2>
                   <ReactStars
                     id="real-star-rating"

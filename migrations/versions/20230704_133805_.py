@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: eda44a00bdcc
+Revision ID: 920e3308ceec
 Revises:
-Create Date: 2023-06-22 16:17:37.540392
+Create Date: 2023-07-04 13:38:05.992732
 
 """
 from alembic import op
@@ -12,8 +12,9 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+
 # revision identifiers, used by Alembic.
-revision = 'eda44a00bdcc'
+revision = '920e3308ceec'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -94,7 +95,7 @@ def upgrade():
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('film_id', sa.Integer(), nullable=True),
     sa.Column('review', sa.String(length=250), nullable=False),
-    sa.Column('rating', sa.Float(), nullable=False),
+    sa.Column('rating', sa.DECIMAL(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['film_id'], ['films.id'], ),
@@ -110,7 +111,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['users'], ['users.id'], ),
     sa.PrimaryKeyConstraint('users', 'films')
     )
-
+    
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE films SET SCHEMA {SCHEMA};")
