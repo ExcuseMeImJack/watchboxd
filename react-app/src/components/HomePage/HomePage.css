@@ -48,12 +48,10 @@
 .home-text{
     position: absolute;
     top: 400px;
-    left: 35%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-
 }
 
 .home-text > h1{

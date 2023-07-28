@@ -54,11 +54,11 @@ const HomePage = () => {
     return (
         <>
             <div className="home-page-container">
-                <div className="home-page">
+                <div className="home-page container-fluid">
                     <div className="home-img-container">
                         <img src={homeImg} id='home-img-preview'/>
                     </div>
-                    <div className='home-text'>
+                    <div className='container text-center fixed-top home-text'>
                         <h1>Track films you've watched.</h1>
                         <h1>Save those you want to see.</h1>
                         <h1>The social network for film lovers.</h1>
