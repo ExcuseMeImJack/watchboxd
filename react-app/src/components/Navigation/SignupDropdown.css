@@ -1,7 +1,7 @@
 .signup-dropdown{
     position: absolute;
     /* border: 2px red solid; */
-    top: 75px;
+    top: 69px;
     left: 46%;
     background-color: var(--nav-color);
     border-bottom-right-radius: 5px;

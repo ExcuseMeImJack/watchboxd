@@ -1,7 +1,7 @@
 .login-dropdown{
     position: absolute;
     /* border: 2px red solid; */
-    top: 75px;
+    top: 69px;
     left: 40%;
     background-color: var(--nav-color);
     border-bottom-right-radius: 5px;
@@ -9,7 +9,7 @@
     padding: 0px 10px 10px 10px;
     color: var(--text-color);
     z-index: 4;
-    width: 550px;
+    width: 560px;
     max-height: 200px;
 }
 
@@ -34,6 +34,7 @@
     outline: none;
     border: none;
     border-radius: 3px;
+    height: 25px;
     color: var(--text-color);
     font-size: 16px;
 }
@@ -62,6 +63,7 @@
     color: white;
     padding: 4px;
     font-weight: 700;
+    font-size: 16px;
 }
 
 #login-button-demo{
@@ -74,6 +76,7 @@
     color: white;
     padding: 4px;
     font-weight: 700;
+    font-size: 16px;
 }
 
 .errors-login{

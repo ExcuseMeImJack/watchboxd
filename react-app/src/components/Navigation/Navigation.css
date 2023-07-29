@@ -59,6 +59,8 @@
   color: rgb(241, 241, 241);
   font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 900;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .logo-navbar{
