@@ -39,7 +39,7 @@ const MembersPage = () => {
                             </div>
                             <div className='members-big-details-tiles'>
                                 <div className='members-big-username'>
-                                    <h3>{user.username}</h3>
+                                    <h5>{user.username}</h5>
                                 </div>
                                 <div className='members-big-films-watched'>
                                     <p>{user.films_watched.length} films</p>
@@ -58,7 +58,7 @@ const MembersPage = () => {
                                         <img src={user.profile_img_url} />
                                     </div>
                                     <div>
-                                        <h3>{user.username}</h3>
+                                        <h5>{user.username}</h5>
                                     </div>
                                 </div>
                                 <div className='members-page-user-info-panel'>
