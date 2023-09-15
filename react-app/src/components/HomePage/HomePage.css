@@ -48,6 +48,7 @@
 .home-text{
     position: absolute;
     top: 400px;
+    left: 38%;
     display: flex;
     justify-content: center;
     flex-direction: column;

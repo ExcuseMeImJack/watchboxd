@@ -58,7 +58,7 @@ const HomePage = () => {
                     <div className="home-img-container">
                         <img src={homeImg} id='home-img-preview'/>
                     </div>
-                    <div className='container text-center fixed-top home-text'>
+                    <div className='home-text'>
                         <h1>Track films you've watched.</h1>
                         <h1>Save those you want to see.</h1>
                         <h1>The social network for film lovers.</h1>
