@@ -18,7 +18,7 @@
 
 #home-img-preview{
     object-fit: cover;
-    width: 100%;
+    width: 101%;
     height: 90vh;
 }
 
@@ -48,12 +48,11 @@
 .home-text{
     position: absolute;
     top: 400px;
-    left: 35%;
+    left: 38%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-
 }
 
 .home-text > h1{

@@ -54,7 +54,7 @@ const HomePage = () => {
     return (
         <>
             <div className="home-page-container">
-                <div className="home-page">
+                <div className="home-page container-fluid">
                     <div className="home-img-container">
                         <img src={homeImg} id='home-img-preview'/>
                     </div>

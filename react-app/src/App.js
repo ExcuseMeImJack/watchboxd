@@ -20,7 +20,6 @@ import ListUpdate from "./components/ListUpdate";
 import ListCreate from "./components/ListCreate";
 import HomePage from "./components/HomePage";
 import MembersPage from "./components/MembersPage";
-import MobileBanner from "./components/MobileBanner";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +30,6 @@ function App() {
 
   return (
     <div className="app">
-      <MobileBanner/>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>

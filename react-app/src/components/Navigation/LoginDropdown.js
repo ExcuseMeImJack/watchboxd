@@ -72,9 +72,9 @@ const LoginDropdown = () => {
         SIGN IN
       </button>
       <div className={ulClassName} ref={ulRef}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="row">
           <div className="login-form-details">
-            <div className="email-login-div">
+            <div className="email-login-div col">
               <label>Email</label>
               <input
                 type="text"
@@ -83,7 +83,7 @@ const LoginDropdown = () => {
                 required
               />
             </div>
-            <div className="password-login-div">
+            <div className="password-login-div col">
               <label>Password</label>
               <input
                 type="password"
@@ -92,7 +92,7 @@ const LoginDropdown = () => {
                 required
               />
             </div>
-            <div className="login-button-submit-div">
+            <div className="login-button-submit-div col">
               <button id="login-button-submit" className="change-cursor" type="submit">
                 Log In
               </button>
